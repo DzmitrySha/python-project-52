@@ -1,0 +1,11 @@
+.idea
+.venv/
+venv/
+dist/
+__pycache__
+.pytest_cache/
+var/
+.coverage
+coverage.xml
+.vim
+*.log
