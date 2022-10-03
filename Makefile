@@ -7,27 +7,31 @@ package-install:
 package-uninstall:
 		python3 -m pip uninstall --yes dist/*.whl
 
-run:
-		poetry run
-#
-#selfcheck:
-#		poetry check
-#
-#test:
-#		poetry run pytest
-#
-#test-cov:
-#		poetry run pytest --cov
-#
-#lint:
-#		poetry run flake8 page_loader
-#
-#test-coverage:
-#		poetry run pytest --cov=page_loader --cov-report xml tests/
-#
-#check: selfcheck test lint
-#
-#build: check
-#		poetry build
-#
-#.PHONY: install test lint selfcheck check build
+runserver:
+		poetry run python manage.py runserver
+
+run-gunicorn:
+		export DJANGO_SETTINGS_MODULE=task_manager.settings
+		poetry run gunicorn task_manager.wsgi
+
+selfcheck:
+		poetry check
+
+test:
+		poetry run pytest
+
+test-cov:
+		poetry run pytest --cov
+
+lint:
+		poetry run flake8 task_manager
+
+test-coverage:
+		poetry run pytest --cov=task_manager --cov-report xml tests/
+
+check: selfcheck test lint
+
+build: check
+		poetry build
+
+.PHONY: install test lint selfcheck check build
