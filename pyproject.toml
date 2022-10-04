@@ -4,9 +4,9 @@ version = "0.1.0"
 description = "Task Manager"
 authors = ["DzmitrySha <ravenbydev@gmail.com>"]
 readme = "README.md"
-packages = [
-    {include = "hexlet_code"}
-]
+#packages = [
+#    {include = "hexlet_code"}
+#]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -23,5 +23,5 @@ pytest-cov = "^4.0.0"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.scripts]
-task-manager = "task_manager.manage.py:main"
+#[tool.poetry.scripts]
+#task-manager = "task_manager.manage.py:main"
