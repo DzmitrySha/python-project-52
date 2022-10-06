@@ -10,3 +10,4 @@ coverage.xml
 .vim
 *.log
 .env
+x/
