@@ -5,9 +5,10 @@ dist/
 __pycache__
 .pytest_cache/
 var/
+x/
 .coverage
 coverage.xml
 .vim
 *.log
 .env
-x/
+*.sqlite3
