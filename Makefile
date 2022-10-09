@@ -23,6 +23,9 @@ test:
 test-cov:
 		poetry run pytest --cov
 
+test-django:
+		python manage.py test
+
 lint:
 		poetry run flake8 task_manager
 
