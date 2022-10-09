@@ -18,9 +18,10 @@ django-bootstrap4 = "^22.2"
 
 
 [tool.poetry.group.dev.dependencies]
-gunicorn = "^20.1.0"
 flake8 = "^5.0.4"
 pytest-cov = "^4.0.0"
+django-extensions = "^3.2.1"
+pytest-django = "^4.5.2"
 
 [build-system]
 requires = ["poetry-core"]
