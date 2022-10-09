@@ -1,3 +1,5 @@
+MANAGE := poetry run python manage.py
+
 install:
 		poetry install
 
@@ -8,11 +10,20 @@ package-uninstall:
 		python3 -m pip uninstall --yes dist/*.whl
 
 runserver:
-		poetry run python manage.py runserver
+		$(MANAGE) runserver
 
-run-gunicorn:
-		export DJANGO_SETTINGS_MODULE=task_manager.settings
-		poetry run gunicorn task_manager.wsgi
+shell:
+		$(MANAGE) shell_plus
+
+migrations:
+		$(MANAGE) makemigrations
+
+migrate:
+		$(MANAGE) migrate
+
+#run-gunicorn:
+#		export DJANGO_SETTINGS_MODULE=task_manager.settings
+#		poetry run gunicorn task_manager.wsgi
 
 selfcheck:
 		poetry check
@@ -37,4 +48,4 @@ check: selfcheck test lint
 build: check
 		poetry build
 
-.PHONY: install test lint selfcheck check build
+.PHONY: install test lint selfcheck check build shell migrate
