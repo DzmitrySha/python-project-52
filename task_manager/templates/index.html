@@ -1,63 +1,10 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Менеджер задач</title>
+{% extends 'base.html' %}
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/starter-template/">
+{% block title %}Менеджер задач{% endblock %}
 
-    <style>
-        body {
-          padding-top: 5rem;
-        }
-        .starter-template {
-          padding: 3rem 1.5rem;
-          text-align: center;
-        }
-    </style>
-
-    {% load bootstrap4 %}
-    {% load i18n %}
-    {% bootstrap_css %}
-    {% bootstrap_javascript jquery='full' %}
-
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">Менеджер задач</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/users/">Пользователи<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-      <ul class="navbar-nav my-2 my-lg-0">
-        <li class="nav-item mr-sm-2">
-          <a class="nav-link" href="/login/">Вход<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item my-2 my-sm-0">
-          <a class="nav-link" href="/users/create/">Регистрация<span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-  </div>
-</nav>
-
-<main role="main" class="container">
-
+{% block content %}
   <div class="starter-template">
     <h1>Менеджер задач</h1>
     <p class="lead">Простой и функциональный менеджер задач.</p>
   </div>
-
-</main>
-
-</body>
-</html>
+{% endblock %}
