@@ -1,4 +1,5 @@
 MANAGE := poetry run python manage.py
+HEROKU := heroku run python manage.py
 
 install:
 		poetry install
@@ -15,15 +16,24 @@ runserver:
 shell:
 		$(MANAGE) shell_plus
 
+collectstatic:
+		$(MANAGE) collectstatic
+
 migrations:
 		$(MANAGE) makemigrations
 
 migrate:
 		$(MANAGE) migrate
 
-#run-gunicorn:
-#		export DJANGO_SETTINGS_MODULE=task_manager.settings
-#		poetry run gunicorn task_manager.wsgi
+migrations-heroku:
+		$(HEROKU) makemigrations
+
+migrate-heroku:
+		$(HEROKU) migrate
+
+run-gunicorn:
+		export DJANGO_SETTINGS_MODULE=task_manager.settings
+		poetry run gunicorn task_manager.wsgi --log-file -
 
 selfcheck:
 		poetry check
@@ -48,4 +58,4 @@ check: selfcheck test lint
 build: check
 		poetry build
 
-.PHONY: install test lint selfcheck check build shell migrate
+.PHONY: install test lint selfcheck check build shell migrate collectstatic
