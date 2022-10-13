@@ -3,18 +3,68 @@
 {% block title %}Страница входа{% endblock %}
 
 {% block content %}
-  <div class="starter-template">
-    <h1>Вход</h1>
-  </div>
-<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Имя пользователя</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Имя пользователя">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Пароль</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль">
-  </div>
-  <button type="submit" class="btn btn-info">Войти</button>
-</form>
+    <div class="container wrapper flex-grow-1">
+        <h1 class="my-4">Регистрация</h1>
+        <form method="post">
+            <input type="hidden" name="csrfmiddlewaretoken"
+                   value="3OoEA1pTtIOXe509jkACs97E8QuxgOqYUGbumjuGBgELG65GgVzVJMLBRll70C1i">
+            <div class="form-group"><label for="id_first_name">Имя</label><input
+                    type="text" name="first_name" maxlength="150"
+                    class="form-control" placeholder="Имя" title="" required
+                    id="id_first_name"></div>
+            <div class="form-group"><label
+                    for="id_last_name">Фамилия</label><input type="text"
+                                                             name="last_name"
+                                                             maxlength="150"
+                                                             class="form-control"
+                                                             placeholder="Фамилия"
+                                                             title="" required
+                                                             id="id_last_name">
+            </div>
+            <div class="form-group"><label for="id_username">Имя
+                пользователя</label><input type="text" name="username"
+                                           maxlength="150" autofocus
+                                           class="form-control"
+                                           placeholder="Имя пользователя"
+                                           title="Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."
+                                           required id="id_username">
+                <small class="form-text text-muted">Обязательное поле. Не более
+                    150 символов. Только буквы, цифры и символы
+                    @/./+/-/_.</small>
+            </div>
+            <div class="form-group"><label
+                    for="id_password1">Пароль</label><input type="password"
+                                                            name="password1"
+                                                            autocomplete="new-password"
+                                                            class="form-control"
+                                                            placeholder="Пароль"
+                                                            title="Ваш пароль должен содержать как минимум 3 символа."
+                                                            required
+                                                            id="id_password1">
+                <small class="form-text text-muted">
+                    <ul>
+                        <li>Ваш пароль должен содержать как минимум 3 символа.
+                        </li>
+                    </ul>
+                </small>
+            </div>
+            <div class="form-group"><label for="id_password2">Подтверждение
+                пароля</label><input type="password" name="password2"
+                                     autocomplete="new-password"
+                                     class="form-control"
+                                     placeholder="Подтверждение пароля"
+                                     title="Для подтверждения введите, пожалуйста, пароль ещё раз."
+                                     required id="id_password2">
+                <small class="form-text text-muted">Для подтверждения введите,
+                    пожалуйста, пароль ещё раз.</small>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-info" type="submit"
+                       value="Зарегистрировать">
+            </div>
+        </form>
+
+    </div>
+
+
 {% endblock %}
