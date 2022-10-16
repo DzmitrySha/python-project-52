@@ -3,37 +3,35 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<main role="main" class="container">
-  <div class="starter-template">
-    <h1>{{ title }}</h1>
-  </div>
-    <table class="table">
-  <thead>
+
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{{ title }}</h1>
+</div>
+<table class="table">
+    <thead>
     <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Имя пользователя</th>
-      <th scope="col">Полное имя</th>
-      <th scope="col">Дата создания</th>
-      <th scope="col"></th>
+        <th scope="col">ID</th>
+        <th scope="col">Имя пользователя</th>
+        <th scope="col">Полное имя</th>
+        <th scope="col">Дата создания</th>
+        <th scope="col"></th>
     </tr>
-  </thead>
-  <tbody>
-      {% for user in users %}
+    </thead>
+    <tbody>
+    {% for user in users %}
     <tr>
         <th scope="row">{{ user.id }}</th>
         <td>{{ user.username }}</td>
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.date_joined }}</td>
         <td>
-          <a href="/users/{{ user.id }}/update/">Изменить</a>
-          <br>
-          <a href="/users/{{ user.id }}/delete/">Удалить</a>
+            <a href="/users/{{ user.id }}/update/">Изменить</a>
+            <br>
+            <a href="/users/{{ user.id }}/delete/">Удалить</a>
         </td>
     </tr>
-      {% endfor %}
-  </tbody>
+    {% endfor %}
+    </tbody>
 </table>
 
-
-</main>
 {% endblock %}
