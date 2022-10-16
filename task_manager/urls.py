@@ -19,29 +19,33 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 
 from task_manager import settings
-from task_manager.views import UsersList, CreateUser
+from task_manager.views import UsersList, CreateUser, UpdateUser, DeleteUser
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="home"),
 
     path('admin/', admin.site.urls, name="admin"),
-    # path('accounts/', include('django.contrib.auth.urls')),
 
     path('users/', UsersList.as_view(), name="users"),
+
     path('users/create/', CreateUser.as_view(), name="create"),
 
     path('users/<int:pk>/update/',
-         TemplateView.as_view(template_name="update.html"),
+         UpdateUser.as_view(template_name="update.html"),
          name="update"),
+
     path('users/<int:pk>/delete/',
-         TemplateView.as_view(template_name="delete.html"),
+         DeleteUser.as_view(template_name="delete.html"),
          name="delete"),
+
     path('login/', TemplateView.as_view(template_name="login.html"),
          name="login"),
+
     path('logout/', TemplateView.as_view(template_name="index.html"),
          name="logout"),
+
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('i18n/', include('django.conf.urls.i18n')),
+    # path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:
