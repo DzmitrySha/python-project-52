@@ -81,14 +81,18 @@
         {{ form.as_p }}
 <!--    {% for f in form %}-->
 <!--    <div class="form-group">-->
-<!--        <label for="{{ f.id_for_label }}">{{ f.label }}</label>-->
+<!--        <label for="{{ f.id_for_label }}">{{ f.label }}: </label>-->
+
 <!--        <input type="text" name="{{ f.label }}" maxlength="150"-->
 <!--               class="form-control" placeholder="{{ f.label }}"-->
 <!--               title="{{ f.label }}" required-->
-<!--               id="{{ f.id_for_label }}">-->
+<!--               id="{{ f.id_for_label }}">{{ f }}-->
 <!--    </div>-->
+<!--    <div class="errors">{{ f.errors }}</div>-->
 <!--    {% endfor %}-->
-    <input class="btn btn-info" type="submit" value="Зарегистрировать">
+    <div class="form-group">
+        <input class="btn btn-info" type="submit" value="Зарегистрировать">
+    </div>
 </form>
 
 {% endblock %}

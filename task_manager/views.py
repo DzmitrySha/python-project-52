@@ -1,4 +1,5 @@
 # from django.shortcuts import render
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
@@ -17,16 +18,13 @@ class UsersList(ListView):
 
 
 class CreateUser(CreateView):
-    model = User
-    fields = ['username', 'first_name', 'last_name',
-              'email', 'password']
+    # model = User
+    form_class = UserCreationForm
+    # fields = ['username', 'first_name', 'last_name',
+    #           'email', 'password']
     template_name = "create.html"
     success_url = reverse_lazy("login")
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Регистрация пользователя'
-        return context
+    extra_context = {'title': 'Регистрация пользователя', }
 
 
 class UpdateUser(UpdateView):
@@ -34,11 +32,7 @@ class UpdateUser(UpdateView):
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "update.html"
     success_url = reverse_lazy("login")
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Изменение пользователя'
-        return context
+    extra_context = {'title': 'Изменение пользователя', }
 
 
 class DeleteUser(DeleteView):
@@ -50,13 +44,10 @@ class DeleteUser(DeleteView):
 
 class LoginUser(LoginView):
     model = User
+    form_class = AuthenticationForm
     template_name = "login.html"
     success_url = reverse_lazy("home")
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Страница входа'
-        return context
+    extra_context = {'title': 'Страница входа', }
 
 
 # class LogoutUser(LogoutView):
