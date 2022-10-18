@@ -47,7 +47,7 @@ class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = "login.html"
     success_url = reverse_lazy("home")
-    extra_context = {'title': 'Страница входа', }
+    extra_context = {'title': 'Вход', }
 
 
 # class LogoutUser(LogoutView):

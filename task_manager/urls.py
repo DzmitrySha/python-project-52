@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 
 from task_manager import settings
-from task_manager.views import UsersList, CreateUser, UpdateUser, DeleteUser
+from task_manager.views import UsersList, CreateUser, UpdateUser, DeleteUser, \
+    LoginUser
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="home"),
@@ -38,14 +39,14 @@ urlpatterns = [
          DeleteUser.as_view(template_name="delete.html"),
          name="delete"),
 
-    path('login/', TemplateView.as_view(template_name="login.html"),
+    path('login/', LoginUser.as_view(template_name="login.html"),
          name="login"),
 
     path('logout/', TemplateView.as_view(template_name="index.html"),
          name="logout"),
 
     # path('accounts/', include('django.contrib.auth.urls')),
-    # path('i18n/', include('django.conf.urls.i18n')),
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
 
 if settings.DEBUG:
