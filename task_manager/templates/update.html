@@ -1,21 +1,33 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+<!--<div class="container wrapper flex-grow-1">-->
+<!--<h1 class="my-4">{{ title }}</h1>-->
+
+<!--    <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        {{ form.as_p }}-->
+
+<!--        <div class="form-group">-->
+<!--            <input class="btn btn-info" type="submit" value="Изменить">-->
+<!--        </div>-->
+<!--    </form>-->
+
+<!--</div>-->
+
 <div class="container wrapper flex-grow-1">
-<h1 class="my-4">{{ title }}</h1>
-
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <div class="form-group">
-            <input class="btn btn-info" type="submit" value="Изменить">
-        </div>
+    <h1 class="my-4">{{ title }}</h1>
+    <form method="post" class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons submit="Изменить" class="btn btn-info" %}
+      {% endbuttons %}
     </form>
-
 </div>
+
 {% endblock %}
 
 

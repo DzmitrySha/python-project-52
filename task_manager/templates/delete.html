@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
-{% block title %}Удаление пользователя{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
 
-    <h1 class="my-4">Удаление пользователя</h1>
+    <h1 class="my-4">{{ title }}</h1>
 
     {% if object.is_active %}
     <form method="post">
