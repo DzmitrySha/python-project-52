@@ -1,6 +1,4 @@
-from django import forms
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, \
-    UsernameField
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
@@ -26,13 +24,6 @@ class CreateUser(CreateView):
     template_name = "create.html"
     success_url = reverse_lazy("login")
     extra_context = {'title': 'Регистрация пользователя', }
-    # # first_name = forms.CharField(forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}), max_length=150, help_text='First name')
-    # # last_name = forms.CharField(forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'}), max_length=150, help_text='Last name')
-    #
-    # class Meta(UserCreationForm.Meta):
-    #     model = User
-    #     fields = UserCreationForm.Meta.fields + ('first_name', 'last_name')
-
 
 
 class UpdateUser(UpdateView):
