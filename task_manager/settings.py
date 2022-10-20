@@ -24,14 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY',
-                            'cg#p$g+j9tax-!#agjhg$U-jh123gf609879-876yj4pka4g')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get('DJANGO_DEBUG', False))
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1',
-                 'task-manager-4.herokuapp.com', 'webserver'
+ALLOWED_HOSTS = ['0.0.0.0',
+                 'localhost',
+                 '127.0.0.1',
+                 'task-manager-4.herokuapp.com',
+                 'webserver'
                  ]
 
 # Application definition
@@ -142,5 +144,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # print SQL queries in shell_plus
-
 SHELL_PLUS_PRINT_SQL = True
