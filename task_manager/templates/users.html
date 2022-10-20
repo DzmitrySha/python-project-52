@@ -24,11 +24,13 @@
         <td>{{ user.username }}</td>
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.date_joined }}</td>
+        {% if user.is_authenticated %}
         <td>
             <a href="/users/{{ user.id }}/update/">Изменить</a>
             <br>
             <a href="/users/{{ user.id }}/delete/">Удалить</a>
         </td>
+        {% endif %}
     </tr>
     {% endfor %}
     </tbody>

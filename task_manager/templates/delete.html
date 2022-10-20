@@ -4,14 +4,16 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-<div class="container wrapper flex-grow-1">
 
+<div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
 
-    {% if object.is_active %}
+    {% if object.is_authenticated %}
     <form method="post">
         {% csrf_token %}
         <p>Вы уверены, что хотите удалить "{{ object }}"?</p>
+        {% bootstrap_form form %}
+
         <input class="btn btn-danger" type="submit" value="Да, удалить">
     </form>
     {% else %}
