@@ -11,13 +11,19 @@ package-uninstall:
 		python3 -m pip uninstall --yes dist/*.whl
 
 runserver:
-		$(MANAGE) runserver
+		$(MANAGE) runserver 8080
 
 shell:
 		$(MANAGE) shell_plus
 
 collectstatic:
 		$(MANAGE) collectstatic
+
+makemessages:
+		poetry run django-admin makemessages -l ru
+
+compilemessages:
+		poetry run django-admin compilemessages
 
 migrations:
 		$(MANAGE) makemigrations
