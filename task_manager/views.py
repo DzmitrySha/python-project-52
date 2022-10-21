@@ -1,8 +1,10 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+
+from task_manager.forms import UserCreationFormCustom
 
 
 class UsersList(ListView):
@@ -12,17 +14,19 @@ class UsersList(ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        # context['title'] = _('Users')
         context['title'] = 'Пользователи'
         return context
 
 
 class CreateUser(CreateView):
-    form_class = UserCreationForm
+    form_class = UserCreationFormCustom
     # model = User
     # fields = ['username', 'first_name', 'last_name',
     #           'email', 'password']
     template_name = "create.html"
     success_url = reverse_lazy("login")
+    # extra_context = {'title': _('Registration user'), }
     extra_context = {'title': 'Регистрация пользователя', }
 
 
@@ -31,6 +35,7 @@ class UpdateUser(UpdateView):
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "update.html"
     success_url = reverse_lazy("login")
+    # extra_context = {'title': _('Update user'), }
     extra_context = {'title': 'Изменение пользователя', }
 
 
@@ -38,6 +43,7 @@ class DeleteUser(DeleteView):
     model = User
     template_name = "delete.html"
     success_url = reverse_lazy("users")
+    # extra_context = {'title': _('Delete user'), }
     extra_context = {'title': 'Удаление пользователя', }
 
 
@@ -46,6 +52,7 @@ class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = "login.html"
     success_url = reverse_lazy("home")
+    # extra_context = {'title': _('Enter'), }
     extra_context = {'title': 'Вход', }
 
 
