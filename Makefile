@@ -4,12 +4,6 @@ HEROKU := heroku run python manage.py
 install:
 		poetry install
 
-package-install:
-		python3 -m pip install --user dist/*.whl
-
-package-uninstall:
-		python3 -m pip uninstall --yes dist/*.whl
-
 runserver:
 		$(MANAGE) runserver 8080
 
@@ -19,8 +13,9 @@ shell:
 collectstatic:
 		$(MANAGE) collectstatic
 
-makemessages:
+messages:
 		poetry run django-admin makemessages -l ru
+		poetry run django-admin makemessages -l en
 
 compilemessages:
 		poetry run django-admin compilemessages
