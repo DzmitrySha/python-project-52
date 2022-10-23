@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.utils.translation import gettext_lazy as _
+# from django.utils.translation import gettext_lazy as _
 
 
 class UserCreationFormCustom(UserCreationForm):
@@ -18,7 +18,7 @@ class UserCreationFormCustom(UserCreationForm):
 
     last_name = forms.CharField(
         # label=_("Last name"),
-        label=_("Фамилия"),
+        label="Фамилия",
         widget=forms.TextInput(attrs={'class': 'form-control',
                                       'type': 'text',
                                       'required': 'false',

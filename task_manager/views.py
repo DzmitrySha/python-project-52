@@ -16,27 +16,31 @@ class UsersList(ListView):
         context = super().get_context_data(**kwargs)
         # context['title'] = _('Users')
         context['title'] = 'Пользователи'
+        context['btn_update'] = 'Изменить'
+        context['btn_delete'] = 'Удалить'
         return context
 
 
 class CreateUser(CreateView):
     form_class = UserCreationFormCustom
-    # model = User
-    # fields = ['username', 'first_name', 'last_name',
-    #           'email', 'password']
     template_name = "create.html"
     success_url = reverse_lazy("login")
     # extra_context = {'title': _('Registration user'), }
-    extra_context = {'title': 'Регистрация пользователя', }
+    extra_context = {'title': 'Регистрация пользователя',
+                     'btn_name': 'Зарегистрировать',
+                     }
 
 
 class UpdateUser(UpdateView):
     model = User
+    # form_class =
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "update.html"
     success_url = reverse_lazy("login")
     # extra_context = {'title': _('Update user'), }
-    extra_context = {'title': 'Изменение пользователя', }
+    extra_context = {'title': 'Изменение пользователя',
+                     'btn_name': 'Изменить',
+                     }
 
 
 class DeleteUser(DeleteView):
@@ -51,9 +55,11 @@ class LoginUser(LoginView):
     # model = User
     form_class = AuthenticationForm
     template_name = "login.html"
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("users")
     # extra_context = {'title': _('Enter'), }
-    extra_context = {'title': 'Вход', }
+    extra_context = {'title': 'Вход',
+                     'btn_name': 'Войти',
+                     }
 
 
 class LogoutUser(LogoutView):

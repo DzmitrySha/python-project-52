@@ -11,8 +11,11 @@
     <form method="post" class="form">
       {% csrf_token %}
       {% bootstrap_form form %}
-      {% buttons submit="Зарегистрировать" class="btn btn-info" %}
-      {% endbuttons %}
+      <button submit="{{ btn_name }}" class="btn btn-info">
+          {{ btn_name }}
+      </button>
+<!--      {% buttons submit="Войти" class="btn btn-info" %}-->
+<!--      {% endbuttons %}-->
     </form>
 
 </div>
