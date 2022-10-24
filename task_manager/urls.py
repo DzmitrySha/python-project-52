@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 
 from task_manager import settings
 from task_manager.views import (UsersList, CreateUser, UpdateUser,
-                                DeleteUser, LoginUser, LogoutUser)
+                                DeleteUser, LoginUser, logout_user)
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="index.html"), name="home"),
@@ -15,7 +15,7 @@ urlpatterns = [
     path('users/<int:pk>/update/', UpdateUser.as_view(), name="update"),
     path('users/<int:pk>/delete/', DeleteUser.as_view(), name="delete"),
     path('login/', LoginUser.as_view(), name="login"),
-    path('logout/', LogoutUser.as_view(), name="logout"),
+    path('logout/', logout_user, name="logout"),
 
     # path('accounts/', include('django.contrib.auth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
