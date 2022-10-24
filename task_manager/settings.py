@@ -145,5 +145,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# LOGIN_REDIRECT_URL = "/"
+
 # print SQL queries in shell_plus
 SHELL_PLUS_PRINT_SQL = True
