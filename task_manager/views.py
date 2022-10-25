@@ -1,8 +1,6 @@
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        # PermissionRequiredMixin,
-                                        )
+# from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
@@ -10,6 +8,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from task_manager.forms import UserCreationFormCustom
+from task_manager.permissions import UserPermissionsMixin
 
 
 class UsersList(ListView):
@@ -35,27 +34,28 @@ class CreateUser(CreateView):
                      'btn_name': 'Зарегистрировать',
                      }
 
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return redirect("users")
 
-class UpdateUser(LoginRequiredMixin,
-                 # PermissionRequiredMixin,
-                 UpdateView):
+
+class UpdateUser(UserPermissionsMixin, UpdateView):
     model = User
-    # form_class = UserChange
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "update.html"
+    login_url = "login"
     success_url = reverse_lazy("login")
     # extra_context = {'title': _('Update user'), }
     extra_context = {'title': 'Изменение пользователя',
                      'btn_name': 'Изменить',
                      }
-    # permission_required = ('task_manager.view_choice',
-    #                        'task_manager.change_choice'
+    # permission_required = ('task_manager.view_user',
+    #                        'task_manager.change_user'
     #                        )
 
 
-class DeleteUser(LoginRequiredMixin,
-                 # PermissionRequiredMixin,
-                 DeleteView):
+class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
     template_name = "delete.html"
     success_url = reverse_lazy("users")
@@ -63,7 +63,9 @@ class DeleteUser(LoginRequiredMixin,
     extra_context = {'title': 'Удаление пользователя',
                      'btn_name': 'Да, удалить',
                      }
-    # permission_required = 'task_manager.delete_user'
+    # permission_required = ('task_manager.view_user',
+    #                        'task_manager.delete_user'
+    #                        )
 
 
 class LoginUser(LoginView):

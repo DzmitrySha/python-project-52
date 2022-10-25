@@ -25,13 +25,15 @@
         <td>{{ user.username }}</td>
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.date_joined }}</td>
-
+{% comment %}
         {% if request.user.is_authenticated %}
+{% endcomment %}
         <td>
             <a href="/users/{{ user.id }}/update/">{{ btn_update }}</a>
             <br>
             <a href="/users/{{ user.id }}/delete/">{{ btn_delete }}</a>
         </td>
+{% comment %}
         {% else %}
         <td>
             <a href="#">{{ btn_update }}</a>
@@ -39,6 +41,7 @@
             <a href="#">{{ btn_delete }}</a>
         </td>
         {% endif %}
+{% endcomment %}
     </tr>
     {% endfor %}
     </tbody>
