@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
 from task_manager.forms import UserCreationFormCustom
@@ -29,15 +30,18 @@ class CreateUser(CreateView):
     form_class = UserCreationFormCustom
     template_name = "create.html"
     success_url = reverse_lazy("login")
-    # extra_context = {'title': _('Registration user'), }
-    extra_context = {'title': 'Регистрация пользователя',
-                     'btn_name': 'Зарегистрировать',
+    extra_context = {'title': _('Registration user'),
+                     'btn_name': _('Зарегистрировать')
                      }
+    # extra_context = {'title': 'Регистрация пользователя',
+    #                  'btn_name': 'Зарегистрировать',
+    #                  }
 
-    def form_valid(self, form):
-        user = form.save()
-        login(self.request, user)
-        return redirect("users")
+    # автоматический вход пользователя после регистрации:
+    # def form_valid(self, form):
+    #     user = form.save()
+    #     login(self.request, user)
+    #     return redirect("home")
 
 
 class UpdateUser(UserPermissionsMixin, UpdateView):
@@ -71,7 +75,6 @@ class DeleteUser(UserPermissionsMixin, DeleteView):
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = "login.html"
-    success_url = reverse_lazy("users")
     # extra_context = {'title': _('Enter'), }
     extra_context = {'title': 'Вход',
                      'btn_name': 'Войти',
