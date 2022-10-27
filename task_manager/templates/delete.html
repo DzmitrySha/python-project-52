@@ -8,23 +8,13 @@
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
 
-    {% comment %}
-    {% if request.user.is_authenticated %}
-    {% endcomment %}
-
     <form method="post">
         {% csrf_token %}
-        <p>Вы уверены, что хотите удалить "{{ object }}"?</p>
+        <p>{% trans 'Are you sure want to delete' %} "{{ object }}"?</p>
         {% bootstrap_form form %}
 
         <input class="btn btn-danger" type="submit" value="Да, удалить">
     </form>
 
-    {% comment %}
-    {% else %}
-        <p>Удаление невозможно. Пользователь "{{ object }}" - не залогинен.</p>
-    {% endif %}
-    {% endcomment %}
-    
 </div>
 {% endblock %}

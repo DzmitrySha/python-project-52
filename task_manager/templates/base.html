@@ -35,7 +35,7 @@
 
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="{% url 'home' %}">Менеджер задач</a>
+    <a class="navbar-brand" href="{% url 'home' %}">{% trans 'Task Manager' %}</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarsExampleDefault"
@@ -47,7 +47,7 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'users' %}">Пользователи<span
+                <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>
@@ -55,18 +55,18 @@
         {% if request.user.is_authenticated %}
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item mr-sm-2">
-                <a class="nav-link" href="{% url 'logout' %}">Выход<span
+                <a class="nav-link" href="{% url 'logout' %}">{% trans 'Logout' %}<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>
         {% else %}
         <ul class="navbar-nav my-2 my-lg-0">
             <li class="nav-item mr-sm-2">
-                <a class="nav-link" href="{% url 'login' %}">Вход<span
+                <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item my-2 my-sm-0">
-                <a class="nav-link" href="{% url 'create' %}">Регистрация<span
+                <a class="nav-link" href="{% url 'create' %}">{% trans 'Registration' %}<span
                         class="sr-only">(current)</span></a>
             </li>
         </ul>

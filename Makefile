@@ -15,9 +15,8 @@ collectstatic:
 
 messages:
 		poetry run django-admin makemessages -l ru
-		poetry run django-admin makemessages -l en
 
-compilemessages:
+compilemess:
 		poetry run django-admin compilemessages
 
 migrations:
