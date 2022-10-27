@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 22:08+0300\n"
+"POT-Creation-Date: 2022-10-27 23:01+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,14 @@ msgstr "Фамилия"
 msgid "Enter user last name."
 msgstr "Введите Вашу фамилию"
 
+#: task_manager/permissions.py:15
+msgid "You are not logged in. Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
+
+#: task_manager/permissions.py:21
+msgid "You don't have the rights to change another user."
+msgstr "У вас нет прав для изменения другого пользователя."
+
 #: task_manager/templates/base.html:38
 msgid "Task Manager"
 msgstr "Менеджер задач"
@@ -56,7 +64,7 @@ msgstr "Вход"
 msgid "Registration"
 msgstr "Регистрация"
 
-#: task_manager/templates/delete.html:13
+#: task_manager/templates/delete.html:14
 msgid "Are you sure want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
