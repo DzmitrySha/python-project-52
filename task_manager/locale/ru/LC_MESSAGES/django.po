@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-21 15:15+0300\n"
+"POT-Creation-Date: 2022-10-27 22:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,41 +16,78 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
 #: task_manager/forms.py:9
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/forms.py:14
+#: task_manager/forms.py:15
 msgid "Enter user first name."
-msgstr "Введите ваше имя"
+msgstr "Введите Ваше настоящее имя"
 
-#: task_manager/forms.py:18
+#: task_manager/forms.py:19
 msgid "Last name"
-msgstr ""
+msgstr "Фамилия"
 
-#: task_manager/forms.py:23
+#: task_manager/forms.py:25
 msgid "Enter user last name."
-msgstr "Введите вашу фамилию"
+msgstr "Введите Вашу фамилию"
 
-#: task_manager/views.py:18
+#: task_manager/templates/base.html:38
+msgid "Task Manager"
+msgstr "Менеджер задач"
+
+#: task_manager/templates/base.html:50 task_manager/views.py:18
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/views.py:29
+#: task_manager/templates/base.html:58
+msgid "Logout"
+msgstr "Выход"
+
+#: task_manager/templates/base.html:65
+msgid "Login"
+msgstr "Вход"
+
+#: task_manager/templates/base.html:69
+msgid "Registration"
+msgstr "Регистрация"
+
+#: task_manager/templates/delete.html:13
+msgid "Are you sure want to delete"
+msgstr "Вы уверены, что хотите удалить"
+
+#: task_manager/views.py:19 task_manager/views.py:52
+msgid "Update"
+msgstr "Изменить"
+
+#: task_manager/views.py:20
+msgid "Delete"
+msgstr "Удалить"
+
+#: task_manager/views.py:35
 msgid "Registration user"
 msgstr "Регистрация пользователя"
 
-#: task_manager/views.py:37
+#: task_manager/views.py:36
+msgid "Register"
+msgstr "Зарегистрировать"
+
+#: task_manager/views.py:51
 msgid "Update user"
-msgstr "Изменение пользователя"
+msgstr "Изменить пользователя"
 
-#: task_manager/views.py:44
+#: task_manager/views.py:63
 msgid "Delete user"
-msgstr "Удаление пользователя"
+msgstr "Удалить пользователя"
 
-#: task_manager/views.py:52
+#: task_manager/views.py:64
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: task_manager/views.py:74 task_manager/views.py:75
 msgid "Enter"
-msgstr "Вход"
+msgstr "Войти"
