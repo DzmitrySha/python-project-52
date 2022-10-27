@@ -1,4 +1,6 @@
-from django.http import Http404
+from django.contrib import messages
+from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
 
 
 class UserPermissionsMixin:
@@ -7,5 +9,16 @@ class UserPermissionsMixin:
 
     def dispatch(self, request, *args, **kwargs):
         if not self.has_permissions():
-            raise Http404
+            if not self.request.user.is_authenticated:
+                messages.info(
+                    request,
+                    _('You are not logged in. Please log in.')
+                )
+                return redirect('login')
+            else:
+                messages.error(
+                    request,
+                    _('You don\'t have the rights to change another user.')
+                )
+                return redirect('users')
         return super().dispatch(request, *args, **kwargs)
