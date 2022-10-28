@@ -25,11 +25,14 @@ migrations:
 migrate:
 		$(MANAGE) migrate
 
-migrations-heroku:
+migrations-h:
 		$(HEROKU) makemigrations
 
-migrate-heroku:
+migrate-h:
 		$(HEROKU) migrate
+
+makesecretkey:
+		poetry run python -c 'from django.utils.crypto import get_random_string; print(get_random_string(40))'
 
 run-gunicorn:
 		export DJANGO_SETTINGS_MODULE=task_manager.settings
