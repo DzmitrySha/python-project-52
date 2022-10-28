@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -19,6 +20,7 @@ class UsersList(ListView):
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
+    # добавление дополнительных данных
     # def get_context_data(self, *, object_list=None, **kwargs):
     #     context = super().get_context_data(**kwargs)
     #     context.update({'title': _('Users'),
@@ -51,9 +53,6 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
-    # permission_required = ('task_manager.view_user',
-    #                        'task_manager.change_user'
-    #                        )
 
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
@@ -63,9 +62,6 @@ class DeleteUser(UserPermissionsMixin, DeleteView):
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
-    # permission_required = ('task_manager.view_user',
-    #                        'task_manager.delete_user'
-    #                        )
 
 
 class LoginUser(LoginView):
@@ -76,9 +72,17 @@ class LoginUser(LoginView):
                      }
 
     def get_success_url(self):
+        messages.info(
+            self.request,
+            _('You are logged in.'),
+        )
         return reverse_lazy('home')
 
 
 def logout_user(request):
     logout(request)
+    messages.info(
+        request,
+        _('You are logged out.'),
+    )
     return redirect('home')
