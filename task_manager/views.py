@@ -33,10 +33,15 @@ class UsersList(ListView):
 class CreateUser(CreateView):
     form_class = UserCreationFormCustom
     template_name = "create.html"
-    success_url = reverse_lazy("login")
+    # success_url = reverse_lazy("login")
     extra_context = {'title': _('Registration user'),
                      'btn_name': _('Register')
                      }
+
+    def get_success_url(self):
+        messages.info(self.request, _('User successfully registered'))
+        return reverse_lazy('login')
+
     # автоматический вход пользователя после регистрации:
     # def form_valid(self, form):
     #     user = form.save()
@@ -49,19 +54,27 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "update.html"
     login_url = "login"
-    success_url = reverse_lazy("login")
+    # success_url = reverse_lazy("login")
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
+
+    def get_success_url(self):
+        messages.info(self.request, _('User successfully updated'))
+        return reverse_lazy('login')
 
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
     template_name = "delete.html"
-    success_url = reverse_lazy("users")
+    # success_url = reverse_lazy("users")
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
+
+    def get_success_url(self):
+        messages.info(self.request, _('User successfully deleted'))
+        return reverse_lazy('users')
 
 
 class LoginUser(LoginView):
@@ -72,17 +85,11 @@ class LoginUser(LoginView):
                      }
 
     def get_success_url(self):
-        messages.info(
-            self.request,
-            _('You are logged in.'),
-        )
+        messages.info(self.request, _('You are logged in.'))
         return reverse_lazy('home')
 
 
 def logout_user(request):
     logout(request)
-    messages.info(
-        request,
-        _('You are logged out.'),
-    )
+    messages.info(request, _('You are logged out.'))
     return redirect('home')
