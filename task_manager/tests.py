@@ -21,6 +21,15 @@ class UserTestCase(TestCase):
         self.assertEqual(user.last_name, 'Konstantinopolsky')
         self.assertEqual(user.email, 'k_email@mail.com')
 
+    def test_update_user(self):
+        user = User.objects.get(username="Kostya")
+        user.username = "Harpot"
+        user.first_name = "Harry"
+        user.last_name = "Potter"
+        self.assertEqual(user.username, "Harpot")
+        self.assertNotEqual(user.first_name, "Konstantin")
+        self.assertEqual(user.last_name, "Potter")
+
     def test_delete_user(self):
         user1 = User.objects.get(username="user1")
         user1.delete()
