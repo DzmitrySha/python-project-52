@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-29 11:26+0300\n"
+"POT-Creation-Date: 2022-10-29 23:40+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/apps.py:7 task_manager/templates/base.html:38
+msgid "Task Manager"
+msgstr "Менеджер задач"
 
 #: task_manager/forms.py:9
 msgid "First name"
@@ -36,6 +40,10 @@ msgstr "Фамилия"
 msgid "Enter user last name."
 msgstr "Введите Вашу фамилию"
 
+#: task_manager/models.py:8
+msgid "Created date"
+msgstr "Дата создания"
+
 #: task_manager/permissions.py:15
 msgid "You are not logged in. Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
@@ -43,10 +51,6 @@ msgstr "Вы не авторизованы! Пожалуйста, выполни
 #: task_manager/permissions.py:21
 msgid "You don't have the rights to change another user."
 msgstr "У вас нет прав для изменения другого пользователя."
-
-#: task_manager/templates/base.html:38
-msgid "Task Manager"
-msgstr "Менеджер задач"
 
 #: task_manager/templates/base.html:50 task_manager/views.py:19
 msgid "Users"
