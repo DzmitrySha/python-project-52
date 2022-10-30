@@ -6,10 +6,19 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (ListView, CreateView, UpdateView,
+                                  DeleteView, TemplateView)
 
 from task_manager.forms import UserCreationFormCustom
 from task_manager.permissions import UserPermissionsMixin
+
+
+class IndexView(TemplateView):
+    model = User
+    template_name = "index.html"
+    extra_context = {'title': _('Task manager'),
+                     'description': _('A simple and functional task manager.'),
+                     }
 
 
 class UsersList(ListView):

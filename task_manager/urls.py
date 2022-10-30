@@ -5,10 +5,11 @@ from django.views.generic import TemplateView
 
 from task_manager import settings
 from task_manager.views import (UsersList, CreateUser, UpdateUser,
-                                DeleteUser, LoginUser, logout_user)
+                                DeleteUser, LoginUser, logout_user, IndexView)
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="index.html"), name="home"),
+    # path('', TemplateView.as_view(template_name="index.html"), name="home"),
+    path('', IndexView.as_view(), name="home"),
     path('admin/', admin.site.urls, name="admin"),
     path('users/', UsersList.as_view(), name="users"),
     path('users/create/', CreateUser.as_view(), name="create"),

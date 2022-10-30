@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -12,9 +13,9 @@
     <thead>
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Имя пользователя</th>
-        <th scope="col">Полное имя</th>
-        <th scope="col">Дата создания</th>
+        <th scope="col">{% trans 'User name' %}</th>
+        <th scope="col">{% trans 'Full name' %}</th>
+        <th scope="col">{% trans 'Created date' %}</th>
         <th scope="col"></th>
     </tr>
     </thead>
