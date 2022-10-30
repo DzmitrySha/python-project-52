@@ -33,7 +33,6 @@ class UsersList(ListView):
 class CreateUser(CreateView):
     form_class = UserCreationFormCustom
     template_name = "users/create.html"
-    # success_url = reverse_lazy("login")
     extra_context = {'title': _('Registration user'),
                      'btn_name': _('Register')
                      }
@@ -54,7 +53,6 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
     template_name = "users/update.html"
     login_url = "login"
-    # success_url = reverse_lazy("login")
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
@@ -67,7 +65,6 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
 class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
     template_name = "users/delete.html"
-    # success_url = reverse_lazy("users")
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
