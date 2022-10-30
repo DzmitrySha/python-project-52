@@ -20,13 +20,13 @@ compilemess:
 		poetry run django-admin compilemessages
 
 migrations:
-		$(MANAGE) makemigrations
+		$(MANAGE) makemigrations task_manager
 
 migrate:
 		$(MANAGE) migrate
 
 migrations-h:
-		$(HEROKU) makemigrations
+		$(HEROKU) makemigrations task_manager
 
 migrate-h:
 		$(HEROKU) migrate
