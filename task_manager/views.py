@@ -14,7 +14,6 @@ from task_manager.permissions import UserPermissionsMixin
 
 
 class IndexView(TemplateView):
-    model = User
     template_name = "index.html"
     extra_context = {'title': _('Task manager'),
                      'description': _('A simple and functional task manager.'),
