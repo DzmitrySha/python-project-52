@@ -14,7 +14,7 @@ from task_manager.permissions import UserPermissionsMixin
 
 class UsersList(ListView):
     model = User
-    template_name = "users.html"
+    template_name = "users/users.html"
     context_object_name = "users"
     extra_context = {'title': _('Users'),
                      'btn_update': _('Update'),
@@ -32,7 +32,7 @@ class UsersList(ListView):
 
 class CreateUser(CreateView):
     form_class = UserCreationFormCustom
-    template_name = "create.html"
+    template_name = "users/create.html"
     # success_url = reverse_lazy("login")
     extra_context = {'title': _('Registration user'),
                      'btn_name': _('Register')
@@ -52,7 +52,7 @@ class CreateUser(CreateView):
 class UpdateUser(UserPermissionsMixin, UpdateView):
     model = User
     fields = ['username', 'first_name', 'last_name', 'email', 'password']
-    template_name = "update.html"
+    template_name = "users/update.html"
     login_url = "login"
     # success_url = reverse_lazy("login")
     extra_context = {'title': _('Update user'),
@@ -66,7 +66,7 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
-    template_name = "delete.html"
+    template_name = "users/delete.html"
     # success_url = reverse_lazy("users")
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
@@ -79,7 +79,7 @@ class DeleteUser(UserPermissionsMixin, DeleteView):
 
 class LoginUser(LoginView):
     form_class = AuthenticationForm
-    template_name = "login.html"
+    template_name = "users/login.html"
     extra_context = {'title': _('Enter'),
                      'btn_name': _('Enter'),
                      }
