@@ -37,7 +37,7 @@ class UserTest(TestCase):
         user1.delete()
         self.assertEqual(user1.id, None)
         self.assertEqual(user1.pk, None)
-        with self.assertRaises(user1.DoesNotExist):
+        with self.assertRaises(User.DoesNotExist):
             User.objects.get(pk=2)
 
 
@@ -59,8 +59,8 @@ class TaskStatusTest(TestCase):
         status_1 = TaskStatus.objects.get(name="status 1")
         status_1.delete()
         self.assertEqual(status_1.id, None)
-        with self.assertRaises(status_1.DoesNotExist):
-            TaskStatus.objects.get(pk=1)
+        with self.assertRaises(TaskStatus.DoesNotExist):
+            TaskStatus.objects.get(pk=8)
 
 
 # import pytest
