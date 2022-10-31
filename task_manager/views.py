@@ -10,6 +10,7 @@ from django.views.generic import (ListView, CreateView, UpdateView,
                                   DeleteView, TemplateView)
 
 from task_manager.forms import UserCreationFormCustom
+from task_manager.models import TaskStatus
 from task_manager.permissions import UserPermissionsMixin
 
 
@@ -98,3 +99,13 @@ def logout_user(request):
     logout(request)
     messages.info(request, _('You are logged out.'))
     return redirect('home')
+
+
+class StatusesList(ListView):
+    model = TaskStatus
+    template_name = "task_statuses/statuses.html"
+    context_object_name = "statuses"
+    extra_context = {'title': _('Statuses'),
+                     'btn_update': _('Update'),
+                     'btn_delete': _('Delete'),
+                     }
