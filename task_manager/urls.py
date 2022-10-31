@@ -5,7 +5,8 @@ from django.urls import path, include
 from task_manager import settings
 from task_manager.views import (IndexView, UsersList, CreateUser, UpdateUser,
                                 DeleteUser, LoginUser, logout_user,
-                                StatusesList)
+                                StatusesList, CreateStatus, UpdateStatus,
+                                DeleteStatus)
 
 urlpatterns = [
     path('', IndexView.as_view(), name="home"),
@@ -16,7 +17,15 @@ urlpatterns = [
     path('users/<int:pk>/delete/', DeleteUser.as_view(), name="delete"),
     path('login/', LoginUser.as_view(), name="login"),
     path('logout/', logout_user, name="logout"),
-    path('statuses/', StatusesList.as_view(), name="statuses"),
+
+    path('statuses/', StatusesList.as_view(),
+         name="statuses"),
+    path('statuses/create/', CreateStatus.as_view(),
+         name="status_create"),
+    path('statuses/<int:pk>/update/', UpdateStatus.as_view(),
+         name="status_update"),
+    path('statuses/<int:pk>/delete/', DeleteStatus.as_view(),
+         name="status_delete"),
 
     # path('accounts/', include('django.contrib.auth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),

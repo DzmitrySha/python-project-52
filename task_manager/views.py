@@ -11,7 +11,8 @@ from django.views.generic import (ListView, CreateView, UpdateView,
 
 from task_manager.forms import UserCreationFormCustom
 from task_manager.models import TaskStatus
-from task_manager.permissions import UserPermissionsMixin
+from task_manager.permissions import (UserPermissionsMixin,
+                                      StatusLoginRequiredMixin)
 
 
 class IndexView(TemplateView):
@@ -101,11 +102,53 @@ def logout_user(request):
     return redirect('home')
 
 
-class StatusesList(ListView):
+class StatusesList(StatusLoginRequiredMixin, ListView):
     model = TaskStatus
     template_name = "task_statuses/statuses.html"
     context_object_name = "statuses"
+    login_url = "login"
     extra_context = {'title': _('Statuses'),
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
+
+
+class CreateStatus(StatusLoginRequiredMixin, CreateView):
+    model = TaskStatus
+    fields = ['name']
+    template_name = "users/create.html"
+    login_url = "login"
+    extra_context = {'title': _('Create status'),
+                     'btn_name': _('Create')
+                     }
+
+    def get_success_url(self):
+        messages.info(self.request, _('Status successfully created'))
+        return reverse_lazy('statuses')
+
+
+class UpdateStatus(StatusLoginRequiredMixin, UpdateView):
+    model = TaskStatus
+    fields = ['name']
+    template_name = "users/update.html"
+    login_url = "login"
+    extra_context = {'title': _('Update status'),
+                     'btn_name': _('Update'),
+                     }
+
+    def get_success_url(self):
+        messages.info(self.request, _('Status successfully updated'))
+        return reverse_lazy('statuses')
+
+
+class DeleteStatus(StatusLoginRequiredMixin, DeleteView):
+    model = TaskStatus
+    template_name = "users/delete.html"
+    login_url = "login"
+    extra_context = {'title': _('Delete status'),
+                     'btn_name': _('Yes, delete'),
+                     }
+
+    def get_success_url(self):
+        messages.info(self.request, _('Status successfully deleted'))
+        return reverse_lazy('statuses')
