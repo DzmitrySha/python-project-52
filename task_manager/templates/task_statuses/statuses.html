@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
+{% load i18n %}
 
 {% block title %}{{ title }}{% endblock %}
 
@@ -8,12 +9,15 @@
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
 </div>
+
+<a class="nav-link" href="{% url 'status_create' %}">{% trans 'Create status' %}</a>
+
 <table class="table">
     <thead>
     <tr>
         <th scope="col">ID</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Дата создания</th>
+        <th scope="col">{% trans 'Name' %}</th>
+        <th scope="col">{% trans 'Created date' %}</th>
         <th scope="col"></th>
     </tr>
     </thead>
