@@ -3,30 +3,14 @@ from django.contrib import admin
 from django.urls import path, include
 
 from task_manager import settings
-from task_manager.views import (IndexView, UsersList, CreateUser, UpdateUser,
-                                DeleteUser, LoginUser, logout_user,
-                                StatusesList, CreateStatus, UpdateStatus,
-                                DeleteStatus)
+from task_manager.views import IndexView
+
 
 urlpatterns = [
     path('', IndexView.as_view(), name="home"),
     path('admin/', admin.site.urls, name="admin"),
-    path('users/', UsersList.as_view(), name="users"),
-    path('users/create/', CreateUser.as_view(), name="create"),
-    path('users/<int:pk>/update/', UpdateUser.as_view(), name="update"),
-    path('users/<int:pk>/delete/', DeleteUser.as_view(), name="delete"),
-    path('login/', LoginUser.as_view(), name="login"),
-    path('logout/', logout_user, name="logout"),
-
-    path('statuses/', StatusesList.as_view(),
-         name="statuses"),
-    path('statuses/create/', CreateStatus.as_view(),
-         name="status_create"),
-    path('statuses/<int:pk>/update/', UpdateStatus.as_view(),
-         name="status_update"),
-    path('statuses/<int:pk>/delete/', DeleteStatus.as_view(),
-         name="status_delete"),
-
+    path('users/', include('users.urls')),
+    path('statuses/', include('statuses.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
 ]
