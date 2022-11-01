@@ -50,9 +50,8 @@ class CreateUser(CreateView):
 
 class UpdateUser(UserPermissionsMixin, UpdateView):
     model = User
-    fields = ['username', 'first_name', 'last_name', 'email', 'password']
+    form_class = UserCreationFormCustom
     template_name = "users/form.html"
-    login_url = "login"
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
