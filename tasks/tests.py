@@ -1,14 +1,22 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
+
+from statuses.models import TaskStatus
 from tasks.models import Tasks
 
 
 class TasksTest(TestCase):
     def setUp(self):
-        Tasks.objects.create(name="task 1",)
-        Tasks.objects.create(name="task 2",)
+        author = User.objects.create(username='Harry')
+        status = TaskStatus.objects.create(name='Done')
+        Tasks.objects.create(name="task 1", author=author, status=status)
+        Tasks.objects.create(name="task 2", author=author, status=status)
 
     def test_create_status(self):
-        task_3 = Tasks.objects.create(name="task created")
+        author = User.objects.create(username='Harry2')
+        status = TaskStatus.objects.create(name='Done2')
+        task_3 = Tasks.objects.create(name="task created",
+                                      author=author, status=status)
         self.assertEqual(task_3.name, "task created")
 
     def test_update_status(self):
