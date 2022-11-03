@@ -11,14 +11,15 @@ class Tasks(models.Model):
                                         default=timezone.now)
     executor = models.ForeignKey(
         to=User, on_delete=models.PROTECT, blank=True, default=None,
+        verbose_name=_('Executor'),
     )
     author = models.ForeignKey(
         to=User, on_delete=models.PROTECT, blank=False, default=None,
-        related_name='authors',
+        related_name='authors', verbose_name=_('Author'),
     )
     status = models.ForeignKey(
         to='statuses.TaskStatus', on_delete=models.PROTECT, blank=True,
-        default=None, related_name='statuses',
+        default=None, related_name='statuses', verbose_name=_('Status'),
     )
 
     def __str__(self):
