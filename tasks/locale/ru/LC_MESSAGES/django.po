@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 00:03+0300\n"
+"POT-Creation-Date: 2022-11-03 20:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,45 +16,95 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
-#: tasks/apps.py:8 tasks/views.py:15
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: tasks/apps.py:8 tasks/views.py:16
 msgid "Tasks"
 msgstr "Задачи"
 
-#: tasks/models.py:7 tasks/templates/tasks/tasks.html:19
+#: tasks/models.py:8 tasks/templates/tasks/tasks.html:20
 msgid "Name"
 msgstr "Имя"
 
-#: tasks/models.py:8
+#: tasks/models.py:9 tasks/templates/tasks/task.html:37
 msgid "Description"
 msgstr "Описание"
+
+#: tasks/models.py:10 tasks/templates/tasks/task.html:33
+#: tasks/templates/tasks/tasks.html:24
+msgid "Created date"
+msgstr "Дата создания"
+
+#: tasks/models.py:14 tasks/templates/tasks/task.html:25
+#: tasks/templates/tasks/tasks.html:23
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: tasks/models.py:18 tasks/templates/tasks/task.html:21
+#: tasks/templates/tasks/tasks.html:22
+msgid "Author"
+msgstr "Автор"
+
+#: tasks/models.py:22 tasks/templates/tasks/task.html:29
+#: tasks/templates/tasks/tasks.html:21
+msgid "Status"
+msgstr "Статус"
 
 #: tasks/permissions.py:11
 msgid "You are not logged in. Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: tasks/templates/tasks/tasks.html:20
-msgid "Status"
-msgstr "Статус"
+#: tasks/templates/tasks/delete.html:14
+msgid "Are you sure want to delete"
+msgstr "Вы уверены, что хотите удалить"
 
-#: tasks/templates/tasks/tasks.html:21
-msgid "Author"
-msgstr "Автор"
+#: tasks/templates/tasks/task.html:10 tasks/views.py:27
+msgid "Task view"
+msgstr "Просмотр задачи"
 
-#: tasks/templates/tasks/tasks.html:22
-msgid "Executor"
-msgstr "Исполнитель"
+#: tasks/templates/tasks/task.html:42
+msgid "Marks"
+msgstr "Метки"
 
-#: tasks/templates/tasks/tasks.html:23
-msgid "Created date"
-msgstr "Дата создания"
-
-#: tasks/views.py:16
+#: tasks/templates/tasks/task.html:50 tasks/views.py:17 tasks/views.py:28
+#: tasks/views.py:53
 msgid "Update"
 msgstr "Изменить"
 
-#: tasks/views.py:17
+#: tasks/templates/tasks/task.html:52 tasks/views.py:18 tasks/views.py:29
 msgid "Delete"
 msgstr "Удалить"
+
+#: tasks/templates/tasks/tasks.html:13 tasks/views.py:38
+msgid "Create task"
+msgstr "Создать задачу"
+
+#: tasks/views.py:39
+msgid "Create"
+msgstr "Создать"
+
+#: tasks/views.py:43
+msgid "Task successfully created"
+msgstr "Задача успешно создана"
+
+#: tasks/views.py:52
+msgid "Update task"
+msgstr "Изменение задачи"
+
+#: tasks/views.py:57
+msgid "Task successfully updated"
+msgstr "Задача успешно изменена"
+
+#: tasks/views.py:65
+msgid "Delete task"
+msgstr "Удаление задачи"
+
+#: tasks/views.py:66
+msgid "Yes, delete"
+msgstr "Да, удалить"
+
+#: tasks/views.py:70
+msgid "Task successfully deleted"
+msgstr "Задача успешно удалена"
