@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
@@ -6,7 +7,8 @@ from django.contrib.auth.models import User
 class Tasks(models.Model):
     name = models.CharField(max_length=120, verbose_name=_('Name'), blank=False)
     description = models.TextField(verbose_name=_('Description'), blank=True)
-
+    created_date = models.DateTimeField(verbose_name=_("Created date"),
+                                        default=timezone.now)
     executor = models.ForeignKey(
         to=User, on_delete=models.PROTECT, blank=True, default=None,
     )
