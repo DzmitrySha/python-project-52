@@ -7,16 +7,20 @@ from tasks.models import Tasks
 
 class TasksTest(TestCase):
     def setUp(self):
-        author = User.objects.create(username='Harry')
+        user = User.objects.create(username='Harry')
         status = TaskStatus.objects.create(name='Done')
-        Tasks.objects.create(name="task 1", author=author, status=status)
-        Tasks.objects.create(name="task 2", author=author, status=status)
+        Tasks.objects.create(name="task 1", author=user,
+                             status=status, executor=user
+                             )
+        Tasks.objects.create(name="task 2", author=user,
+                             status=status, executor=user
+                             )
 
     def test_create_status(self):
-        author = User.objects.create(username='Harry2')
+        user = User.objects.create(username='Harry2')
         status = TaskStatus.objects.create(name='Done2')
         task_3 = Tasks.objects.create(name="task created",
-                                      author=author, status=status)
+                                      author=user, status=status, executor=user)
         self.assertEqual(task_3.name, "task created")
 
     def test_update_status(self):
