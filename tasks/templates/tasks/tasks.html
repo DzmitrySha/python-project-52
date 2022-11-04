@@ -28,16 +28,16 @@
     <tbody>
     {% for task in tasks %}
     <tr>
-        <th scope="row">{{ task.id }}</th>
-        <td>{{ task.name }}</td>
+        <th scope="row">{{ task.pk }}</th>
+        <td><a href="/tasks/{{ task.pk }}">{{ task.name }}</a></td>
         <td>{{ task.status }}</td>
         <td>{{ task.author }}</td>
         <td>{{ task.executor }}</td>
         <td>{{ task.created_date }}</td>
         <td>
-            <a href="/tasks/{{ task.id }}/update/">{{ btn_update }}</a>
+            <a href="/tasks/{{ task.pk }}/update/">{{ btn_update }}</a>
             <br>
-            <a href="/tasks/{{ task.id }}/delete/">{{ btn_delete }}</a>
+            <a href="/tasks/{{ task.pk }}/delete/">{{ btn_delete }}</a>
         </td>
     </tr>
     {% endfor %}
