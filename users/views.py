@@ -64,6 +64,7 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
 class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
     template_name = "users/delete.html"
+    context_object_name = "user"
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }

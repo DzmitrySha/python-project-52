@@ -49,6 +49,7 @@ class DeleteStatus(StatusLoginRequiredMixin, DeleteView):
     model = TaskStatus
     template_name = "statuses/delete.html"
     login_url = "login"
+    context_object_name = "status"
     extra_context = {'title': _('Delete status'),
                      'btn_name': _('Yes, delete'),
                      }

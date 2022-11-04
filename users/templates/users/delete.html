@@ -11,7 +11,7 @@
 
     <form method="post">
         {% csrf_token %}
-        <p>{% trans 'Are you sure want to delete' %} "{{ object }}"?</p>
+        <p>{% trans 'Are you sure want to delete' %} "{{ user }}"?</p>
         {% bootstrap_form form %}
 
         <input class="btn btn-danger" type="submit" value="Да, удалить">

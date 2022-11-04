@@ -62,6 +62,7 @@ class DeleteTask(TasksLoginRequiredMixin, DeleteView):
     model = Tasks
     template_name = "tasks/delete.html"
     login_url = "login"
+    context_object_name = "task"
     extra_context = {'title': _('Delete task'),
                      'btn_name': _('Yes, delete'),
                      }
