@@ -18,8 +18,8 @@ class Tasks(models.Model):
         related_name='authors', verbose_name=_('Author'),
     )
     status = models.ForeignKey(
-        to='statuses.TaskStatus', on_delete=models.PROTECT, blank=True,
-        default=None, related_name='statuses', verbose_name=_('Status'),
+        to='statuses.TaskStatus', on_delete=models.PROTECT, blank=False,
+        related_name='statuses', verbose_name=_('Status'),
     )
 
     def __str__(self):

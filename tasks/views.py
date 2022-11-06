@@ -32,7 +32,7 @@ class OneTaskView(TasksLoginRequiredMixin, DetailView):
 
 class CreateTask(TasksLoginRequiredMixin, CreateView):
     model = Tasks
-    fields = ['name', 'description', 'status', 'author', 'executor']
+    fields = ['name', 'description', 'status', 'executor']
     template_name = "tasks/form.html"
     login_url = "login"
     extra_context = {'title': _('Create task'),
@@ -43,10 +43,17 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
         messages.info(self.request, _('Task successfully created'))
         return reverse_lazy('tasks')
 
+    def form_valid(self, form):
+        # form.instance.name = "Task"
+        # form.instance.description = "Task description"
+        form.instance.author = self.request.user
+        # form.instance.executor = self.request.user
+        return super().form_valid(form)
+
 
 class UpdateTask(TasksLoginRequiredMixin, UpdateView):
     model = Tasks
-    fields = ['name', 'description', 'status', 'author', 'executor']
+    fields = ['name', 'description', 'status', 'executor']
     template_name = "tasks/form.html"
     login_url = "login"
     extra_context = {'title': _('Update task'),
