@@ -38,10 +38,11 @@
         <div class="col">{{ task.description }}</div>
       </div>
       <div class="row p-1">
-        <div class="col">
-          <h6>{% trans 'Marks' %}:</h6>
+        <div class="col"><h6>{% trans 'Labels' %}:</h6>
           <ul>
-
+              {% for label in task.label.all %}
+              <li>{{ label.name }}</li>
+              {% endfor %}
           </ul>
         </div>
       </div>
