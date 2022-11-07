@@ -21,6 +21,10 @@ class Tasks(models.Model):
         to='statuses.TaskStatus', on_delete=models.PROTECT, blank=False,
         related_name='statuses', verbose_name=_('Status'),
     )
+    label = models.ManyToManyField(
+        'labels.Label', blank=False, related_name='labels',
+        verbose_name=_('Label'),
+    )
 
     def __str__(self):
         return self.name

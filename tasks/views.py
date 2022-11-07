@@ -32,7 +32,7 @@ class OneTaskView(TasksLoginRequiredMixin, DetailView):
 
 class CreateTask(TasksLoginRequiredMixin, CreateView):
     model = Tasks
-    fields = ['name', 'description', 'status', 'executor']
+    fields = ['name', 'description', 'status', 'executor', 'label']
     template_name = "tasks/form.html"
     login_url = "login"
     extra_context = {'title': _('Create task'),
@@ -53,7 +53,7 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
 
 class UpdateTask(TasksLoginRequiredMixin, UpdateView):
     model = Tasks
-    fields = ['name', 'description', 'status', 'executor']
+    fields = ['name', 'description', 'status', 'executor', 'label']
     template_name = "tasks/form.html"
     login_url = "login"
     extra_context = {'title': _('Update task'),
