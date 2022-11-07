@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('users/', include('users.urls')),
     path('statuses/', include('statuses.urls')),
+    path('labels/', include('labels.urls')),
     path('tasks/', include('tasks.urls')),
     # path('accounts/', include('django.contrib.auth.urls')),
     path('i18n/', include('django.conf.urls.i18n')),
