@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-07 19:44+0300\n"
+"POT-Creation-Date: 2022-11-07 19:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,66 +20,62 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: statuses/apps.py:8 statuses/models.py:16 statuses/views.py:14
-msgid "Statuses"
-msgstr "Статусы"
-
-#: statuses/models.py:7 statuses/templates/statuses/statuses.html:19
+#: labels/models.py:7 labels/templates/labels/labels.html:19
 msgid "Name"
 msgstr "Имя"
 
-#: statuses/models.py:8 statuses/templates/statuses/statuses.html:20
+#: labels/models.py:8 labels/templates/labels/labels.html:20
 msgid "Created date"
 msgstr "Дата создания"
 
-#: statuses/models.py:15
-msgid "Status"
-msgstr "Статус"
-
-#: statuses/permissions.py:11
+#: labels/permissions.py:11
 msgid "You are not logged in. Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: statuses/templates/statuses/delete.html:14
+#: labels/templates/labels/delete.html:14
 msgid "Are you sure want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: statuses/templates/statuses/statuses.html:13 statuses/views.py:25
-msgid "Create status"
-msgstr "Создать статус"
+#: labels/templates/labels/labels.html:13 labels/views.py:25
+msgid "Create label"
+msgstr "Создать метку"
 
-#: statuses/views.py:15 statuses/views.py:40
+#: labels/views.py:14
+msgid "Labels"
+msgstr "Метки"
+
+#: labels/views.py:15 labels/views.py:40
 msgid "Update"
 msgstr "Изменить"
 
-#: statuses/views.py:16
+#: labels/views.py:16
 msgid "Delete"
 msgstr "Удалить"
 
-#: statuses/views.py:26
+#: labels/views.py:26
 msgid "Create"
 msgstr "Создать"
 
-#: statuses/views.py:30
-msgid "Status successfully created"
-msgstr "Статус успешно создан"
+#: labels/views.py:30
+msgid "Label successfully created"
+msgstr "Метка успешно создана"
 
-#: statuses/views.py:39
-msgid "Update status"
-msgstr "Изменение статуса"
+#: labels/views.py:39
+msgid "Update label"
+msgstr "Изменение метки"
 
-#: statuses/views.py:44
-msgid "Status successfully updated"
-msgstr "Статус успешно изменен"
+#: labels/views.py:44
+msgid "Label successfully updated"
+msgstr "Метка успешно изменена"
 
-#: statuses/views.py:53
-msgid "Delete status"
-msgstr "Удаление статуса"
+#: labels/views.py:53
+msgid "Delete label"
+msgstr "Удаление метки"
 
-#: statuses/views.py:54
+#: labels/views.py:54
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: statuses/views.py:58
-msgid "Status successfully deleted"
-msgstr "Статус успешно удален"
+#: labels/views.py:58
+msgid "Label successfully deleted"
+msgstr "Метка успешно удалена"

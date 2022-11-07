@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-02 00:03+0300\n"
+"POT-Creation-Date: 2022-11-07 19:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,26 +92,26 @@ msgstr "Изменение пользователя"
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:67
+#: users/views.py:68
 msgid "Delete user"
 msgstr "Удаление пользователя"
 
-#: users/views.py:68
+#: users/views.py:69
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: users/views.py:72
+#: users/views.py:73
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: users/views.py:79 users/views.py:80
+#: users/views.py:80 users/views.py:81
 msgid "Enter"
 msgstr "Войти"
 
-#: users/views.py:84
+#: users/views.py:85
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: users/views.py:90
+#: users/views.py:91
 msgid "You are logged out."
 msgstr "Вы разлогинены"
