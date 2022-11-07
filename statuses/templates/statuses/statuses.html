@@ -28,9 +28,9 @@
         <td>{{ status.name }}</td>
         <td>{{ status.created_date }}</td>
         <td>
-            <a href="/statuses/{{ status.id }}/update/">{{ btn_update }}</a>
+            <a href="/statuses/{{ status.pk }}/update/">{{ btn_update }}</a>
             <br>
-            <a href="/statuses/{{ status.id }}/delete/">{{ btn_delete }}</a>
+            <a href="/statuses/{{ status.pk }}/delete/">{{ btn_delete }}</a>
         </td>
     </tr>
     {% endfor %}

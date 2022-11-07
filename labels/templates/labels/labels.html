@@ -22,15 +22,15 @@
     </tr>
     </thead>
     <tbody>
-    {% for status in statuses %}
+    {% for label in labels %}
     <tr>
-        <th scope="row">{{ status.pk }}</th>
-        <td>{{ status.name }}</td>
-        <td>{{ status.created_date }}</td>
+        <th scope="row">{{ label.pk }}</th>
+        <td>{{ label.name }}</td>
+        <td>{{ label.created_date }}</td>
         <td>
-            <a href="/statuses/{{ status.id }}/update/">{{ btn_update }}</a>
+            <a href="/labels/{{ label.pk }}/update/">{{ btn_update }}</a>
             <br>
-            <a href="/statuses/{{ status.id }}/delete/">{{ btn_delete }}</a>
+            <a href="/labels/{{ label.pk }}/delete/">{{ btn_delete }}</a>
         </td>
     </tr>
     {% endfor %}
