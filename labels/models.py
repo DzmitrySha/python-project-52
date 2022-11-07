@@ -7,3 +7,6 @@ class Labels(models.Model):
     name = models.CharField(max_length=100)
     created_date = models.DateTimeField(verbose_name=_("Created date"),
                                         default=timezone.now)
+
+    def __str__(self):
+        return self.name
