@@ -10,19 +10,19 @@ class Tasks(models.Model):
     created_date = models.DateTimeField(verbose_name=_("Created date"),
                                         default=timezone.now)
     executor = models.ForeignKey(
-        to=User, on_delete=models.PROTECT, blank=True, default=None,
+        to=User, on_delete=models.PROTECT, blank=True, null=True,
         verbose_name=_('Executor'),
     )
     author = models.ForeignKey(
-        to=User, on_delete=models.PROTECT, blank=False, default=None,
+        to=User, on_delete=models.PROTECT, blank=False,
         related_name='authors', verbose_name=_('Author'),
     )
     status = models.ForeignKey(
         to='statuses.TaskStatus', on_delete=models.PROTECT, blank=False,
         related_name='statuses', verbose_name=_('Status'),
     )
-    label = models.ManyToManyField(
-        'labels.Label', blank=False, related_name='labels',
+    labels = models.ManyToManyField(
+        'labels.Label', blank=True, related_name='labels',
         verbose_name=_('Label'),
     )
 
