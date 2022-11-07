@@ -2,12 +2,12 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
-from labels.models import Labels
+from labels.models import Label
 from labels.permissions import LabelLoginRequiredMixin
 
 
 class LabelsList(LabelLoginRequiredMixin, ListView):
-    model = Labels
+    model = Label
     template_name = "labels/labels.html"
     context_object_name = "labels"
     login_url = "login"
@@ -18,7 +18,7 @@ class LabelsList(LabelLoginRequiredMixin, ListView):
 
 
 class CreateLabel(LabelLoginRequiredMixin, CreateView):
-    model = Labels
+    model = Label
     fields = ['name']
     template_name = "labels/form.html"
     login_url = "login"
@@ -32,7 +32,7 @@ class CreateLabel(LabelLoginRequiredMixin, CreateView):
 
 
 class UpdateLabel(LabelLoginRequiredMixin, UpdateView):
-    model = Labels
+    model = Label
     fields = ['name']
     template_name = "labels/form.html"
     login_url = "login"
@@ -46,7 +46,7 @@ class UpdateLabel(LabelLoginRequiredMixin, UpdateView):
 
 
 class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
-    model = Labels
+    model = Label
     template_name = "labels/delete.html"
     login_url = "login"
     context_object_name = "label"
