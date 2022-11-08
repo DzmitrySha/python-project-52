@@ -1,11 +1,11 @@
 from django.contrib import messages
-from django.db.models import ProtectedError
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
+
 from labels.models import Label
 from labels.permissions import LabelLoginRequiredMixin
+from tasks.models import Tasks
 
 
 class LabelsList(LabelLoginRequiredMixin, ListView):
@@ -47,7 +47,7 @@ class UpdateLabel(LabelLoginRequiredMixin, UpdateView):
         return reverse_lazy('labels')
 
 
-class DeleteLabel(DeleteView):
+class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
     model = Label
     template_name = "labels/delete.html"
     login_url = "login"
@@ -61,15 +61,13 @@ class DeleteLabel(DeleteView):
         return reverse_lazy('labels')
         # messages.info(self.request, _('Невозможно удалить метку, потому что она используется'))
 
-    # def get_success_url(self):
-    #     try:
-    #         self.object.delete()
-    #         messages.info(self.request, _('Label successfully deleted'))
-    #         return reverse_lazy('labels')
-    #
-    #     except ProtectedError:
-    #         messages.info(
-    #             self.request,
-    #             _('Невозможно удалить метку, потому что она используется')
-    #         )
-    #         return reverse_lazy('labels')
+    # def form_valid(self, form):
+    #     label = Label.objects.get()
+    #     for task in Tasks.objects.all():
+    #         if label in task.labels.all():
+    #             messages.info(
+    #                 self.request,
+    #                 _('Невозможно удалить метку, потому что она используется')
+    #             )
+    #             return reverse_lazy('labels')
+    #     return super().form_valid(form)
