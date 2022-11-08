@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.db.models import ProtectedError
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
@@ -45,7 +47,7 @@ class UpdateLabel(LabelLoginRequiredMixin, UpdateView):
         return reverse_lazy('labels')
 
 
-class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
+class DeleteLabel(DeleteView):
     model = Label
     template_name = "labels/delete.html"
     login_url = "login"
@@ -57,3 +59,17 @@ class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
     def get_success_url(self):
         messages.info(self.request, _('Label successfully deleted'))
         return reverse_lazy('labels')
+        # messages.info(self.request, _('Невозможно удалить метку, потому что она используется'))
+
+    # def get_success_url(self):
+    #     try:
+    #         self.object.delete()
+    #         messages.info(self.request, _('Label successfully deleted'))
+    #         return reverse_lazy('labels')
+    #
+    #     except ProtectedError:
+    #         messages.info(
+    #             self.request,
+    #             _('Невозможно удалить метку, потому что она используется')
+    #         )
+    #         return reverse_lazy('labels')

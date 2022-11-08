@@ -11,7 +11,7 @@ class Tasks(models.Model):
                                         default=timezone.now)
     executor = models.ForeignKey(
         to=User, on_delete=models.PROTECT, blank=True, null=True,
-        verbose_name=_('Executor'),
+        related_name='executors', verbose_name=_('Executor'),
     )
     author = models.ForeignKey(
         to=User, on_delete=models.PROTECT, blank=False,
@@ -22,9 +22,15 @@ class Tasks(models.Model):
         related_name='statuses', verbose_name=_('Status'),
     )
     labels = models.ManyToManyField(
-        'labels.Label', blank=True, related_name='labels',
-        verbose_name=_('Label'),
+        'labels.Label', through='Relations',
+        through_fields=('task', 'label'), blank=True,
+        related_name='labels', verbose_name=_('Label'),
     )
 
     def __str__(self):
         return self.name
+
+
+class Relations(models.Model):
+    task = models.ForeignKey(to='tasks.Tasks', on_delete=models.CASCADE)
+    label = models.ForeignKey(to='labels.Label', on_delete=models.PROTECT)
