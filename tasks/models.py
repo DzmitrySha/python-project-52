@@ -10,7 +10,7 @@ class Tasks(models.Model):
     created_date = models.DateTimeField(verbose_name=_("Created date"),
                                         default=timezone.now)
     executor = models.ForeignKey(
-        to=User, on_delete=models.PROTECT, blank=True, null=True,
+        to=User, on_delete=models.CASCADE, blank=True, null=True, default='',
         related_name='executors', verbose_name=_('Executor'),
     )
     author = models.ForeignKey(
