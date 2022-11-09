@@ -45,11 +45,8 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        return super().form_valid(form)
-
-        # form.instance.name = "Task"
-        # form.instance.description = "Task description"
         # form.instance.executor = self.request.user
+        return super().form_valid(form)
 
 
 class UpdateTask(TasksLoginRequiredMixin, UpdateView):
