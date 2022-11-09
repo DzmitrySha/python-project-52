@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-07 22:35+0300\n"
+"POT-Creation-Date: 2022-11-09 20:56+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,7 +52,7 @@ msgstr "Автор"
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/models.py:26
+#: tasks/models.py:27
 msgid "Label"
 msgstr "Метка"
 
@@ -73,7 +73,7 @@ msgid "Labels"
 msgstr "Метки"
 
 #: tasks/templates/tasks/task.html:51 tasks/views.py:17 tasks/views.py:28
-#: tasks/views.py:60
+#: tasks/views.py:61
 msgid "Update"
 msgstr "Изменить"
 
@@ -93,22 +93,22 @@ msgstr "Создать"
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:59
+#: tasks/views.py:60
 msgid "Update task"
 msgstr "Изменение задачи"
 
-#: tasks/views.py:64
+#: tasks/views.py:65
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: tasks/views.py:73
+#: tasks/views.py:74
 msgid "Delete task"
 msgstr "Удаление задачи"
 
-#: tasks/views.py:74
+#: tasks/views.py:75
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: tasks/views.py:78
+#: tasks/views.py:79
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
