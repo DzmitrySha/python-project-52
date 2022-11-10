@@ -4,9 +4,7 @@ version = "0.1.0"
 description = "Task Manager"
 authors = ["DzmitrySha <ravenbydev@gmail.com>"]
 readme = "README.md"
-#packages = [
-#    {include = "hexlet_code"}
-#]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -17,6 +15,7 @@ psycopg2-binary = "^2.9.3"
 django-bootstrap4 = "^22.2"
 gunicorn = "^20.1.0"
 whitenoise = "^6.2.0"
+django-filter = "^22.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -28,6 +27,3 @@ pytest-django = "^4.5.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-#[tool.poetry.scripts]
-#task-manager = "task_manager.manage.py:main"
