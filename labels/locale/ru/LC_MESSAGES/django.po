@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-09 20:56+0300\n"
+"POT-Creation-Date: 2022-11-11 00:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,50 +36,50 @@ msgstr "Вы не авторизованы! Пожалуйста, выполни
 msgid "Are you sure want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: labels/templates/labels/labels.html:13 labels/views.py:30
+#: labels/templates/labels/labels.html:13 labels/views.py:28
 msgid "Create label"
 msgstr "Создать метку"
 
-#: labels/views.py:19
+#: labels/views.py:17
 msgid "Labels"
 msgstr "Метки"
 
-#: labels/views.py:20 labels/views.py:45
+#: labels/views.py:18 labels/views.py:43
 msgid "Update"
 msgstr "Изменить"
 
-#: labels/views.py:21
+#: labels/views.py:19
 msgid "Delete"
 msgstr "Удалить"
 
-#: labels/views.py:31
+#: labels/views.py:29
 msgid "Create"
 msgstr "Создать"
 
-#: labels/views.py:35
+#: labels/views.py:33
 msgid "Label successfully created"
 msgstr "Метка успешно создана"
 
-#: labels/views.py:44
+#: labels/views.py:42
 msgid "Update label"
 msgstr "Изменение метки"
 
-#: labels/views.py:49
+#: labels/views.py:47
 msgid "Label successfully updated"
 msgstr "Метка успешно изменена"
 
-#: labels/views.py:58
+#: labels/views.py:57
 msgid "Delete label"
 msgstr "Удаление метки"
 
-#: labels/views.py:59
+#: labels/views.py:58
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: labels/views.py:69
+#: labels/views.py:65
 msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
-#: labels/views.py:73
+#: labels/views.py:69
 msgid "It`s not possible to delete the label that is being used"
 msgstr "Невозможно удалить метку, потому что она используется"

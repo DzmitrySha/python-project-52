@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-07 19:44+0300\n"
+"POT-Creation-Date: 2022-11-11 00:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,35 +20,35 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/apps.py:7 task_manager/templates/base.html:38
+#: task_manager/apps.py:7 task_manager/templates/base.html:37
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
-#: task_manager/templates/base.html:50
+#: task_manager/templates/base.html:49
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:55
+#: task_manager/templates/base.html:54
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/templates/base.html:59
+#: task_manager/templates/base.html:58
 msgid "Labels"
 msgstr ""
 
-#: task_manager/templates/base.html:63
+#: task_manager/templates/base.html:62
 msgid "Tasks"
 msgstr ""
 
-#: task_manager/templates/base.html:72
+#: task_manager/templates/base.html:71
 msgid "Logout"
 msgstr "Выход"
 
-#: task_manager/templates/base.html:79
+#: task_manager/templates/base.html:78
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:83
+#: task_manager/templates/base.html:82
 msgid "Registration"
 msgstr "Регистрация"
 

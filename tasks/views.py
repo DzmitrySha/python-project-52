@@ -4,11 +4,13 @@ from django.views.generic import (
     ListView, DetailView, CreateView, UpdateView, DeleteView
 )
 from django.utils.translation import gettext_lazy as _
+from django_filters.views import FilterView
+
 from tasks.permissions import TasksLoginRequiredMixin
 from tasks.models import Tasks
 
 
-class TasksList(TasksLoginRequiredMixin, ListView):
+class TasksList(TasksLoginRequiredMixin, FilterView):
     model = Tasks
     template_name = "tasks/tasks.html"
     context_object_name = "tasks"
@@ -16,7 +18,9 @@ class TasksList(TasksLoginRequiredMixin, ListView):
     extra_context = {'title': _('Tasks'),
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
+                     'btn_show': _('Show'),
                      }
+    filterset_fields = ['status', 'executor', 'labels', 'author']
 
 
 class OneTaskView(TasksLoginRequiredMixin, DetailView):
