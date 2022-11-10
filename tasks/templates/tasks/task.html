@@ -17,27 +17,27 @@
     <p>{{ task.pk }}</p>
     <hr>
     <div class="container">
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">{% trans 'Author' %}</div>
         <div class="col">{{ task.author }}</div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">{% trans 'Executor' %}</div>
         <div class="col">{{ task.executor }}</div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">{% trans 'Status' %}</div>
         <div class="col">{{ task.status }}</div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">{% trans 'Created date' %}</div>
         <div class="col">{{ task.created_date }}</div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">{% trans 'Description' %}</div>
         <div class="col">{{ task.description }}</div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col"><h6>{% trans 'Labels' %}:</h6>
           <ul>
               {% for label in task.labels.all %}
@@ -46,7 +46,7 @@
           </ul>
         </div>
       </div>
-      <div class="row p-1">
+      <div class="row p-2">
         <div class="col">
           <a href="/tasks/{{ task.id }}/update/">{% trans 'Update' %}</a>
           <br>
