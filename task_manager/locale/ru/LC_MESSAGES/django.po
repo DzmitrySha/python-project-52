@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-11 00:08+0300\n"
+"POT-Creation-Date: 2022-11-14 00:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,21 +34,21 @@ msgstr "Статусы"
 
 #: task_manager/templates/base.html:58
 msgid "Labels"
-msgstr ""
+msgstr "Метки"
 
 #: task_manager/templates/base.html:62
 msgid "Tasks"
-msgstr ""
+msgstr "Задачи"
 
-#: task_manager/templates/base.html:71
+#: task_manager/templates/base.html:74
 msgid "Logout"
 msgstr "Выход"
 
-#: task_manager/templates/base.html:78
+#: task_manager/templates/base.html:81
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:82
+#: task_manager/templates/base.html:85
 msgid "Registration"
 msgstr "Регистрация"
 
