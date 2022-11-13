@@ -36,7 +36,9 @@ ALLOWED_HOSTS = ['0.0.0.0',
                  'python-project-52-production-af44.up.railway.app',
                  'webserver',
                  ]
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://python-project-52-production-af44.up.railway.app'
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,12 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     "bootstrap4",
-    'django_filters',
     'task_manager.apps.TaskManagerConfig',
     'users.apps.UsersConfig',
     'statuses.apps.StatusesConfig',
     'labels.apps.LabelsConfig',
     'tasks.apps.TasksConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
