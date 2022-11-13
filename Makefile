@@ -1,5 +1,6 @@
 MANAGE := poetry run python manage.py
 HEROKU := heroku run python manage.py
+RAILWAY := railway run python manage.py
 
 install:
 		poetry install
@@ -30,6 +31,12 @@ migrations-h:
 
 migrate-h:
 		$(HEROKU) migrate
+
+migrations-r:
+		$(RAILWAY) makemigrations
+
+migrate-r:
+		$(RAILWAY) migrate
 
 makesecretkey:
 		poetry run python -c 'from django.utils.crypto import get_random_string; print(get_random_string(40))'
