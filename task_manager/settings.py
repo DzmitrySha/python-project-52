@@ -36,7 +36,10 @@ ALLOWED_HOSTS = ['0.0.0.0',
                  'python-project-52-production-af44.up.railway.app',
                  'webserver',
                  ]
-
+CSRF_TRUSTED_ORIGINS = ['*.railway.app',
+                        '127.0.0.1',
+                        'localhost',
+                        ]
 # Application definition
 
 INSTALLED_APPS = [
