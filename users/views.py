@@ -6,8 +6,11 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView, CreateView, UpdateView, DeleteView, DetailView
+)
 
+from tasks.models import Tasks
 from users.forms import UserCreationFormCustom
 from users.permissions import UserPermissionsMixin
 
@@ -28,6 +31,18 @@ class UsersList(ListView):
     #                     'btn_delete': _('Delete'),
     #                     })
     #     return context
+
+
+class OneUserView(DetailView):
+    model = User
+    template_name = "users/user.html"
+    context_object_name = "user"
+    tasks = Tasks.objects.all
+    extra_context = {'title': _('User'),
+                     'tasks': tasks,
+                     'btn_update': _('Update'),
+                     'btn_delete': _('Delete'),
+                     }
 
 
 class CreateUser(CreateView):
