@@ -40,9 +40,6 @@
               {% if task.author_id == user.pk %}
                 <li><a href="/tasks/{{ task.pk }}">{{ task.name }}</a></li>
               {% endif %}
-              {% if not task.author_id %}
-              <li>no tasks</li>
-              {% endif %}
               {% endfor %}
           </ul>
         </div>

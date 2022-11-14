@@ -12,3 +12,17 @@ class TasksLoginRequiredMixin(LoginRequiredMixin):
             )
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
+
+#
+# class TasksPermissionRequiredMixin:
+#     def has_permissions(self):
+#         return self.get_object().author_id == self.request.user
+#
+#     def dispatch(self, request, *args, **kwargs):
+#         if not self.has_permissions():
+#             messages.info(
+#                 request,
+#                 _('You are not have permissions.')
+#             )
+#             return self.handle_no_permission()
+#         return super().dispatch(request, *args, **kwargs)

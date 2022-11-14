@@ -6,7 +6,10 @@ from django.views.generic import (
 from django.utils.translation import gettext_lazy as _
 from django_filters.views import FilterView
 
-from tasks.permissions import TasksLoginRequiredMixin
+from tasks.permissions import (
+    TasksLoginRequiredMixin,
+    # TasksPermissionRequiredMixin
+)
 from tasks.models import Tasks
 
 
@@ -53,7 +56,9 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(TasksLoginRequiredMixin, UpdateView):
+class UpdateTask(TasksLoginRequiredMixin,
+                 # PermissionRequiredMixin,
+                 UpdateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
@@ -67,7 +72,9 @@ class UpdateTask(TasksLoginRequiredMixin, UpdateView):
         return reverse_lazy('tasks')
 
 
-class DeleteTask(TasksLoginRequiredMixin, DeleteView):
+class DeleteTask(TasksLoginRequiredMixin,
+                 # TasksPermissionRequiredMixin,
+                 DeleteView):
     model = Tasks
     template_name = "tasks/delete.html"
     login_url = "login"
