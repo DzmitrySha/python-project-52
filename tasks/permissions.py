@@ -1,5 +1,7 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.contrib.auth.mixins import (LoginRequiredMixin,
+                                        PermissionRequiredMixin
+                                        )
 from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 
@@ -15,7 +17,7 @@ class TasksLoginRequiredMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class TasksPermissionRequiredMixin(AccessMixin):
+class TasksPermissionRequiredMixin(PermissionRequiredMixin):
     def has_permission(self):
         return self.get_object().author == self.request.user
 
