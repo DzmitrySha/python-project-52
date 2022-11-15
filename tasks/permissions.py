@@ -1,5 +1,6 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.shortcuts import redirect
 from django.utils.translation import gettext_lazy as _
 
 
@@ -13,16 +14,16 @@ class TasksLoginRequiredMixin(LoginRequiredMixin):
             return self.handle_no_permission()
         return super().dispatch(request, *args, **kwargs)
 
-#
-# class TasksPermissionRequiredMixin:
-#     def has_permissions(self):
-#         return self.get_object().author_id == self.request.user
-#
-#     def dispatch(self, request, *args, **kwargs):
-#         if not self.has_permissions():
-#             messages.info(
-#                 request,
-#                 _('You are not have permissions.')
-#             )
-#             return self.handle_no_permission()
-#         return super().dispatch(request, *args, **kwargs)
+
+class TasksPermissionRequiredMixin(AccessMixin):
+    def has_permission(self):
+        return self.get_object().author == self.request.user
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.has_permission():
+            messages.error(
+                request,
+                _('A task can only be deleted by its author')
+            )
+            return redirect('tasks')
+        return super().dispatch(request, *args, **kwargs)

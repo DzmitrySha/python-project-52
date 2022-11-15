@@ -1,15 +1,14 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.views.generic import (
-    ListView, DetailView, CreateView, UpdateView, DeleteView
-)
-from django.utils.translation import gettext_lazy as _
+from django.views.generic import (DetailView, CreateView,
+                                  UpdateView, DeleteView
+                                  )
 from django_filters.views import FilterView
+from django.utils.translation import gettext_lazy as _
 
-from tasks.permissions import (
-    TasksLoginRequiredMixin,
-    # TasksPermissionRequiredMixin
-)
+from tasks.permissions import (TasksLoginRequiredMixin,
+                               TasksPermissionRequiredMixin
+                               )
 from tasks.models import Tasks
 
 
@@ -57,7 +56,6 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
 
 
 class UpdateTask(TasksLoginRequiredMixin,
-                 # PermissionRequiredMixin,
                  UpdateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
@@ -73,7 +71,7 @@ class UpdateTask(TasksLoginRequiredMixin,
 
 
 class DeleteTask(TasksLoginRequiredMixin,
-                 # TasksPermissionRequiredMixin,
+                 TasksPermissionRequiredMixin,
                  DeleteView):
     model = Tasks
     template_name = "tasks/delete.html"
@@ -82,6 +80,7 @@ class DeleteTask(TasksLoginRequiredMixin,
     extra_context = {'title': _('Delete task'),
                      'btn_name': _('Yes, delete'),
                      }
+    permission_required = 'tasks.author'
 
     def get_success_url(self):
         messages.info(self.request, _('Task successfully deleted'))
