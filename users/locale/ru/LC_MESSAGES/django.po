@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 00:13+0300\n"
+"POT-Creation-Date: 2022-11-15 21:32+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,12 +76,12 @@ msgstr "Последний вход"
 msgid "Created tasks"
 msgstr "Созданные задачи"
 
-#: users/templates/users/user.html:52 users/views.py:23 users/views.py:43
+#: users/templates/users/user.html:49 users/views.py:23 users/views.py:43
 #: users/views.py:71
 msgid "Update"
 msgstr "Изменить"
 
-#: users/templates/users/user.html:54 users/views.py:24 users/views.py:44
+#: users/templates/users/user.html:51 users/views.py:24 users/views.py:44
 msgid "Delete"
 msgstr "Удалить"
 
