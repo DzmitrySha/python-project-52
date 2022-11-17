@@ -3,6 +3,7 @@ from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
+from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -23,14 +24,6 @@ class UsersList(ListView):
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
-    # добавление дополнительных данных
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context.update({'title': _('Users'),
-    #                     'btn_update': _('Update'),
-    #                     'btn_delete': _('Delete'),
-    #                     })
-    #     return context
 
 
 class OneUserView(DetailView):
@@ -56,12 +49,6 @@ class CreateUser(CreateView):
         messages.info(self.request, _('User successfully registered'))
         return reverse_lazy('login')
 
-    # автоматический вход пользователя после регистрации:
-    # def form_valid(self, form):
-    #     user = form.save()
-    #     login(self.request, user)
-    #     return redirect("home")
-
 
 class UpdateUser(UserPermissionsMixin, UpdateView):
     model = User
@@ -79,14 +66,23 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
 class DeleteUser(UserPermissionsMixin, DeleteView):
     model = User
     template_name = "users/delete.html"
+    success_url = reverse_lazy('users')
     context_object_name = "user"
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
 
-    def get_success_url(self):
-        messages.info(self.request, _('User successfully deleted'))
-        return reverse_lazy('users')
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        try:
+            self.object.delete()
+            messages.info(self.request, _('User successfully deleted'))
+        except ProtectedError:
+            messages.error(
+                self.request,
+                _('It`s not possible to delete a User that is being used')
+            )
+        return redirect(success_url)
 
 
 class LoginUser(LoginView):
