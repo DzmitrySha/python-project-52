@@ -68,5 +68,4 @@ class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
                 self.request,
                 _('It`s not possible to delete the label that is being used')
             )
-        # return HttpResponseRedirect(success_url)
         return redirect(success_url)
