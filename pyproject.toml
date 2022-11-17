@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Task Manager"
 authors = ["DzmitrySha <ravenbydev@gmail.com>"]
 readme = "README.md"
-
+packages = [
+  { include = "task_manager" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -28,3 +30,6 @@ pytest-django = "^4.5.2"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+task_manager = "manage.py:main"
