@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-15 21:32+0300\n"
+"POT-Creation-Date: 2022-11-17 23:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: users/apps.py:8 users/views.py:22
+#: users/apps.py:8 users/views.py:23
 msgid "Users"
 msgstr "Пользователи"
 
@@ -52,7 +52,7 @@ msgstr "У вас нет прав для изменения другого по�
 msgid "Are you sure want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: users/templates/users/user.html:10 users/views.py:41
+#: users/templates/users/user.html:10 users/views.py:42
 msgid "User"
 msgstr "Пользователь"
 
@@ -76,12 +76,12 @@ msgstr "Последний вход"
 msgid "Created tasks"
 msgstr "Созданные задачи"
 
-#: users/templates/users/user.html:49 users/views.py:23 users/views.py:43
-#: users/views.py:71
+#: users/templates/users/user.html:49 users/views.py:24 users/views.py:44
+#: users/views.py:72
 msgid "Update"
 msgstr "Изменить"
 
-#: users/templates/users/user.html:51 users/views.py:24 users/views.py:44
+#: users/templates/users/user.html:51 users/views.py:25 users/views.py:45
 msgid "Delete"
 msgstr "Удалить"
 
@@ -93,46 +93,50 @@ msgstr "Имя пользователя"
 msgid "Created date"
 msgstr "Дата создания"
 
-#: users/views.py:51
+#: users/views.py:52
 msgid "Registration user"
 msgstr "Регистрация пользователя"
 
-#: users/views.py:52
+#: users/views.py:53
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: users/views.py:56
+#: users/views.py:57
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
-#: users/views.py:70
+#: users/views.py:71
 msgid "Update user"
 msgstr "Изменение пользователя"
 
-#: users/views.py:75
+#: users/views.py:76
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: users/views.py:83
+#: users/views.py:85
 msgid "Delete user"
 msgstr "Удаление пользователя"
 
-#: users/views.py:84
+#: users/views.py:86
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: users/views.py:88
+#: users/views.py:93
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: users/views.py:95 users/views.py:96
+#: users/views.py:97
+msgid "It`s not possible to delete a User that is being used"
+msgstr "Невозможно удалить пользователя, потому что он используется"
+
+#: users/views.py:105 users/views.py:106
 msgid "Enter"
 msgstr "Войти"
 
-#: users/views.py:100
+#: users/views.py:110
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: users/views.py:106
+#: users/views.py:116
 msgid "You are logged out."
 msgstr "Вы разлогинены"
