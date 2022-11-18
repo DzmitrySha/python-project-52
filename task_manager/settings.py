@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'labels.apps.LabelsConfig',
     'tasks.apps.TasksConfig',
     'django_filters',
+    'django_extensions',
 ]
 
 ROLLBAR = {
