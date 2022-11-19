@@ -57,7 +57,7 @@ class UpdateUser(UserPermissionsMixin, UpdateView):
 
     def get_success_url(self):
         messages.info(self.request, _('User successfully updated'))
-        return reverse_lazy('login')
+        return reverse_lazy('users')
 
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
