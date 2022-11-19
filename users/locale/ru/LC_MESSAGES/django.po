@@ -111,7 +111,7 @@ msgstr "Изменение пользователя"
 
 #: users/views.py:59
 msgid "User successfully updated"
-msgstr "Пользователь успешно изменен"
+msgstr "Пользователь успешно изменён"
 
 #: users/views.py:68
 msgid "Delete user"
