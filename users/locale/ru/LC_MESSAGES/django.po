@@ -123,7 +123,7 @@ msgstr "Да, удалить"
 
 #: users/views.py:76
 msgid "User successfully deleted"
-msgstr "Пользователь успешно удален"
+msgstr "Пользователь успешно удалён"
 
 #: users/views.py:80
 msgid "It`s not possible to delete a User that is being used"
