@@ -70,7 +70,7 @@ msgstr "Изменение статуса"
 
 #: statuses/views.py:44
 msgid "Status successfully updated"
-msgstr "Статус успешно изменен"
+msgstr "Статус успешно изменён"
 
 #: statuses/views.py:53
 msgid "Delete status"
@@ -82,4 +82,4 @@ msgstr "Да, удалить"
 
 #: statuses/views.py:58
 msgid "Status successfully deleted"
-msgstr "Статус успешно удален"
+msgstr "Статус успешно удалён"
