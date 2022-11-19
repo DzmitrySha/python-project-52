@@ -18,7 +18,7 @@ class IndexView(TemplateView):
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = "users/form.html"
-    extra_context = {'title': _('Enter'),
+    extra_context = {'title': _('Login'),
                      'btn_name': _('Enter'),
                      }
 
