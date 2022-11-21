@@ -14,7 +14,6 @@ distlib==0.3.6
 dj-database-url>=0.5.0
 Django==4.1.1
 django-bootstrap4==22.2
-# django-extensions==3.2.1
 django-filter==22.1
 dulwich==0.20.46
 filelock==3.8.0
