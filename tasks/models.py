@@ -25,7 +25,7 @@ class Tasks(models.Model):
     labels = models.ManyToManyField(
         'labels.Label', through='Relations',
         through_fields=('task', 'label'), blank=True,
-        related_name='labels', verbose_name=_('Label'),
+        related_name='labels', verbose_name=_('Labels'),
     )
 
     def __str__(self):

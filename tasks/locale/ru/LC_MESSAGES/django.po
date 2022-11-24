@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 00:11+0300\n"
+"POT-Creation-Date: 2022-11-25 00:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,9 +52,9 @@ msgstr "Автор"
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/models.py:28
-msgid "Label"
-msgstr "Метка"
+#: tasks/models.py:28 tasks/templates/tasks/task.html:41
+msgid "Labels"
+msgstr "Метки"
 
 #: tasks/permissions.py:14
 msgid "You are not logged in. Please log in."
@@ -71,10 +71,6 @@ msgstr "Вы уверены, что хотите удалить"
 #: tasks/templates/tasks/task.html:10 tasks/views.py:33
 msgid "Task view"
 msgstr "Просмотр задачи"
-
-#: tasks/templates/tasks/task.html:41
-msgid "Labels"
-msgstr "Метки"
 
 #: tasks/templates/tasks/task.html:51 tasks/views.py:21 tasks/views.py:34
 #: tasks/views.py:63
