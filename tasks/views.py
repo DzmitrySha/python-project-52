@@ -6,7 +6,6 @@ from django.views.generic import (DetailView, CreateView,
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 
-from tasks.forms import TaskUpdateForm
 from tasks.permissions import (TasksLoginRequiredMixin,
                                TasksPermissionRequiredMixin
                                )
@@ -52,14 +51,12 @@ class CreateTask(TasksLoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        # form.instance.executor = self.request.user
         return super().form_valid(form)
 
 
 class UpdateTask(TasksLoginRequiredMixin, UpdateView):
     model = Tasks
-    # fields = ['name', 'description', 'status', 'executor', 'labels']
-    form_class = TaskUpdateForm
+    fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
     login_url = "login"
     extra_context = {'title': _('Update task'),
