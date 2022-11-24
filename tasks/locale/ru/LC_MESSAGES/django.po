@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-17 22:08+0300\n"
+"POT-Creation-Date: 2022-11-25 00:11+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,35 +24,35 @@ msgstr ""
 msgid "Tasks"
 msgstr "Задачи"
 
-#: tasks/models.py:8 tasks/templates/tasks/tasks.html:32
+#: tasks/models.py:9 tasks/templates/tasks/tasks.html:32
 msgid "Name"
 msgstr "Имя"
 
-#: tasks/models.py:9 tasks/templates/tasks/task.html:37
+#: tasks/models.py:10 tasks/templates/tasks/task.html:37
 msgid "Description"
 msgstr "Описание"
 
-#: tasks/models.py:10 tasks/templates/tasks/task.html:33
+#: tasks/models.py:11 tasks/templates/tasks/task.html:33
 #: tasks/templates/tasks/tasks.html:36
 msgid "Created date"
 msgstr "Дата создания"
 
-#: tasks/models.py:14 tasks/templates/tasks/task.html:25
+#: tasks/models.py:15 tasks/templates/tasks/task.html:25
 #: tasks/templates/tasks/tasks.html:35
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: tasks/models.py:18 tasks/templates/tasks/task.html:21
+#: tasks/models.py:19 tasks/templates/tasks/task.html:21
 #: tasks/templates/tasks/tasks.html:34
 msgid "Author"
 msgstr "Автор"
 
-#: tasks/models.py:22 tasks/templates/tasks/task.html:29
+#: tasks/models.py:23 tasks/templates/tasks/task.html:29
 #: tasks/templates/tasks/tasks.html:33
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/models.py:27
+#: tasks/models.py:28
 msgid "Label"
 msgstr "Метка"
 
@@ -77,7 +77,7 @@ msgid "Labels"
 msgstr "Метки"
 
 #: tasks/templates/tasks/task.html:51 tasks/views.py:21 tasks/views.py:34
-#: tasks/views.py:65
+#: tasks/views.py:63
 msgid "Update"
 msgstr "Изменить"
 
@@ -105,22 +105,22 @@ msgstr "Создать"
 msgid "Task successfully created"
 msgstr "Задача успешно создана"
 
-#: tasks/views.py:64
+#: tasks/views.py:62
 msgid "Update task"
 msgstr "Изменение задачи"
 
-#: tasks/views.py:69
+#: tasks/views.py:67
 msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
-#: tasks/views.py:80
+#: tasks/views.py:78
 msgid "Delete task"
 msgstr "Удаление задачи"
 
-#: tasks/views.py:81
+#: tasks/views.py:79
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: tasks/views.py:86
+#: tasks/views.py:84
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
