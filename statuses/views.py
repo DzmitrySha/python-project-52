@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.db.models import ProtectedError
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
@@ -49,11 +51,20 @@ class DeleteStatus(StatusLoginRequiredMixin, DeleteView):
     model = TaskStatus
     template_name = "statuses/delete.html"
     login_url = "login"
+    success_url = reverse_lazy('statuses')
     context_object_name = "status"
     extra_context = {'title': _('Delete status'),
                      'btn_name': _('Yes, delete'),
                      }
 
-    def get_success_url(self):
-        messages.info(self.request, _('Status successfully deleted'))
-        return reverse_lazy('statuses')
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        try:
+            self.object.delete()
+            messages.info(self.request, _('Status successfully deleted'))
+        except ProtectedError:
+            messages.error(
+                self.request,
+                _('It`s not possible to delete the status that is being used')
+            )
+        return redirect(success_url)
