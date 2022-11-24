@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -11,6 +10,8 @@ from django.views.generic import (
 from tasks.models import Tasks
 from users.forms import UserCreationFormCustom
 from users.permissions import UserPermissionsMixin
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class UsersList(ListView):

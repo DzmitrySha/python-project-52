@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
 class UserCreationFormCustom(UserCreationForm):
@@ -10,7 +11,7 @@ class UserCreationFormCustom(UserCreationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control',
                    'type': 'text',
-                   'required': 'false',
+                   'required': 'true',
                    }),
         help_text=_("Enter user first name.")
     )
@@ -20,7 +21,7 @@ class UserCreationFormCustom(UserCreationForm):
         widget=forms.TextInput(
             attrs={'class': 'form-control',
                    'type': 'text',
-                   'required': 'false',
+                   'required': 'true',
                    }),
         help_text=_("Enter user last name.")
     )
