@@ -9,4 +9,3 @@ urlpatterns = [
     path('<int:pk>/update/', UpdateLabel.as_view(), name="label_update"),
     path('<int:pk>/delete/', DeleteLabel.as_view(), name="label_delete"),
 ]
-
