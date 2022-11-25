@@ -7,7 +7,7 @@ from tasks.models import Tasks
 
 
 class TaskFilterForm(FilterSet):
-    labels = ModelChoiceFilter(queryset=Label.objects.all())
+    labels = ModelChoiceFilter(label=_('Label'), queryset=Label.objects.all())
     user_tasks_only = BooleanFilter(label=_('Only self tasks'),
                                     widget=forms.CheckboxInput(),
                                     method='filter_self_tasks',
