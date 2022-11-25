@@ -1,11 +1,12 @@
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import (DetailView, CreateView,
-                                  UpdateView, DeleteView
+                                  UpdateView, DeleteView,
                                   )
 from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 
+from tasks.filters import TaskFilterForm
 from tasks.permissions import (TasksLoginRequiredMixin,
                                TasksPermissionRequiredMixin
                                )
@@ -14,6 +15,7 @@ from tasks.models import Tasks
 
 class TasksList(TasksLoginRequiredMixin, FilterView):
     model = Tasks
+    filterset_class = TaskFilterForm
     template_name = "tasks/tasks.html"
     context_object_name = "tasks"
     login_url = 'login'
@@ -22,7 +24,6 @@ class TasksList(TasksLoginRequiredMixin, FilterView):
                      'btn_delete': _('Delete'),
                      'btn_show': _('Show'),
                      }
-    filterset_fields = ['status', 'executor', 'labels', 'author']
 
 
 class OneTaskView(TasksLoginRequiredMixin, DetailView):
