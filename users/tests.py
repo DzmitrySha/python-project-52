@@ -3,37 +3,36 @@ from users.models import User
 
 
 class UsersTest(TestCase):
-    # fixtures = ['test_data.json', 'moar_data.json']
-
-    def setUp(self):
-        User.objects.create(username="Kostya",
-                            first_name="Konstantin",
-                            last_name="Konstantinopolsky",
-                            email="k_email@mail.com"
-                            )
-        User.objects.create(username="user1",
-                            first_name="Fakename",
-                            )
+    fixtures = ['users.json']
 
     def test_create_user(self):
-        user = User.objects.get(username="Kostya")
-        self.assertEqual(user.first_name, 'Konstantin')
-        self.assertEqual(user.last_name, 'Konstantinopolsky')
-        self.assertEqual(user.email, 'k_email@mail.com')
+        user = User.objects.create(username="kep", first_name="Kevin",
+                                   last_name="Phillips", email="kep@mail.com",
+                                   )
+        self.assertEqual(user.username, 'kep')
+        self.assertEqual(user.first_name, 'Kevin')
+        self.assertEqual(user.last_name, 'Phillips')
+        self.assertEqual(user.email, 'kep@mail.com')
 
     def test_update_user(self):
-        user = User.objects.get(username="Kostya")
-        user.username = "Harpot"
-        user.first_name = "Harry"
-        user.last_name = "Potter"
-        self.assertEqual(user.username, "Harpot")
-        self.assertNotEqual(user.first_name, "Konstantin")
-        self.assertEqual(user.last_name, "Potter")
+        user1 = User.objects.get(pk=1)
+
+        self.assertEqual(user1.username, "albert")
+        self.assertEqual(user1.first_name, "Albert")
+        self.assertEqual(user1.last_name, "Einstein")
+
+        user1.username = "harry"
+        user1.first_name = "Harry"
+        user1.last_name = "Potter"
+
+        self.assertEqual(user1.username, "harry")
+        self.assertEqual(user1.first_name, "Harry")
+        self.assertEqual(user1.last_name, "Potter")
 
     def test_delete_user(self):
-        user1 = User.objects.get(username="user1")
-        user1.delete()
-        self.assertEqual(user1.id, None)
-        self.assertEqual(user1.pk, None)
+        user = User.objects.get(pk=2)
+        user.delete()
+        self.assertEqual(user.id, None)
+        self.assertEqual(user.pk, None)
         with self.assertRaises(User.DoesNotExist):
             User.objects.get(pk=2)
