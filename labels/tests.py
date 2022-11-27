@@ -3,9 +3,7 @@ from labels.models import Label
 
 
 class LabelsTest(TestCase):
-    def setUp(self):
-        Label.objects.create(name="label 1", )
-        Label.objects.create(name="label 2", )
+    fixtures = ['labels.json']
 
     def test_create_label(self):
         label_3 = Label.objects.create(name="label created")
