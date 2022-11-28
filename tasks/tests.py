@@ -15,19 +15,19 @@ class TasksTest(TestCase):
                              status=status, executor=user
                              )
 
-    def test_create_status(self):
+    def test_create_task(self):
         user = User.objects.create(username='Harry2')
         status = TaskStatus.objects.create(name='Done2')
         task_3 = Tasks.objects.create(name="task created",
                                       author=user, status=status, executor=user)
         self.assertEqual(task_3.name, "task created")
 
-    def test_update_status(self):
+    def test_update_task(self):
         task_2 = Tasks.objects.get(name="task 2")
         task_2.name = "another name"
         self.assertNotEqual(task_2.name, "task 2")
 
-    def test_delete_status(self):
+    def test_delete_task(self):
         task_1 = Tasks.objects.get(name="task 1")
         task_1.delete()
         self.assertEqual(task_1.id, None)
