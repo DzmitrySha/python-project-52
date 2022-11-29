@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
@@ -11,12 +12,10 @@ from django.views.generic import (
 from tasks.models import Tasks
 from users.forms import UserCreationFormCustom
 from users.permissions import UserPermissionsMixin
-from django.contrib.auth import get_user_model
-User = get_user_model()
 
 
 class UsersList(ListView):
-    model = User
+    model = get_user_model()
     template_name = "users/users.html"
     context_object_name = "users"
     extra_context = {'title': _('Users'),
@@ -26,7 +25,7 @@ class UsersList(ListView):
 
 
 class UserDetailView(DetailView):
-    model = User
+    model = get_user_model()
     template_name = "users/user.html"
     context_object_name = "user"
     extra_context = {'title': _('User'),
@@ -47,7 +46,7 @@ class CreateUser(SuccessMessageMixin, CreateView):
 
 
 class UpdateUser(SuccessMessageMixin, UserPermissionsMixin, UpdateView):
-    model = User
+    model = get_user_model()
     form_class = UserCreationFormCustom
     success_message = _('User successfully updated')
     success_url = reverse_lazy('users')
@@ -58,7 +57,7 @@ class UpdateUser(SuccessMessageMixin, UserPermissionsMixin, UpdateView):
 
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
-    model = User
+    model = get_user_model()
     template_name = "users/delete.html"
     success_url = reverse_lazy('users')
     context_object_name = "user"
