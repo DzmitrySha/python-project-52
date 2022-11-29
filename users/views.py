@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -24,41 +25,36 @@ class UsersList(ListView):
                      }
 
 
-class OneUserView(DetailView):
+class UserDetailView(DetailView):
     model = User
     template_name = "users/user.html"
     context_object_name = "user"
-    tasks = Tasks.objects.all
     extra_context = {'title': _('User'),
-                     'tasks': tasks,
+                     'tasks': Tasks.objects.all,
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
 
 
-class CreateUser(CreateView):
+class CreateUser(SuccessMessageMixin, CreateView):
     form_class = UserCreationFormCustom
     template_name = "users/form.html"
+    success_message = _('User successfully registered')
+    success_url = reverse_lazy('login')
     extra_context = {'title': _('Registration user'),
                      'btn_name': _('Register')
                      }
 
-    def get_success_url(self):
-        messages.info(self.request, _('User successfully registered'))
-        return reverse_lazy('login')
 
-
-class UpdateUser(UserPermissionsMixin, UpdateView):
+class UpdateUser(SuccessMessageMixin, UserPermissionsMixin, UpdateView):
     model = User
     form_class = UserCreationFormCustom
+    success_message = _('User successfully updated')
+    success_url = reverse_lazy('users')
     template_name = "users/form.html"
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
-
-    def get_success_url(self):
-        messages.info(self.request, _('User successfully updated'))
-        return reverse_lazy('users')
 
 
 class DeleteUser(UserPermissionsMixin, DeleteView):
