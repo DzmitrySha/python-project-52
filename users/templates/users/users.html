@@ -23,7 +23,11 @@
     {% for user in users %}
     <tr>
         <th scope="row">{{ user.pk }}</th>
-        <td><a href="/users/{{ user.pk }}">{{ user.username }}</a></td>
+        {% if request.user.is_authenticated %}
+            <td><a href="/users/{{ user.pk }}">{{ user.username }}</a></td>
+        {% else %}
+            <td>{{ user.username }}</td>
+        {% endif %}
         <td>{{ user.first_name }} {{ user.last_name }}</td>
         <td>{{ user.date_joined }}</td>
         <td>
