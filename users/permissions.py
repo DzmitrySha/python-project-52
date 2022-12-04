@@ -12,7 +12,7 @@ class UserPermissionsMixin(UserPassesTestMixin):
     def dispatch(self, request, *args, **kwargs):
         if not self.get_test_func()():
             if not request.user.is_authenticated:
-                messages.info(
+                messages.error(
                     request,
                     _('You are not logged in. Please log in.')
                 )
@@ -33,7 +33,7 @@ class UserPermissionsMixin(UserPassesTestMixin):
     # def dispatch(self, request, *args, **kwargs):
     #     if not self.has_permissions():
     #         if not request.user.is_authenticated:
-    #             messages.info(
+    #             messages.error(
     #                 request,
     #                 _('You are not logged in. Please log in.')
     #             )
