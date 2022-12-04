@@ -14,6 +14,7 @@ class LabelsTest(TestCase):
 
     def test_update_label(self):
         data_label = json.load(open("fixtures/label.json"))
+
         label = Label.objects.get(pk=2)
         self.assertNotEqual(label.name, data_label.get("name"))
 
@@ -25,4 +26,4 @@ class LabelsTest(TestCase):
         label.delete()
         self.assertEqual(label.id, None)
         with self.assertRaises(Label.DoesNotExist):
-            Label.objects.get(pk=8)
+            Label.objects.get(pk=1)
