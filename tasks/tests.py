@@ -1,7 +1,5 @@
 import json
 from django.test import TestCase
-from users.models import User
-from statuses.models import TaskStatus
 from tasks.models import Tasks
 
 
