@@ -1,0 +1,23 @@
+[
+  {
+    "model": "tasks.tasks",
+    "pk": 1,
+    "fields": {
+      "name": "task 1",
+      "author_id": 1,
+      "executor_id": 1,
+      "status_id": 1
+    }
+  },
+
+  {
+    "model": "tasks.tasks",
+    "pk": 2,
+    "fields": {
+      "name": "task 2",
+      "author_id": 2,
+      "executor_id": 2,
+      "status_id": 2
+    }
+  }
+]
