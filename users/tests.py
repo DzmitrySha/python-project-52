@@ -7,7 +7,7 @@ class UsersTest(TestCase):
     fixtures = ['users.json']
 
     def test_create_user(self):
-        user_data = json.load(open("fixtures/user.json"))
+        user_data = json.load(open("fixtures/one_user.json"))
         user = User.objects.create(**user_data)
 
         self.assertEqual(user.username, user_data.get('username'))
@@ -16,7 +16,7 @@ class UsersTest(TestCase):
         self.assertEqual(user.email, user_data.get('email'))
 
     def test_update_user(self):
-        user_data = json.load(open("fixtures/user.json"))
+        user_data = json.load(open("fixtures/one_user.json"))
         user1 = User.objects.get(pk=1)
 
         self.assertNotEqual(user1.username, user_data.get('username'))

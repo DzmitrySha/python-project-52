@@ -7,12 +7,12 @@ class StatusesTest(TestCase):
     fixtures = ['statuses.json']
 
     def test_create_status(self):
-        data_status = json.load(open("fixtures/status.json"))
+        data_status = json.load(open("fixtures/one_status.json"))
         status = TaskStatus.objects.create(**data_status)
         self.assertEqual(status.name, data_status.get("name"))
 
     def test_update_status(self):
-        data_status = json.load(open("fixtures/status.json"))
+        data_status = json.load(open("fixtures/one_status.json"))
 
         status = TaskStatus.objects.get(pk=2)
         self.assertNotEqual(status.name, data_status.get("name"))
