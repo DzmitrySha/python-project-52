@@ -59,7 +59,7 @@ class TestUser(BaseTest):
         response_update = self.client.get(self.update_url)
         self.assertEqual(response_update.status_code, 404)
 
-        response_delete = self.client.get(self.update_url)
+        response_delete = self.client.get(self.delete_url)
         self.assertEqual(response_delete.status_code, 404)
 
     def test_create_user(self):
