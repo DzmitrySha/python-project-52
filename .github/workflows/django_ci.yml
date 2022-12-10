@@ -26,6 +26,8 @@ jobs:
       run: |
         make lint
     - name: Run Tests
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.SECRET_KEY }}
       run: |
         make test-django
     - name: Test & publish code coverage
