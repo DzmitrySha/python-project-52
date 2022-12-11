@@ -1,74 +1,80 @@
+import json
+
 from django.test import TestCase
 from django.urls import reverse
+from django.contrib.auth import get_user_model
 
-# from users.models import User
+from users.models import User
 
 
-class BaseTest(TestCase):
-    def setUp(self) -> None:
+class BaseUserTest(TestCase):
+    fixtures = ['users.json']
+
+    def setUp(self):
+        self.login_url = reverse('login')
+        self.logout_url = reverse('logout')
         self.users_url = reverse('users')
         self.create_url = reverse('create')
         self.update_url = reverse('update', kwargs={"pk": 1})
         self.delete_url = reverse('delete', kwargs={"pk": 1})
-        self.user = {
-            'username': 'helena',
-            'first_name': 'Helen',
-            'last_name': 'Barrett',
-            'password': 'BarHe818',
-            'password2': 'BarHe818'
-        }
-        self.user_short_password = {
-            'username': 'helena',
-            'first_name': 'Helen',
-            'last_name': 'Barrett',
-            'password': '111',
-            'password2': '111'
-        }
-        return super().setUp()
+        self.user = get_user_model().objects.get(pk=1)
+        self.correct_user = json.load(
+            open("fixtures/reg_users.json"))['correct_user']
+        self.wrong_user = json.load(
+            open("fixtures/reg_users.json"))['wrong_user']
 
 
-class RegisterUserTest(BaseTest):
+class TestLoadPages(BaseUserTest):
 
-    def test_view_page_correctly(self):
-        response = self.client.get(self.create_url)
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'users/form.html')
+    def test_load_pages(self):
+        response_login = self.client.get(path=self.login_url)
+        self.assertEqual(first=response_login.status_code, second=200)
+        self.assertTemplateUsed(response_login, 'users/form.html')
+
+        response_logout = self.client.post(path=self.logout_url)
+        self.assertEqual(first=response_logout.status_code, second=302)
+
+        response_users = self.client.get(path=self.users_url)
+        self.assertEqual(first=response_users.status_code, second=200)
+        self.assertTemplateUsed(response_users, 'users/users.html')
+
+        response_create = self.client.get(path=self.create_url)
+        self.assertEqual(first=response_create.status_code, second=200)
+        self.assertTemplateUsed(response_create, 'users/form.html')
+
+        response_update = self.client.get(path=self.update_url)
+        self.assertEqual(first=response_update.status_code, second=302)
+
+        response_delete = self.client.get(path=self.delete_url)
+        self.assertEqual(first=response_delete.status_code, second=302)
+
+
+class TestUser(BaseUserTest):
+
+    def test_create_user(self):
+
+        response = self.client.post(path=self.create_url,
+                                    data=self.correct_user
+                                    )
+        self.assertEqual(first=response.status_code, second=200)
+        self.assertEqual(get_user_model().objects.count(), 3)
+        self.assertEqual(get_user_model().objects.get(pk=2).username, 'richclark')
 
     def test_get_users(self):
-        response = self.client.get(self.users_url)
+        response = self.client.get(path=self.users_url)
         self.assertEqual(response.status_code, 200)
 
     def test_register_user(self):
-        response = self.client.post(self.create_url, self.user)
+        response = self.client.post(path=self.create_url,
+                                    data=self.correct_user
+                                    )
         self.assertEqual(response.status_code, 200)  # 302
 
     def test_cant_register_user_with_short_password(self):
-        response = self.client.post(self.create_url, self.user_short_password)
+        response = self.client.post(path=self.create_url, data=self.wrong_user)
         self.assertEqual(response.status_code, 200)  # 400
 
 
-class TestUser(BaseTest):
-
-    def test_load_pages(self):
-        response_create = self.client.get(self.create_url)
-        self.assertEqual(response_create.status_code, 200)
-
-        response_users = self.client.get(self.users_url)
-        self.assertEqual(response_users.status_code, 200)
-
-        response_update = self.client.get(self.update_url)
-        self.assertEqual(response_update.status_code, 404)
-
-        response_delete = self.client.get(self.delete_url)
-        self.assertEqual(response_delete.status_code, 404)
-
-    def test_create_user(self):
-        response = self.client.post(self.create_url, self.user)
-        self.assertEqual(response.status_code, 200)
-
-        # test_user = User.objects.get(pk=1)
-        # print(test_user)
-        # self.assertEqual(test_user.username, self.user.get('username'))
 
 
 # from users.models import User
