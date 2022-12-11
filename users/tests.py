@@ -75,42 +75,37 @@ class TestUser(BaseUserTest):
         self.assertEqual(response.status_code, 200)  # 400
 
 
+class UsersTestOld(TestCase):
+    fixtures = ['users.json']
 
+    def test_create_user(self):
+        user_data = json.load(open("fixtures/one_user.json"))
+        user = User.objects.create(**user_data)
 
-# from users.models import User
+        self.assertEqual(user.username, user_data.get('username'))
+        self.assertEqual(user.first_name, user_data.get('first_name'))
+        self.assertEqual(user.last_name, user_data.get('last_name'))
 
+    def test_update_user(self):
+        user_data = json.load(open("fixtures/one_user.json"))
+        user1 = User.objects.get(pk=1)
 
-# class UsersTest(TestCase):
-#     fixtures = ['users.json']
-#
-#     def test_create_user(self):
-#         user_data = json.load(open("fixtures/one_user.json"))
-#         user = User.objects.create(**user_data)
-#
-#         self.assertEqual(user.username, user_data.get('username'))
-#         self.assertEqual(user.first_name, user_data.get('first_name'))
-#         self.assertEqual(user.last_name, user_data.get('last_name'))
-#
-#     def test_update_user(self):
-#         user_data = json.load(open("fixtures/one_user.json"))
-#         user1 = User.objects.get(pk=1)
-#
-#         self.assertNotEqual(user1.username, user_data.get('username'))
-#         self.assertNotEqual(user1.first_name, user_data.get('first_name'))
-#         self.assertNotEqual(user1.last_name, user_data.get('last_name'))
-#
-#         user1.username = user_data.get('username')
-#         user1.first_name = user_data.get('first_name')
-#         user1.last_name = user_data.get('last_name')
-#
-#         self.assertEqual(user1.username, user_data.get('username'))
-#         self.assertEqual(user1.first_name, user_data.get('first_name'))
-#         self.assertEqual(user1.last_name, user_data.get('last_name'))
-#
-#     def test_delete_user(self):
-#         user = User.objects.get(pk=2)
-#         user.delete()
-#         self.assertEqual(user.id, None)
-#         self.assertEqual(user.pk, None)
-#         with self.assertRaises(User.DoesNotExist):
-#             User.objects.get(pk=2)
+        self.assertNotEqual(user1.username, user_data.get('username'))
+        self.assertNotEqual(user1.first_name, user_data.get('first_name'))
+        self.assertNotEqual(user1.last_name, user_data.get('last_name'))
+
+        user1.username = user_data.get('username')
+        user1.first_name = user_data.get('first_name')
+        user1.last_name = user_data.get('last_name')
+
+        self.assertEqual(user1.username, user_data.get('username'))
+        self.assertEqual(user1.first_name, user_data.get('first_name'))
+        self.assertEqual(user1.last_name, user_data.get('last_name'))
+
+    def test_delete_user(self):
+        user = User.objects.get(pk=2)
+        user.delete()
+        self.assertEqual(user.id, None)
+        self.assertEqual(user.pk, None)
+        with self.assertRaises(User.DoesNotExist):
+            User.objects.get(pk=2)
