@@ -1,16 +1,8 @@
 {
-  "correct_user": {
-    "username": "helena",
-    "first_name": "Helen",
-    "last_name": "Barrett",
-    "password": "BarHe818",
-    "password2": "BarHe818"
-  },
-  "wrong_user": {
-    "username": "helen",
-    "first_name": "Hel",
-    "last_name": "Barr",
-    "password": "123",
-    "password2": "123"
-  }
+  "username": "helena",
+  "first_name": "Helen",
+  "last_name": "Barrett",
+  "password1": "BarHe818",
+  "password2": "BarHe818",
+  "password": "BarHe818"
 }
