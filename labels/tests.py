@@ -102,7 +102,7 @@ class TestDeleteLabel(TestCase):
         response = self.client.get(path=self.delete_label_url)
         self.assertEqual(first=response.status_code, second=200)
 
-    def test_delete_user(self):
+    def test_delete_label(self):
         self.client.force_login(user=self.user)
         response = self.client.delete(path=self.delete_label_url)
         self.assertEqual(first=response.status_code, second=302)
