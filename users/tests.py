@@ -11,10 +11,9 @@ FIXTURES_PATH = 'fixtures'
 class TestCreateUser(TestCase):
 
     def setUp(self):
-        self.users_url = reverse_lazy('users')
         self.create_url = reverse_lazy('create')
         self.test_user = json.load(
-            open(os.path.join(FIXTURES_PATH, "reg_users.json")))
+            open(os.path.join(FIXTURES_PATH, "one_user.json")))
 
     def test_open_create_page(self):
         response = self.client.get(self.create_url)
@@ -36,7 +35,7 @@ class TestUpdateUser(TestCase):
         self.update_url = reverse_lazy('update', kwargs={"pk": 1})
         self.user = get_user_model().objects.get(pk=1)
         self.test_user = json.load(
-            open(os.path.join(FIXTURES_PATH, "reg_users.json")))
+            open(os.path.join(FIXTURES_PATH, "one_user.json")))
 
     def test_open_update_page(self):
         response = self.client.get(self.update_url)
