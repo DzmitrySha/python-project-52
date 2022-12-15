@@ -1,49 +1,126 @@
+import os
 import json
+
 from django.test import TestCase
+from django.urls import reverse_lazy
+
+from labels.models import Label
+from statuses.models import TaskStatus
 from tasks.models import Tasks
+from users.models import User
+
+FIXTURES_PATH = 'fixtures'
+USERS_PATH = 'users.json'
+TASKS_PATH = 'tasks.json'
+LABELS_PATH = 'labels.json'
+STATUSES_PATH = 'statuses.json'
 
 
-class TasksTest(TestCase):
-    fixtures = ["users.json", "statuses.json", "tasks.json"]
+class TestTaskList(TestCase):
+    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH, LABELS_PATH]
+
+    def setUp(self):
+        self.one_task_view_url = reverse_lazy('task_view', kwargs={"pk": 1})
+        self.tasks_url = reverse_lazy('tasks')
+
+    def test_open_tasks_page(self):
+        user = User.objects.get(pk=1)
+        self.client.force_login(user=user)
+        response = self.client.get(self.tasks_url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_open_one_task_view_page(self):
+        user = User.objects.get(pk=1)
+        self.client.force_login(user=user)
+        response = self.client.get(self.one_task_view_url)
+        self.assertEqual(response.status_code, 200)
+
+
+class TestCreateTask(TestCase):
+    fixtures = [USERS_PATH, STATUSES_PATH, LABELS_PATH]
+
+    def setUp(self):
+        self.tasks_url = reverse_lazy('tasks')
+        self.create_task_url = reverse_lazy('task_create')
+        self.user = User.objects.get(pk=1)
+        self.status = TaskStatus.objects.get(pk=1)
+        self.label = Label.objects.get(pk=1)
+        self.test_task = json.load(
+            open(os.path.join(FIXTURES_PATH, "one_task.json")))
+
+    def test_open_create_status_page_without_login(self):
+        response = self.client.get(self.create_task_url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_open_create_status_page_with_login(self):
+        self.client.force_login(user=self.user)
+        response = self.client.get(self.create_task_url)
+        self.assertEqual(response.status_code, 200)
 
     def test_create_task(self):
-        data_task = json.load(open("fixtures/one_task.json"))
-        task = Tasks.objects.create(**data_task)
-        self.assertEqual(task.name, data_task.get("name"))
-        self.assertEqual(task.author_id, data_task.get("author_id"))
-        self.assertEqual(task.executor_id, data_task.get("executor_id"))
+        self.client.force_login(user=self.user)
+        response = self.client.post(path=self.create_task_url,
+                                    data=self.test_task)
+        self.assertRedirects(response=response, expected_url=self.tasks_url)
+        self.assertEqual(response.status_code, 302)
+
+        self.task = Tasks.objects.get(pk=1)
+        self.assertEqual(first=self.task.name,
+                         second=self.test_task.get('name'))
+
+
+class TestUpdateTask(TestCase):
+    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH, LABELS_PATH]
+
+    def setUp(self):
+        self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
+        self.user = User.objects.get(pk=1)
+        self.test_task = json.load(
+            open(os.path.join(FIXTURES_PATH, "one_task.json")))
+
+    def test_open_update_tasks_page_without_login(self):
+        response = self.client.get(self.update_task_url)
+        self.assertEqual(response.status_code, 302)
+
+    def test_open_update_tasks_page_with_login(self):
+        self.client.force_login(user=self.user)
+        response = self.client.get(self.update_task_url)
+        self.assertEqual(response.status_code, 200)
 
     def test_update_task(self):
-        data_task = json.load(open("fixtures/one_task.json"))
-        task = Tasks.objects.get(pk=1)
+        self.client.force_login(self.user)
+        self.task = Tasks.objects.get(pk=1)
+        self.assertNotEqual(self.task.name, self.test_task.get("name"))
 
-        new_name = data_task.get("name")
-        new_author_id = data_task.get("author_id")
-        new_executor_id = data_task.get("executor_id")
-        new_status_id = data_task.get("status_id")
-        new_description = data_task.get("description")
+        response = self.client.post(path=self.update_task_url,
+                                    data=self.test_task)
+        self.assertEqual(response.status_code, 302)
 
-        self.assertNotEqual(task.name, new_name)
-        self.assertNotEqual(task.author_id, new_author_id)
-        self.assertNotEqual(task.executor_id, new_executor_id)
-        self.assertNotEqual(task.status_id, new_status_id)
-        self.assertNotEqual(task.description, new_description)
+        self.task = Tasks.objects.get(pk=1)
+        self.assertEqual(first=self.task.name,
+                         second=self.test_task.get('name')
+                         )
 
-        task.name = new_name
-        task.author_id = new_author_id
-        task.executor_id = new_executor_id
-        task.status_id = new_status_id
-        task.description = new_description
 
-        self.assertEqual(task.name, new_name)
-        self.assertEqual(task.author_id, new_author_id)
-        self.assertEqual(task.executor_id, new_executor_id)
-        self.assertEqual(task.status_id, new_status_id)
-        self.assertEqual(task.description, new_description)
+class TestDeleteTask(TestCase):
+    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH]
+
+    def setUp(self):
+        self.delete_task_url = reverse_lazy("task_delete", kwargs={"pk": 1})
+        self.user = User.objects.get(pk=1)
+
+    def test_open_delete_page_without_login(self):
+        response = self.client.get(path=self.delete_task_url)
+        self.assertEqual(first=response.status_code, second=302)
+
+    def test_open_delete_page_with_login(self):
+        self.client.force_login(user=self.user)
+        response = self.client.get(path=self.delete_task_url)
+        self.assertEqual(first=response.status_code, second=200)
 
     def test_delete_task(self):
-        task = Tasks.objects.get(pk=2)
-        task.delete()
-        self.assertEqual(task.id, None)
+        self.client.force_login(user=self.user)
+        response = self.client.delete(path=self.delete_task_url)
+        self.assertEqual(first=response.status_code, second=302)
         with self.assertRaises(Tasks.DoesNotExist):
-            Tasks.objects.get(pk=2)
+            Tasks.objects.get(pk=1)
