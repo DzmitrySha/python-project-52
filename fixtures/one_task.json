@@ -1,7 +1,8 @@
 {
   "name": "new task name",
-  "author_id": 3,
-  "executor_id": 3,
-  "status_id": 3,
-  "description": "new task description"
+  "description": "new task description",
+  "status": 1,
+  "label": 1,
+  "author": 1,
+  "executor": 1
 }
