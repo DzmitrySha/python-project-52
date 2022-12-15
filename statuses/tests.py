@@ -86,7 +86,7 @@ class TestUpdateStatus(TestCase):
                          )
 
 
-class TestDeletestatus(TestCase):
+class TestDeleteStatus(TestCase):
     fixtures = ['users.json', 'statuses.json']
 
     def setUp(self):
