@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
 from statuses.models import TaskStatus
-from statuses.permissions import StatusLoginRequiredMixin
+from statuses.mixins import StatusLoginRequiredMixin
 
 
 class StatusesList(StatusLoginRequiredMixin, ListView):

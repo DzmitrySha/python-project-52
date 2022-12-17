@@ -7,9 +7,9 @@ from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 
 from tasks.filters import TaskFilterForm
-from tasks.permissions import (TasksLoginRequiredMixin,
-                               CanTaskDeletePermission
-                               )
+from tasks.mixins import (TasksLoginRequiredMixin,
+                          CanTaskDeletePermission
+                          )
 from tasks.models import Tasks
 
 

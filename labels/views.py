@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
 
 from labels.models import Label
-from labels.permissions import LabelLoginRequiredMixin
+from labels.mixins import LabelLoginRequiredMixin
 
 
 class LabelsList(LabelLoginRequiredMixin, ListView):

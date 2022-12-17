@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
-from django.contrib.auth.mixins import UserPassesTestMixin
+from users.mixins import UserPermissionsMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
@@ -12,26 +12,6 @@ from django.views.generic import (
 
 from tasks.models import Tasks
 from users.forms import UserCreationFormCustom
-
-
-class UserPermissionsMixin(UserPassesTestMixin):
-
-    def test_func(self):
-        return self.get_object() == self.request.user
-
-    def dispatch(self, request, *args, **kwargs):
-        if not self.get_test_func()():
-            if not request.user.is_authenticated:
-                messages.error(
-                    request,
-                    _('You are not logged in. Please log in.'))
-                return redirect('login')
-            else:
-                messages.error(
-                    request,
-                    _('You don\'t have the rights to change another user.'))
-                return redirect('users')
-        return super().dispatch(request, *args, **kwargs)
 
 
 class UsersList(ListView):
