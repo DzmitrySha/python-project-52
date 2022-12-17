@@ -26,7 +26,7 @@ class TasksList(TasksLoginRequiredMixin, FilterView):
                      }
 
 
-class OneTaskView(TasksLoginRequiredMixin, DetailView):
+class TaskDetailView(TasksLoginRequiredMixin, DetailView):
     model = Tasks
     template_name = "tasks/task.html"
     context_object_name = "task"
