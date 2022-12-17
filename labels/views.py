@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -20,32 +21,28 @@ class LabelsList(LabelLoginRequiredMixin, ListView):
                      }
 
 
-class CreateLabel(LabelLoginRequiredMixin, CreateView):
+class CreateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, CreateView):
     model = Label
     fields = ['name']
     template_name = "labels/form.html"
     login_url = "login"
+    success_message = _('Label successfully created')
+    success_url = reverse_lazy('labels')
     extra_context = {'title': _('Create label'),
                      'btn_name': _('Create')
                      }
 
-    def get_success_url(self):
-        messages.info(self.request, _('Label successfully created'))
-        return reverse_lazy('labels')
 
-
-class UpdateLabel(LabelLoginRequiredMixin, UpdateView):
+class UpdateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, UpdateView):
     model = Label
     fields = ['name']
     template_name = "labels/form.html"
     login_url = "login"
+    success_message = _('Label successfully updated')
+    success_url = reverse_lazy('labels')
     extra_context = {'title': _('Update label'),
                      'btn_name': _('Update'),
                      }
-
-    def get_success_url(self):
-        messages.info(self.request, _('Label successfully updated'))
-        return reverse_lazy('labels')
 
 
 class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
