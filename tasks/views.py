@@ -8,7 +8,7 @@ from django.utils.translation import gettext_lazy as _
 
 from tasks.filters import TaskFilterForm
 from tasks.permissions import (TasksLoginRequiredMixin,
-                               TasksPermissionRequiredMixin
+                               CanTaskDeletePermission
                                )
 from tasks.models import Tasks
 
@@ -70,7 +70,7 @@ class UpdateTask(TasksLoginRequiredMixin, UpdateView):
 
 
 class DeleteTask(TasksLoginRequiredMixin,
-                 TasksPermissionRequiredMixin,
+                 CanTaskDeletePermission,
                  DeleteView):
     model = Tasks
     template_name = "tasks/delete.html"

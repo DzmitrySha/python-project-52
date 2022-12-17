@@ -17,7 +17,7 @@ class TasksLoginRequiredMixin(LoginRequiredMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class TasksPermissionRequiredMixin(PermissionRequiredMixin):
+class CanTaskDeletePermission(PermissionRequiredMixin):
     def has_permission(self):
         return self.get_object().author == self.request.user
 
