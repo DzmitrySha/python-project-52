@@ -1,4 +1,4 @@
-from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import (DetailView, CreateView,
                                   UpdateView, DeleteView,
@@ -26,7 +26,7 @@ class TasksList(TasksLoginRequiredMixin, FilterView):
                      }
 
 
-class TaskDetailView(TasksLoginRequiredMixin, DetailView):
+class TaskDetailView(SuccessMessageMixin, TasksLoginRequiredMixin, DetailView):
     model = Tasks
     template_name = "tasks/task.html"
     context_object_name = "task"
@@ -37,36 +37,32 @@ class TaskDetailView(TasksLoginRequiredMixin, DetailView):
                      }
 
 
-class CreateTask(TasksLoginRequiredMixin, CreateView):
+class CreateTask(SuccessMessageMixin, TasksLoginRequiredMixin, CreateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
     login_url = "login"
+    success_message = _('Task successfully created')
+    success_url = reverse_lazy('tasks')
     extra_context = {'title': _('Create task'),
                      'btn_name': _('Create')
                      }
-
-    def get_success_url(self):
-        messages.info(self.request, _('Task successfully created'))
-        return reverse_lazy('tasks')
 
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
 
-class UpdateTask(TasksLoginRequiredMixin, UpdateView):
+class UpdateTask(SuccessMessageMixin, TasksLoginRequiredMixin, UpdateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
     login_url = "login"
+    success_message = _('Task successfully updated')
+    success_url = reverse_lazy('tasks')
     extra_context = {'title': _('Update task'),
                      'btn_name': _('Update'),
                      }
-
-    def get_success_url(self):
-        messages.info(self.request, _('Task successfully updated'))
-        return reverse_lazy('tasks')
 
 
 class DeleteTask(TasksLoginRequiredMixin,
@@ -76,11 +72,9 @@ class DeleteTask(TasksLoginRequiredMixin,
     template_name = "tasks/delete.html"
     login_url = "login"
     context_object_name = "task"
+    success_message = _('Task successfully deleted')
+    success_url = reverse_lazy('tasks')
     extra_context = {'title': _('Delete task'),
                      'btn_name': _('Yes, delete'),
                      }
     permission_required = 'tasks.author'
-
-    def get_success_url(self):
-        messages.info(self.request, _('Task successfully deleted'))
-        return reverse_lazy('tasks')
