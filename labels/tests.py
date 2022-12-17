@@ -5,8 +5,7 @@ from django.test import TestCase
 from django.urls import reverse_lazy
 from labels.models import Label
 from users.models import User
-
-FIXTURES_PATH = 'fixtures'
+from task_manager.settings import FIXTURE_DIRS
 
 
 class TestLabelsList(TestCase):
@@ -30,7 +29,7 @@ class TestCreateLabel(TestCase):
         self.create_label_url = reverse_lazy('label_create')
         self.user = User.objects.get(pk=1)
         self.test_label = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_label.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_label.json")))
 
     def test_open_create_label_page_without_login(self):
         response = self.client.get(self.create_label_url)
@@ -60,7 +59,7 @@ class TestUpdateLabel(TestCase):
         self.update_label_url = reverse_lazy("label_update", kwargs={"pk": 1})
         self.user = User.objects.get(pk=1)
         self.test_label = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_label.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_label.json")))
 
     def test_open_update_label_page_without_login(self):
         response = self.client.get(self.update_label_url)

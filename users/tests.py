@@ -4,8 +4,7 @@ import json
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse_lazy
-
-FIXTURES_PATH = 'fixtures'
+from task_manager.settings import FIXTURE_DIRS
 
 
 class TestCreateUser(TestCase):
@@ -13,7 +12,7 @@ class TestCreateUser(TestCase):
     def setUp(self):
         self.create_url = reverse_lazy('create')
         self.test_user = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_user.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_user.json")))
 
     def test_open_create_page(self):
         response = self.client.get(self.create_url)
@@ -35,7 +34,7 @@ class TestUpdateUser(TestCase):
         self.update_url = reverse_lazy('update', kwargs={"pk": 1})
         self.user = get_user_model().objects.get(pk=1)
         self.test_user = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_user.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_user.json")))
 
     def test_open_update_page(self):
         response = self.client.get(self.update_url)

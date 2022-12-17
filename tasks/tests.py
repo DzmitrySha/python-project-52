@@ -8,8 +8,9 @@ from labels.models import Label
 from statuses.models import TaskStatus
 from tasks.models import Tasks
 from users.models import User
+from task_manager.settings import FIXTURE_DIRS
 
-FIXTURES_PATH = 'fixtures'
+
 USERS_PATH = 'users.json'
 TASKS_PATH = 'tasks.json'
 LABELS_PATH = 'labels.json'
@@ -46,7 +47,7 @@ class TestCreateTask(TestCase):
         self.status = TaskStatus.objects.get(pk=1)
         self.label = Label.objects.get(pk=1)
         self.test_task = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_task.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_task.json")))
 
     def test_open_create_status_page_without_login(self):
         response = self.client.get(self.create_task_url)
@@ -76,7 +77,7 @@ class TestUpdateTask(TestCase):
         self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
         self.user = User.objects.get(pk=1)
         self.test_task = json.load(
-            open(os.path.join(FIXTURES_PATH, "one_task.json")))
+            open(os.path.join(FIXTURE_DIRS[0], "one_task.json")))
 
     def test_open_update_tasks_page_without_login(self):
         response = self.client.get(self.update_task_url)
