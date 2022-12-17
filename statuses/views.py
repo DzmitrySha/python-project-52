@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -19,32 +20,28 @@ class StatusesList(StatusLoginRequiredMixin, ListView):
                      }
 
 
-class CreateStatus(StatusLoginRequiredMixin, CreateView):
+class CreateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, CreateView):
     model = TaskStatus
     fields = ['name']
     template_name = "statuses/form.html"
     login_url = "login"
+    success_message = _('Status successfully created')
+    success_url = reverse_lazy('statuses')
     extra_context = {'title': _('Create status'),
                      'btn_name': _('Create')
                      }
 
-    def get_success_url(self):
-        messages.info(self.request, _('Status successfully created'))
-        return reverse_lazy('statuses')
 
-
-class UpdateStatus(StatusLoginRequiredMixin, UpdateView):
+class UpdateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, UpdateView):
     model = TaskStatus
     fields = ['name']
     template_name = "statuses/form.html"
     login_url = "login"
+    success_message = _('Status successfully updated')
+    success_url = reverse_lazy('statuses')
     extra_context = {'title': _('Update status'),
                      'btn_name': _('Update'),
                      }
-
-    def get_success_url(self):
-        messages.info(self.request, _('Status successfully updated'))
-        return reverse_lazy('statuses')
 
 
 class DeleteStatus(StatusLoginRequiredMixin, DeleteView):
