@@ -6,10 +6,10 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
 from statuses.models import TaskStatus
-from statuses.mixins import StatusLoginRequiredMixin
+from task_manager.mixins import AppLoginRequiredMixin
 
 
-class StatusesList(StatusLoginRequiredMixin, ListView):
+class StatusesList(AppLoginRequiredMixin, ListView):
     model = TaskStatus
     template_name = "statuses/statuses.html"
     context_object_name = "statuses"
@@ -20,7 +20,7 @@ class StatusesList(StatusLoginRequiredMixin, ListView):
                      }
 
 
-class CreateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, CreateView):
+class CreateStatus(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
     model = TaskStatus
     fields = ['name']
     template_name = "statuses/form.html"
@@ -32,7 +32,7 @@ class CreateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, CreateView):
                      }
 
 
-class UpdateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, UpdateView):
+class UpdateStatus(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
     model = TaskStatus
     fields = ['name']
     template_name = "statuses/form.html"
@@ -44,7 +44,7 @@ class UpdateStatus(SuccessMessageMixin, StatusLoginRequiredMixin, UpdateView):
                      }
 
 
-class DeleteStatus(StatusLoginRequiredMixin, DeleteView):
+class DeleteStatus(AppLoginRequiredMixin, DeleteView):
     model = TaskStatus
     template_name = "statuses/delete.html"
     login_url = "login"

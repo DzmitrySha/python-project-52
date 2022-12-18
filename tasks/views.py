@@ -7,13 +7,12 @@ from django_filters.views import FilterView
 from django.utils.translation import gettext_lazy as _
 
 from tasks.filters import TaskFilterForm
-from tasks.mixins import (TasksLoginRequiredMixin,
-                          CanTaskDeletePermission
-                          )
+from task_manager.mixins import AppLoginRequiredMixin
+from tasks.mixins import CanTaskDeletePermission
 from tasks.models import Tasks
 
 
-class TasksList(TasksLoginRequiredMixin, FilterView):
+class TasksList(AppLoginRequiredMixin, FilterView):
     model = Tasks
     filterset_class = TaskFilterForm
     template_name = "tasks/tasks.html"
@@ -26,7 +25,7 @@ class TasksList(TasksLoginRequiredMixin, FilterView):
                      }
 
 
-class TaskDetailView(SuccessMessageMixin, TasksLoginRequiredMixin, DetailView):
+class TaskDetailView(SuccessMessageMixin, AppLoginRequiredMixin, DetailView):
     model = Tasks
     template_name = "tasks/task.html"
     context_object_name = "task"
@@ -37,7 +36,7 @@ class TaskDetailView(SuccessMessageMixin, TasksLoginRequiredMixin, DetailView):
                      }
 
 
-class CreateTask(SuccessMessageMixin, TasksLoginRequiredMixin, CreateView):
+class CreateTask(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
@@ -53,7 +52,7 @@ class CreateTask(SuccessMessageMixin, TasksLoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class UpdateTask(SuccessMessageMixin, TasksLoginRequiredMixin, UpdateView):
+class UpdateTask(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
     model = Tasks
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
@@ -65,7 +64,7 @@ class UpdateTask(SuccessMessageMixin, TasksLoginRequiredMixin, UpdateView):
                      }
 
 
-class DeleteTask(TasksLoginRequiredMixin,
+class DeleteTask(AppLoginRequiredMixin,
                  CanTaskDeletePermission,
                  DeleteView):
     model = Tasks

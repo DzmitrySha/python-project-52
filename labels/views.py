@@ -7,10 +7,10 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import (ListView, CreateView, UpdateView, DeleteView)
 
 from labels.models import Label
-from labels.mixins import LabelLoginRequiredMixin
+from task_manager.mixins import AppLoginRequiredMixin
 
 
-class LabelsList(LabelLoginRequiredMixin, ListView):
+class LabelsList(AppLoginRequiredMixin, ListView):
     model = Label
     template_name = "labels/labels.html"
     login_url = "login"
@@ -21,7 +21,7 @@ class LabelsList(LabelLoginRequiredMixin, ListView):
                      }
 
 
-class CreateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, CreateView):
+class CreateLabel(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
     model = Label
     fields = ['name']
     template_name = "labels/form.html"
@@ -33,7 +33,7 @@ class CreateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, CreateView):
                      }
 
 
-class UpdateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, UpdateView):
+class UpdateLabel(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
     model = Label
     fields = ['name']
     template_name = "labels/form.html"
@@ -45,7 +45,7 @@ class UpdateLabel(SuccessMessageMixin, LabelLoginRequiredMixin, UpdateView):
                      }
 
 
-class DeleteLabel(LabelLoginRequiredMixin, DeleteView):
+class DeleteLabel(AppLoginRequiredMixin, DeleteView):
     model = Label
     template_name = "labels/delete.html"
     login_url = "login"
