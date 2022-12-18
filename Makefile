@@ -53,6 +53,11 @@ test-coverage:
 # linter & check commands
 lint:
 		poetry run flake8 task_manager
+		poetry run flake8 users
+		poetry run flake8 tasks
+		poetry run flake8 labels
+		poetry run flake8 statuses
+
 selfcheck:
 		poetry check
 
