@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-18 13:37+0300\n"
+"POT-Creation-Date: 2022-12-18 14:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,14 +113,14 @@ msgstr "Задача успешно изменена"
 msgid "Update task"
 msgstr "Изменение задачи"
 
-#: tasks/views.py:74
+#: tasks/views.py:75
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: tasks/views.py:76
+#: tasks/views.py:77
 msgid "Delete task"
 msgstr "Удаление задачи"
 
-#: tasks/views.py:77
+#: tasks/views.py:78
 msgid "Yes, delete"
 msgstr "Да, удалить"
