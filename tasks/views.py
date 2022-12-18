@@ -66,6 +66,7 @@ class UpdateTask(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
 
 class DeleteTask(AppLoginRequiredMixin,
                  CanTaskDeletePermission,
+                 SuccessMessageMixin,
                  DeleteView):
     model = Tasks
     template_name = "tasks/delete.html"
