@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-29 23:50+0300\n"
+"POT-Creation-Date: 2022-12-18 13:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr ""
 #: task_manager/apps.py:7 task_manager/templates/base.html:37
 msgid "Task Manager"
 msgstr "Менеджер задач"
+
+#: task_manager/mixins.py:11
+msgid "You are not logged in. Please log in."
+msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
 #: task_manager/templates/base.html:49
 msgid "Users"
