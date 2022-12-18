@@ -94,9 +94,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
+
 DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
+    "default": {
+        "ENGINE": 'django.db.backends.sqlite3',
+        "NAME": os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+DATABASES['default'].update(dj_database_url.config(conn_max_age=600))
 
 AUTH_USER_MODEL = 'users.User'
 
