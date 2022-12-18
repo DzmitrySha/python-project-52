@@ -58,7 +58,7 @@ ROLLBAR = {
     'environment': 'development' if DEBUG else 'production',
     'root': BASE_DIR,
 }
-rollbar.init(**ROLLBAR)
+# rollbar.init(**ROLLBAR)
 
 
 MIDDLEWARE = [
