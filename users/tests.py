@@ -16,6 +16,7 @@ class SetupTestUser(TestCase):
         self.update_url = reverse_lazy('update', kwargs={"pk": 1})
         self.delete_url = reverse_lazy("delete", kwargs={"pk": 1})
         self.login_url = reverse_lazy('login')
+        self.users_url = reverse_lazy('users')
         self.users = get_user_model().objects.all()
         self.user = get_user_model().objects.get(pk=1)
         self.user2 = get_user_model().objects.get(pk=2)
@@ -60,7 +61,7 @@ class TestUpdateUser(SetupTestUser):
     def test_open_update_page(self):
         # with no login
         response = self.client.get(self.update_url)
-        self.assertRedirects(response, self.login_url, 302)
+        self.assertRedirects(response, self.login_url, 302, 200)
         # with login
         self.client.force_login(self.user)
         response = self.client.get(self.update_url)
@@ -77,7 +78,7 @@ class TestUpdateUser(SetupTestUser):
     def test_update_other_user(self):
         self.client.force_login(self.user2)
         response = self.client.post(self.update_url, data=self.test_user)
-        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.users_url, 302, 200)
 
 
 class TestDeleteUser(SetupTestUser):
