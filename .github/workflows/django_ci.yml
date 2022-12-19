@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -31,11 +27,18 @@ jobs:
       run: |
         make lint
     - name: Run Tests
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        ENGINE: ${{ secrets.ENGINE }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
       run: |
-        make test
+        make test-django
     - name: Test & publish code coverage
       uses: paambaati/codeclimate-action@v3.0.0
       env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        ENGINE: ${{ secrets.ENGINE }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
         CC_TEST_REPORTER_ID: ${{ secrets.TEST_COVERAGE_52 }}
       with:
         coverageCommand: make test-coverage
