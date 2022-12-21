@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-18 13:37+0300\n"
+"POT-Creation-Date: 2022-12-21 23:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: task_manager/apps.py:7 task_manager/templates/base.html:37
+#: task_manager/apps.py:7 task_manager/templates/base.html:38
 msgid "Task Manager"
 msgstr "Менеджер задач"
 
@@ -28,32 +28,32 @@ msgstr "Менеджер задач"
 msgid "You are not logged in. Please log in."
 msgstr "Вы не авторизованы! Пожалуйста, выполните вход."
 
-#: task_manager/templates/base.html:49
+#: task_manager/templates/base.html:50
 msgid "Users"
 msgstr "Пользователи"
 
-#: task_manager/templates/base.html:54
+#: task_manager/templates/base.html:55
 msgid "Statuses"
 msgstr "Статусы"
 
-#: task_manager/templates/base.html:58
+#: task_manager/templates/base.html:59
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/templates/base.html:62
+#: task_manager/templates/base.html:63
 msgid "Tasks"
 msgstr "Задачи"
 
-#: task_manager/templates/base.html:74 task_manager/templates/index.html:14
+#: task_manager/templates/base.html:75 task_manager/templates/index.html:14
 msgid "Logout"
 msgstr "Выход"
 
-#: task_manager/templates/base.html:81 task_manager/templates/index.html:18
-#: task_manager/views.py:21
+#: task_manager/templates/base.html:82 task_manager/templates/index.html:18
+#: task_manager/views.py:23
 msgid "Login"
 msgstr "Вход"
 
-#: task_manager/templates/base.html:85 task_manager/templates/index.html:19
+#: task_manager/templates/base.html:86 task_manager/templates/index.html:19
 msgid "Registration"
 msgstr "Регистрация"
 
@@ -61,22 +61,22 @@ msgstr "Регистрация"
 msgid "User Profile"
 msgstr "Профиль пользователя"
 
-#: task_manager/views.py:12
+#: task_manager/tests.py:13 task_manager/views.py:13
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/views.py:13
+#: task_manager/views.py:14
 msgid "A simple and functional task manager."
 msgstr "Простой и функциональный менеджер задач."
 
-#: task_manager/views.py:20
+#: task_manager/views.py:22
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:22
+#: task_manager/views.py:24
 msgid "Enter"
 msgstr "Войти"
 
-#: task_manager/views.py:31
+#: task_manager/views.py:30
 msgid "You are logged out."
 msgstr "Вы разлогинены"

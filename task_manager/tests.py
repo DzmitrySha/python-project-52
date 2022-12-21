@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.utils.translation import gettext_lazy as _
 
 
 class TestHomePage(TestCase):
@@ -9,5 +10,5 @@ class TestHomePage(TestCase):
 
     def test_find_in_html(self):
         response = self.client.get('')
-        self.assertContains(response, 'Менеджер задач', status_code=200)
+        self.assertContains(response, _('Task manager'), status_code=200)
         self.assertTemplateUsed(response, 'index.html')
