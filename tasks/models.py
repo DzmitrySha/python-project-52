@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
-User = get_user_model()
 
 
 class Tasks(models.Model):
@@ -11,11 +10,11 @@ class Tasks(models.Model):
     created_date = models.DateTimeField(verbose_name=_("Created date"),
                                         default=timezone.now)
     executor = models.ForeignKey(
-        to=User, on_delete=models.CASCADE, blank=True, null=True, default='',
-        related_name='executors', verbose_name=_('Executor'),
+        to=get_user_model(), on_delete=models.CASCADE, blank=True, null=True,
+        default='', related_name='executors', verbose_name=_('Executor'),
     )
     author = models.ForeignKey(
-        to=User, on_delete=models.PROTECT, blank=False,
+        to=get_user_model(), on_delete=models.PROTECT, blank=False,
         related_name='authors', verbose_name=_('Author'),
     )
     status = models.ForeignKey(
