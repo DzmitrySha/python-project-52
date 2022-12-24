@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-18 14:44+0300\n"
+"POT-Creation-Date: 2022-12-24 22:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,7 +28,7 @@ msgstr "Задачи"
 msgid "Label"
 msgstr "Метка"
 
-#: tasks/filters.py:11
+#: tasks/filters.py:12
 msgid "Only self tasks"
 msgstr "Только свои задачи"
 
@@ -36,35 +36,35 @@ msgstr "Только свои задачи"
 msgid "A task can only be deleted by its author"
 msgstr "Задачу может удалить только её автор"
 
-#: tasks/models.py:9 tasks/templates/tasks/tasks.html:33
+#: tasks/models.py:8 tasks/templates/tasks/tasks.html:33
 msgid "Name"
 msgstr "Имя"
 
-#: tasks/models.py:10 tasks/templates/tasks/task.html:37
+#: tasks/models.py:9 tasks/templates/tasks/task.html:37
 msgid "Description"
 msgstr "Описание"
 
-#: tasks/models.py:11 tasks/templates/tasks/task.html:33
+#: tasks/models.py:10 tasks/templates/tasks/task.html:33
 #: tasks/templates/tasks/tasks.html:37
 msgid "Created date"
 msgstr "Дата создания"
 
-#: tasks/models.py:15 tasks/templates/tasks/task.html:25
+#: tasks/models.py:14 tasks/templates/tasks/task.html:25
 #: tasks/templates/tasks/tasks.html:36
 msgid "Executor"
 msgstr "Исполнитель"
 
-#: tasks/models.py:19 tasks/templates/tasks/task.html:21
+#: tasks/models.py:18 tasks/templates/tasks/task.html:21
 #: tasks/templates/tasks/tasks.html:35
 msgid "Author"
 msgstr "Автор"
 
-#: tasks/models.py:23 tasks/templates/tasks/task.html:29
+#: tasks/models.py:22 tasks/templates/tasks/task.html:29
 #: tasks/templates/tasks/tasks.html:34
 msgid "Status"
 msgstr "Статус"
 
-#: tasks/models.py:28 tasks/templates/tasks/task.html:41
+#: tasks/models.py:27 tasks/templates/tasks/task.html:41
 msgid "Labels"
 msgstr "Метки"
 
