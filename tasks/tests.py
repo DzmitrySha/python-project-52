@@ -11,14 +11,8 @@ from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
 
-USERS_PATH = 'users.json'
-TASKS_PATH = 'tasks.json'
-LABELS_PATH = 'labels.json'
-STATUSES_PATH = 'statuses.json'
-
-
 class TestTaskList(TestCase):
-    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH, LABELS_PATH]
+    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 
     def setUp(self):
         self.one_task_view_url = reverse_lazy('task_view', kwargs={"pk": 1})
@@ -38,7 +32,7 @@ class TestTaskList(TestCase):
 
 
 class TestCreateTask(TestCase):
-    fixtures = [USERS_PATH, STATUSES_PATH, LABELS_PATH]
+    fixtures = ['users.json', 'statuses.json', 'labels.json']
 
     def setUp(self):
         self.tasks_url = reverse_lazy('tasks')
@@ -71,7 +65,7 @@ class TestCreateTask(TestCase):
 
 
 class TestUpdateTask(TestCase):
-    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH, LABELS_PATH]
+    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 
     def setUp(self):
         self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
@@ -104,7 +98,7 @@ class TestUpdateTask(TestCase):
 
 
 class TestDeleteTask(TestCase):
-    fixtures = [USERS_PATH, TASKS_PATH, STATUSES_PATH]
+    fixtures = ['users.json', 'tasks.json', 'statuses.json']
 
     def setUp(self):
         self.delete_task_url = reverse_lazy("task_delete", kwargs={"pk": 1})
