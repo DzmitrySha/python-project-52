@@ -9,11 +9,11 @@ from django.utils.translation import gettext_lazy as _
 from tasks.filters import TaskFilterForm
 from task_manager.mixins import AppLoginRequiredMixin
 from tasks.mixins import CanTaskDeletePermission
-from tasks.models import Tasks
+from tasks.models import Task
 
 
 class TasksList(AppLoginRequiredMixin, FilterView):
-    model = Tasks
+    model = Task
     filterset_class = TaskFilterForm
     template_name = "tasks/tasks.html"
     context_object_name = "tasks"
@@ -26,7 +26,7 @@ class TasksList(AppLoginRequiredMixin, FilterView):
 
 
 class TaskDetailView(SuccessMessageMixin, AppLoginRequiredMixin, DetailView):
-    model = Tasks
+    model = Task
     template_name = "tasks/task.html"
     context_object_name = "task"
     login_url = 'login'
@@ -37,7 +37,7 @@ class TaskDetailView(SuccessMessageMixin, AppLoginRequiredMixin, DetailView):
 
 
 class CreateTask(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
-    model = Tasks
+    model = Task
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
     login_url = "login"
@@ -53,7 +53,7 @@ class CreateTask(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
 
 
 class UpdateTask(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
-    model = Tasks
+    model = Task
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
     login_url = "login"
@@ -68,7 +68,7 @@ class DeleteTask(AppLoginRequiredMixin,
                  CanTaskDeletePermission,
                  SuccessMessageMixin,
                  DeleteView):
-    model = Tasks
+    model = Task
     template_name = "tasks/delete.html"
     login_url = "login"
     context_object_name = "task"

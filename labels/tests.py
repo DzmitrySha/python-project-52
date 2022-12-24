@@ -3,7 +3,7 @@ import json
 
 from django.test import TestCase
 from django.urls import reverse_lazy
-from labels.models import Label
+from labels.models import TaskLabels
 from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
@@ -47,7 +47,7 @@ class TestCreateLabel(TestCase):
         self.assertRedirects(response=response, expected_url=self.labels_url)
         self.assertEqual(response.status_code, 302)
 
-        self.label = Label.objects.get(pk=1)
+        self.label = TaskLabels.objects.get(pk=1)
         self.assertEqual(first=self.label.name,
                          second=self.test_label.get('name'))
 
@@ -72,14 +72,14 @@ class TestUpdateLabel(TestCase):
 
     def test_update_label(self):
         self.client.force_login(self.user)
-        self.label = Label.objects.get(pk=1)
+        self.label = TaskLabels.objects.get(pk=1)
         self.assertNotEqual(self.label.name, self.test_label.get("name"))
 
         response = self.client.post(path=self.update_label_url,
                                     data=self.test_label)
         self.assertEqual(response.status_code, 302)
 
-        self.label = Label.objects.get(pk=1)
+        self.label = TaskLabels.objects.get(pk=1)
         self.assertEqual(first=self.label.name,
                          second=self.test_label.get('name')
                          )
@@ -105,5 +105,5 @@ class TestDeleteLabel(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.delete(path=self.delete_label_url)
         self.assertEqual(first=response.status_code, second=302)
-        with self.assertRaises(Label.DoesNotExist):
-            Label.objects.get(pk=1)
+        with self.assertRaises(TaskLabels.DoesNotExist):
+            TaskLabels.objects.get(pk=1)

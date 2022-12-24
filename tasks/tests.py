@@ -4,9 +4,9 @@ import json
 from django.test import TestCase
 from django.urls import reverse_lazy
 
-from labels.models import Label
+from labels.models import TaskLabels
 from statuses.models import TaskStatus
-from tasks.models import Tasks
+from tasks.models import Task
 from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
@@ -39,7 +39,7 @@ class TestCreateTask(TestCase):
         self.create_task_url = reverse_lazy('task_create')
         self.user = User.objects.get(pk=1)
         self.status = TaskStatus.objects.get(pk=1)
-        self.label = Label.objects.get(pk=1)
+        self.label = TaskLabels.objects.get(pk=1)
         self.test_task = json.load(
             open(os.path.join(FIXTURE_DIRS[0], "one_task.json")))
 
@@ -59,7 +59,7 @@ class TestCreateTask(TestCase):
         self.assertRedirects(response=response, expected_url=self.tasks_url)
         self.assertEqual(response.status_code, 302)
 
-        self.task = Tasks.objects.get(pk=1)
+        self.task = Task.objects.get(pk=1)
         self.assertEqual(first=self.task.name,
                          second=self.test_task.get('name'))
 
@@ -84,14 +84,14 @@ class TestUpdateTask(TestCase):
 
     def test_update_task(self):
         self.client.force_login(self.user)
-        self.task = Tasks.objects.get(pk=1)
+        self.task = Task.objects.get(pk=1)
         self.assertNotEqual(self.task.name, self.test_task.get("name"))
 
         response = self.client.post(path=self.update_task_url,
                                     data=self.test_task)
         self.assertEqual(response.status_code, 302)
 
-        self.task = Tasks.objects.get(pk=1)
+        self.task = Task.objects.get(pk=1)
         self.assertEqual(first=self.task.name,
                          second=self.test_task.get('name')
                          )
@@ -117,5 +117,5 @@ class TestDeleteTask(TestCase):
         self.client.force_login(user=self.user)
         response = self.client.delete(path=self.delete_task_url)
         self.assertEqual(first=response.status_code, second=302)
-        with self.assertRaises(Tasks.DoesNotExist):
-            Tasks.objects.get(pk=1)
+        with self.assertRaises(Task.DoesNotExist):
+            Task.objects.get(pk=1)

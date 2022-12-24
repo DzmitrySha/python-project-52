@@ -1,20 +1,20 @@
 [
   {
-    "model": "labels.label",
+    "model": "labels.tasklabels",
     "pk": 1,
     "fields": {
       "name": "label 1"
     }
   },
   {
-    "model": "labels.label",
+    "model": "labels.tasklabels",
     "pk": 2,
     "fields": {
       "name": "label 2"
     }
   },
   {
-    "model": "labels.label",
+    "model": "labels.tasklabels",
     "pk": 3,
     "fields": {
       "name": "label 3"

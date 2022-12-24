@@ -1,6 +1,6 @@
 [
   {
-    "model": "tasks.tasks",
+    "model": "tasks.task",
     "pk": 1,
     "fields": {
       "name": "task 1",
@@ -11,7 +11,7 @@
   },
 
   {
-    "model": "tasks.tasks",
+    "model": "tasks.task",
     "pk": 2,
     "fields": {
       "name": "task 2",

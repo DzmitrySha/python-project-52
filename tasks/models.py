@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model
 
 
-class Tasks(models.Model):
+class Task(models.Model):
     name = models.CharField(max_length=120, verbose_name=_('Name'), blank=False)
     description = models.TextField(verbose_name=_('Description'), blank=True)
     created_date = models.DateTimeField(verbose_name=_("Created date"),
@@ -22,7 +22,7 @@ class Tasks(models.Model):
         related_name='statuses', verbose_name=_('Status'),
     )
     labels = models.ManyToManyField(
-        'labels.Label', through='Relations',
+        'labels.TaskLabels', through='Relations',
         through_fields=('task', 'label'), blank=True,
         related_name='labels', verbose_name=_('Labels'),
     )
@@ -32,5 +32,5 @@ class Tasks(models.Model):
 
 
 class Relations(models.Model):
-    task = models.ForeignKey(to='tasks.Tasks', on_delete=models.CASCADE)
-    label = models.ForeignKey(to='labels.Label', on_delete=models.PROTECT)
+    task = models.ForeignKey(to='tasks.Task', on_delete=models.CASCADE)
+    label = models.ForeignKey(to='labels.TaskLabels', on_delete=models.PROTECT)
