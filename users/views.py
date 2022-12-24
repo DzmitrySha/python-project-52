@@ -10,8 +10,9 @@ from django.views.generic import (
     ListView, CreateView, UpdateView, DeleteView, DetailView
 )
 
-from tasks.models import Tasks
+from tasks.models import Task
 from users.forms import UserCreationFormCustom
+from task_manager.mixins import AppLoginRequiredMixin
 
 
 class UsersList(ListView):
@@ -29,7 +30,7 @@ class UserDetailView(DetailView):
     template_name = "users/user.html"
     context_object_name = "user"
     extra_context = {'title': _('User'),
-                     'tasks': Tasks.objects.all,
+                     'tasks': Task.objects.all,
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
@@ -45,7 +46,8 @@ class CreateUser(SuccessMessageMixin, CreateView):
                      }
 
 
-class UpdateUser(SuccessMessageMixin, UserPermissionsMixin, UpdateView):
+class UpdateUser(SuccessMessageMixin, UserPermissionsMixin,
+                 AppLoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = UserCreationFormCustom
     success_message = _('User successfully updated')
@@ -56,7 +58,7 @@ class UpdateUser(SuccessMessageMixin, UserPermissionsMixin, UpdateView):
                      }
 
 
-class DeleteUser(UserPermissionsMixin, DeleteView):
+class DeleteUser(UserPermissionsMixin, AppLoginRequiredMixin, DeleteView):
     model = get_user_model()
     template_name = "users/delete.html"
     success_url = reverse_lazy('users')
