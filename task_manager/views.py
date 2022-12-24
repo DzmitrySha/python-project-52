@@ -25,6 +25,11 @@ class LoginUser(SuccessMessageMixin, LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
+# class LogoutUser(SuccessMessageMixin, LogoutView):
+#     template_name = 'index.html'
+#     success_message = _('You are logged out.')
+#     next_page = reverse_lazy('home')
+
 
 class LogoutUser(LogoutView):
     def get_success_url(self):
