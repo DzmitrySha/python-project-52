@@ -20,8 +20,8 @@ class SetupTestUser(TestCase):
         self.users = get_user_model().objects.all()
         self.user = get_user_model().objects.get(pk=1)
         self.user2 = get_user_model().objects.get(pk=2)
-        self.test_user = json.load(
-            open(os.path.join(FIXTURE_DIRS[0], "one_user.json")))
+        with open(os.path.join(FIXTURE_DIRS[0], "one_user.json")) as file:
+            self.test_user = json.load(file)
 
 
 class TestCreateUser(SetupTestUser):

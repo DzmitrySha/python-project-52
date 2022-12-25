@@ -1,6 +1,7 @@
 import os
 import json
 
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse_lazy
 from statuses.models import TaskStatus
@@ -8,11 +9,21 @@ from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
 
-class TestStatusesList(TestCase):
-    fixtures = ["users.json", "statuses.json"]
+class SetupTestStatuses(TestCase):
+    fixtures = ['users.json']
 
     def setUp(self):
         self.statuses_url = reverse_lazy('statuses')
+        self.create_status_url = reverse_lazy('status_create')
+        self.update_status_url = reverse_lazy("status_update", kwargs={"pk": 1})
+        self.delete_status_url = reverse_lazy("status_delete", kwargs={"pk": 1})
+        self.user = get_user_model().objects.get(pk=1)
+        with open(os.path.join(FIXTURE_DIRS[0], "one_status.json")) as file:
+            self.test_status = json.load(file)
+
+
+class TestStatusesList(SetupTestStatuses):
+    fixtures = ["users.json", "statuses.json"]
 
     def test_open_statuses_page(self):
         user = User.objects.get(pk=1)
@@ -21,15 +32,8 @@ class TestStatusesList(TestCase):
         self.assertEqual(response.status_code, 200)
 
 
-class TestCreateStatus(TestCase):
+class TestCreateStatus(SetupTestStatuses):
     fixtures = ["users.json"]
-
-    def setUp(self):
-        self.statuses_url = reverse_lazy('statuses')
-        self.create_status_url = reverse_lazy('status_create')
-        self.user = User.objects.get(pk=1)
-        self.test_status = json.load(
-            open(os.path.join(FIXTURE_DIRS[0], "one_status.json")))
 
     def test_open_create_status_page_without_login(self):
         response = self.client.get(self.create_status_url)
@@ -52,14 +56,8 @@ class TestCreateStatus(TestCase):
                          second=self.test_status.get('name'))
 
 
-class TestUpdateStatus(TestCase):
+class TestUpdateStatus(SetupTestStatuses):
     fixtures = ['users.json', 'statuses.json']
-
-    def setUp(self):
-        self.update_status_url = reverse_lazy("status_update", kwargs={"pk": 1})
-        self.user = User.objects.get(pk=1)
-        self.test_status = json.load(
-            open(os.path.join(FIXTURE_DIRS[0], "one_status.json")))
 
     def test_open_update_statuses_page_without_login(self):
         response = self.client.get(self.update_status_url)
@@ -85,12 +83,8 @@ class TestUpdateStatus(TestCase):
                          )
 
 
-class TestDeleteStatus(TestCase):
+class TestDeleteStatus(SetupTestStatuses):
     fixtures = ['users.json', 'statuses.json']
-
-    def setUp(self):
-        self.delete_status_url = reverse_lazy("status_delete", kwargs={"pk": 1})
-        self.user = User.objects.get(pk=1)
 
     def test_open_delete_page_without_login(self):
         response = self.client.get(path=self.delete_status_url)

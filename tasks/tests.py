@@ -1,47 +1,48 @@
 import os
 import json
 
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse_lazy
 
 from labels.models import TaskLabels
 from statuses.models import TaskStatus
 from tasks.models import Task
-from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
 
-class TestTaskList(TestCase):
-    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
-
-    def setUp(self):
-        self.one_task_view_url = reverse_lazy('task_view', kwargs={"pk": 1})
-        self.tasks_url = reverse_lazy('tasks')
-
-    def test_open_tasks_page(self):
-        user = User.objects.get(pk=1)
-        self.client.force_login(user=user)
-        response = self.client.get(self.tasks_url)
-        self.assertEqual(response.status_code, 200)
-
-    def test_open_one_task_view_page(self):
-        user = User.objects.get(pk=1)
-        self.client.force_login(user=user)
-        response = self.client.get(self.one_task_view_url)
-        self.assertEqual(response.status_code, 200)
-
-
-class TestCreateTask(TestCase):
+class SetupTestTasks(TestCase):
     fixtures = ['users.json', 'statuses.json', 'labels.json']
 
     def setUp(self):
         self.tasks_url = reverse_lazy('tasks')
         self.create_task_url = reverse_lazy('task_create')
-        self.user = User.objects.get(pk=1)
-        self.status = TaskStatus.objects.get(pk=1)
+        self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
+        self.delete_task_url = reverse_lazy("task_delete", kwargs={"pk": 1})
+        self.detail_task_view_url = reverse_lazy('task_view', kwargs={"pk": 1})
+        self.user = get_user_model().objects.get(pk=1)
         self.label = TaskLabels.objects.get(pk=1)
-        self.test_task = json.load(
-            open(os.path.join(FIXTURE_DIRS[0], "one_task.json")))
+        self.status = TaskStatus.objects.get(pk=1)
+        with open(os.path.join(FIXTURE_DIRS[0], "one_task.json")) as file:
+            self.test_task = json.load(file)
+
+
+class TestTaskList(SetupTestTasks):
+    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
+
+    def test_open_tasks_page(self):
+        self.client.force_login(user=self.user)
+        response = self.client.get(self.tasks_url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_open_one_task_view_page(self):
+        self.client.force_login(user=self.user)
+        response = self.client.get(self.detail_task_view_url)
+        self.assertEqual(response.status_code, 200)
+
+
+class TestCreateTask(SetupTestTasks):
+    fixtures = ['users.json', 'statuses.json', 'labels.json']
 
     def test_open_create_status_page_without_login(self):
         response = self.client.get(self.create_task_url)
@@ -64,14 +65,8 @@ class TestCreateTask(TestCase):
                          second=self.test_task.get('name'))
 
 
-class TestUpdateTask(TestCase):
+class TestUpdateTask(SetupTestTasks):
     fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
-
-    def setUp(self):
-        self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
-        self.user = User.objects.get(pk=1)
-        self.test_task = json.load(
-            open(os.path.join(FIXTURE_DIRS[0], "one_task.json")))
 
     def test_open_update_tasks_page_without_login(self):
         response = self.client.get(self.update_task_url)
@@ -97,12 +92,8 @@ class TestUpdateTask(TestCase):
                          )
 
 
-class TestDeleteTask(TestCase):
-    fixtures = ['users.json', 'tasks.json', 'statuses.json']
-
-    def setUp(self):
-        self.delete_task_url = reverse_lazy("task_delete", kwargs={"pk": 1})
-        self.user = User.objects.get(pk=1)
+class TestDeleteTask(SetupTestTasks):
+    fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 
     def test_open_delete_page_without_login(self):
         response = self.client.get(path=self.delete_task_url)
