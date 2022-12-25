@@ -30,15 +30,21 @@ class SetupTestTasks(TestCase):
 class TestTaskList(SetupTestTasks):
     fixtures = ['users.json', 'tasks.json', 'statuses.json', 'labels.json']
 
-    def test_open_tasks_page(self):
+    def test_open_all_tasks_page(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.tasks_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(first=response.status_code, second=200)
 
-    def test_open_one_task_view_page(self):
+    def test_open_all_tasks_page_without_authorization(self):
+        response = self.client.get(self.tasks_url)
+        self.assertRedirects(response=response,
+                             expected_url="/login/?next=/tasks/",
+                             status_code=302, target_status_code=200)
+
+    def test_open_detail_task_view_page(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.detail_task_view_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(first=response.status_code, second=200)
 
 
 class TestCreateTask(SetupTestTasks):
@@ -46,19 +52,19 @@ class TestCreateTask(SetupTestTasks):
 
     def test_open_create_status_page_without_login(self):
         response = self.client.get(self.create_task_url)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(first=response.status_code, second=302)
 
     def test_open_create_status_page_with_login(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.create_task_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(first=response.status_code, second=200)
 
     def test_create_task(self):
         self.client.force_login(user=self.user)
         response = self.client.post(path=self.create_task_url,
                                     data=self.test_task)
         self.assertRedirects(response=response, expected_url=self.tasks_url)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(first=response.status_code, second=302)
 
         self.task = Task.objects.get(pk=1)
         self.assertEqual(first=self.task.name,
@@ -70,12 +76,12 @@ class TestUpdateTask(SetupTestTasks):
 
     def test_open_update_tasks_page_without_login(self):
         response = self.client.get(self.update_task_url)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(first=response.status_code, second=302)
 
     def test_open_update_tasks_page_with_login(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.update_task_url)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(first=response.status_code, second=200)
 
     def test_update_task(self):
         self.client.force_login(self.user)
@@ -84,7 +90,7 @@ class TestUpdateTask(SetupTestTasks):
 
         response = self.client.post(path=self.update_task_url,
                                     data=self.test_task)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(first=response.status_code, second=302)
 
         self.task = Task.objects.get(pk=1)
         self.assertEqual(first=self.task.name,
