@@ -27,6 +27,7 @@ ALLOWED_HOSTS = ['0.0.0.0',
                  '127.0.0.1',
                  'task-manager-4.herokuapp.com',
                  'python-project-52-production-af44.up.railway.app',
+                 'project52.site', 'www.project52.site',
                  'webserver',
                  ]
 
