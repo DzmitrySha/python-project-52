@@ -39,8 +39,8 @@ class UserDetailView(DetailView):
 class CreateUser(SuccessMessageMixin, CreateView):
     form_class = UserCreationFormCustom
     template_name = "users/form.html"
-    success_message = _('User successfully registered')
     success_url = reverse_lazy('login')
+    success_message = _('User successfully registered')
     extra_context = {'title': _('Registration user'),
                      'btn_name': _('Register')
                      }
@@ -50,18 +50,20 @@ class UpdateUser(SuccessMessageMixin, UserPermissionsMixin,
                  AppLoginRequiredMixin, UpdateView):
     model = get_user_model()
     form_class = UserCreationFormCustom
-    success_message = _('User successfully updated')
     success_url = reverse_lazy('users')
+    success_message = _('User successfully updated')
     template_name = "users/form.html"
     extra_context = {'title': _('Update user'),
                      'btn_name': _('Update'),
                      }
 
 
-class DeleteUser(UserPermissionsMixin, AppLoginRequiredMixin, DeleteView):
+class DeleteUser(SuccessMessageMixin, UserPermissionsMixin,
+                 AppLoginRequiredMixin, DeleteView):
     model = get_user_model()
     template_name = "users/delete.html"
     success_url = reverse_lazy('users')
+    success_message = _('User successfully deleted')
     context_object_name = "user"
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
