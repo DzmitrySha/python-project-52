@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-24 22:10+0300\n"
+"POT-Creation-Date: 2022-12-28 16:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,11 @@ msgstr "Имя пользователя"
 msgid "Created date"
 msgstr "Дата создания"
 
-#: users/views.py:42
+#: users/tests.py:64
+msgid "A user with that username already exists."
+msgstr "Пользователь с таким именем уже существует."
+
+#: users/views.py:43
 msgid "User successfully registered"
 msgstr "Пользователь успешно зарегистрирован"
 
@@ -89,7 +93,7 @@ msgstr "Регистрация пользователя"
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: users/views.py:53
+#: users/views.py:54
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменён"
 
@@ -97,11 +101,11 @@ msgstr "Пользователь успешно изменён"
 msgid "Update user"
 msgstr "Изменение пользователя"
 
-#: users/views.py:66
+#: users/views.py:67
 msgid "Delete user"
 msgstr "Удаление пользователя"
 
-#: users/views.py:67
+#: users/views.py:68
 msgid "Yes, delete"
 msgstr "Да, удалить"
 

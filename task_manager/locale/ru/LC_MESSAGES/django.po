@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-24 22:10+0300\n"
+"POT-Creation-Date: 2022-12-28 16:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,7 @@ msgid "Logout"
 msgstr "Выход"
 
 #: task_manager/templates/base.html:82 task_manager/templates/index.html:18
-#: task_manager/views.py:21
+#: task_manager/views.py:23
 msgid "Login"
 msgstr "Вход"
 
@@ -61,22 +61,22 @@ msgstr "Регистрация"
 msgid "User Profile"
 msgstr "Профиль пользователя"
 
-#: task_manager/tests.py:13 task_manager/views.py:12
+#: task_manager/tests.py:13 task_manager/views.py:14
 msgid "Task manager"
 msgstr "Менеджер задач"
 
-#: task_manager/views.py:13
+#: task_manager/views.py:15
 msgid "A simple and functional task manager."
 msgstr "Простой и функциональный менеджер задач."
 
-#: task_manager/views.py:20
+#: task_manager/views.py:22
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: task_manager/views.py:22
+#: task_manager/views.py:24
 msgid "Enter"
 msgstr "Войти"
 
-#: task_manager/views.py:36
+#: task_manager/views.py:34
 msgid "You are logged out."
 msgstr "Вы разлогинены"

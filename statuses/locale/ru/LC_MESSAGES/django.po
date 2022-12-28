@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-18 13:37+0300\n"
+"POT-Creation-Date: 2022-12-28 16:13+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,10 +76,10 @@ msgstr "Удаление статуса"
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: statuses/views.py:61
+#: statuses/views.py:60
 msgid "Status successfully deleted"
 msgstr "Статус успешно удалён"
 
-#: statuses/views.py:65
+#: statuses/views.py:64
 msgid "It`s not possible to delete the status that is being used"
 msgstr "Невозможно удалить статус, потому что он используется"
