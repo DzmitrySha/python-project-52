@@ -6,6 +6,7 @@ from django.test import TestCase
 from django.urls import reverse_lazy
 from task_manager.settings import FIXTURE_DIRS
 from users.forms import UserCreationFormCustom
+from django.utils.translation import gettext_lazy as _
 
 
 class SetupTestUser(TestCase):
@@ -30,13 +31,12 @@ class TestCreateUser(SetupTestUser):
         response = self.client.get(self.create_url)
         self.assertEqual(response.status_code, 200)
 
-    def test_register_user(self):
+    def test_create_user(self):
         response = self.client.post(path=self.create_url, data=self.test_user)
-        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.login_url, 302)
         self.user = get_user_model().objects.get(pk=4)
         self.assertEqual(first=self.user.username,
                          second=self.test_user.get('username'))
-
         self.assertEqual(first=self.user.first_name,
                          second=self.test_user.get('first_name'))
         self.assertEqual(first=self.user.last_name,
@@ -44,6 +44,7 @@ class TestCreateUser(SetupTestUser):
 
 
 class TestUserCreationForm(SetupTestUser):
+    fixtures = ['users.json']
 
     def test_user_create_form_with_data(self):
         user_form = UserCreationFormCustom(data=self.test_user)
@@ -54,6 +55,16 @@ class TestUserCreationForm(SetupTestUser):
         user_form = UserCreationFormCustom(data={})
         self.assertFalse(user_form.is_valid())
         self.assertEqual(len(user_form.errors), 5)
+
+    def test_user_creation_form_with_username_exists_error(self):
+        self.test_user['username'] = self.user.username
+        user_form = UserCreationFormCustom(data=self.test_user)
+        response = self.client.post(path=self.create_url, data=self.test_user)
+        self.assertContains(response,
+                            _('A user with that username already exists.'),
+                            status_code=200)
+        self.assertFalse(user_form.is_valid())
+        self.assertEqual(len(user_form.errors), 1)
 
 
 class TestUpdateUser(SetupTestUser):
