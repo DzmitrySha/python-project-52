@@ -54,14 +54,13 @@ class DeleteStatus(AppLoginRequiredMixin, DeleteView):
                      'btn_name': _('Yes, delete'),
                      }
 
-    def form_valid(self, form):
-        success_url = self.get_success_url()
+    def post(self, request, *args, **kwargs):
         try:
-            self.object.delete()
+            self.get_object().delete()
             messages.info(self.request, _('Status successfully deleted'))
         except ProtectedError:
             messages.error(
                 self.request,
                 _('It`s not possible to delete the status that is being used')
             )
-        return redirect(success_url)
+        return redirect('statuses')

@@ -1,7 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth import logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.utils.translation import gettext_lazy as _
@@ -25,13 +27,9 @@ class LoginUser(SuccessMessageMixin, LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
-# class LogoutUser(SuccessMessageMixin, LogoutView):
-#     template_name = 'index.html'
-#     success_message = _('You are logged out.')
-#     next_page = reverse_lazy('home')
-
 
 class LogoutUser(LogoutView):
-    def get_success_url(self):
-        messages.success(self.request, _('You are logged out.'))
-        return reverse_lazy('home')
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        messages.info(request, _('You are logged out.'))
+        return redirect('home')

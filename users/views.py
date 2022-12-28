@@ -63,20 +63,18 @@ class DeleteUser(SuccessMessageMixin, UserPermissionsMixin,
     model = get_user_model()
     template_name = "users/delete.html"
     success_url = reverse_lazy('users')
-    success_message = _('User successfully deleted')
     context_object_name = "user"
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
 
-    def form_valid(self, form):
-        success_url = self.get_success_url()
+    def post(self, request, *args, **kwargs):
         try:
-            self.object.delete()
+            self.get_object().delete()
             messages.info(self.request, _('User successfully deleted'))
         except ProtectedError:
             messages.error(
                 self.request,
                 _('It`s not possible to delete a User that is being used')
             )
-        return redirect(success_url)
+        return redirect('users')
