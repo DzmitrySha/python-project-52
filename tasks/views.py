@@ -17,7 +17,6 @@ class TasksList(AppLoginRequiredMixin, FilterView):
     filterset_class = TaskFilterForm
     template_name = "tasks/tasks.html"
     context_object_name = "tasks"
-    login_url = 'login'
     extra_context = {'title': _('Tasks'),
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
@@ -29,7 +28,6 @@ class TaskDetailView(SuccessMessageMixin, AppLoginRequiredMixin, DetailView):
     model = Task
     template_name = "tasks/task.html"
     context_object_name = "task"
-    login_url = 'login'
     extra_context = {'title': _('Task view'),
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
@@ -40,7 +38,6 @@ class CreateTask(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
     model = Task
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
-    login_url = "login"
     success_message = _('Task successfully created')
     success_url = reverse_lazy('tasks')
     extra_context = {'title': _('Create task'),
@@ -56,7 +53,6 @@ class UpdateTask(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
     model = Task
     fields = ['name', 'description', 'status', 'executor', 'labels']
     template_name = "tasks/form.html"
-    login_url = "login"
     success_message = _('Task successfully updated')
     success_url = reverse_lazy('tasks')
     extra_context = {'title': _('Update task'),
@@ -70,7 +66,6 @@ class DeleteTask(AppLoginRequiredMixin,
                  DeleteView):
     model = Task
     template_name = "tasks/delete.html"
-    login_url = "login"
     context_object_name = "task"
     success_message = _('Task successfully deleted')
     success_url = reverse_lazy('tasks')

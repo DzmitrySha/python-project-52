@@ -13,7 +13,6 @@ from task_manager.mixins import AppLoginRequiredMixin
 class LabelsList(AppLoginRequiredMixin, ListView):
     model = TaskLabels
     template_name = "labels/labels.html"
-    login_url = "login"
     context_object_name = "labels"
     extra_context = {'title': _('Labels'),
                      'btn_update': _('Update'),
@@ -25,7 +24,6 @@ class CreateLabel(SuccessMessageMixin, AppLoginRequiredMixin, CreateView):
     model = TaskLabels
     fields = ['name']
     template_name = "labels/form.html"
-    login_url = "login"
     success_message = _('Label successfully created')
     success_url = reverse_lazy('labels')
     extra_context = {'title': _('Create label'),
@@ -37,7 +35,6 @@ class UpdateLabel(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
     model = TaskLabels
     fields = ['name']
     template_name = "labels/form.html"
-    login_url = "login"
     success_message = _('Label successfully updated')
     success_url = reverse_lazy('labels')
     extra_context = {'title': _('Update label'),
@@ -48,7 +45,6 @@ class UpdateLabel(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
 class DeleteLabel(SuccessMessageMixin, AppLoginRequiredMixin, DeleteView):
     model = TaskLabels
     template_name = "labels/delete.html"
-    login_url = "login"
     success_url = reverse_lazy('labels')
     context_object_name = "label"
     extra_context = {'title': _('Delete label'),
