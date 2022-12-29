@@ -16,6 +16,7 @@ class SetupTestTasks(TestCase):
 
     def setUp(self):
         self.tasks_url = reverse_lazy('tasks')
+        self.login_url = reverse_lazy('login')
         self.create_task_url = reverse_lazy('task_create')
         self.update_task_url = reverse_lazy("task_update", kwargs={"pk": 1})
         self.delete_task_url = reverse_lazy("task_delete", kwargs={"pk": 1})
@@ -38,7 +39,7 @@ class TestTaskList(SetupTestTasks):
     def test_open_all_tasks_page_without_authorization(self):
         response = self.client.get(self.tasks_url)
         self.assertRedirects(response=response,
-                             expected_url="/login/?next=/tasks/",
+                             expected_url=self.login_url,
                              status_code=302, target_status_code=200)
 
     def test_open_detail_task_view_page(self):
