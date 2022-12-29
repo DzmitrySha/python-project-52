@@ -8,11 +8,8 @@ class CanTaskDeletePermission(PermissionRequiredMixin):
     def has_permission(self):
         return self.get_object().author == self.request.user
 
-    def dispatch(self, request, *args, **kwargs):
-        if not self.has_permission():
-            messages.error(
-                request,
-                _('A task can only be deleted by its author')
-            )
-            return redirect('tasks')
-        return super().dispatch(request, *args, **kwargs)
+    def handle_no_permission(self):
+        messages.error(
+            self.request, _('A task can only be deleted by its author')
+        )
+        return redirect('tasks')
