@@ -1,6 +1,4 @@
 LOCAL := poetry run python manage.py
-HEROKU := heroku run python manage.py
-RAILWAY := railway run python manage.py
 
 install:
 		poetry install
@@ -17,7 +15,7 @@ shell:
 		$(LOCAL) shell_plus
 collectstatic:
 		$(LOCAL) collectstatic
-makesecretkey:
+secretkey:
 		poetry run python -c 'from django.utils.crypto import get_random_string; print(get_random_string(40))'
 
 # make translate messages commands
@@ -31,32 +29,20 @@ migrations:
 		$(LOCAL) makemigrations
 migrate:
 		$(LOCAL) migrate
-migrations-hr:
-		$(HEROKU) makemigrations
-migrate-hr:
-		$(HEROKU) migrate
-migrations-rw:
-		$(RAILWAY) makemigrations
 migrate-rw:
-		$(RAILWAY) migrate
+		railway run python manage.py migrate
 
 # test commands
 test:
 		poetry run pytest
 test-cov:
 		poetry run pytest --cov
-test-django:
-		$(LOCAL) test
 test-coverage:
 		poetry run pytest --cov=task_manager --cov-report xml
 
 # linter & check commands
 lint:
-		poetry run flake8 task_manager
-		poetry run flake8 users
-		poetry run flake8 tasks
-		poetry run flake8 labels
-		poetry run flake8 statuses
+		poetry run flake8 task_manager users tasks labels statuses
 
 selfcheck:
 		poetry check
@@ -67,4 +53,4 @@ check: selfcheck test lint
 build: check
 		poetry build
 
-.PHONY: install test lint selfcheck check build shell migrate collectstatic
+.PHONY: install test lint selfcheck check build shell migrate collectstatic secretkey
