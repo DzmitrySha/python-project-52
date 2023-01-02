@@ -1,8 +1,8 @@
 from django.contrib import messages
 from django.contrib.auth import get_user_model
+
 from users.mixins import UserPermissionsMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -29,8 +29,9 @@ class UserDetailView(DetailView):
     model = get_user_model()
     template_name = "users/user.html"
     context_object_name = "user"
+    tasks = Task.objects.all
     extra_context = {'title': _('User'),
-                     'tasks': Task.objects.all,
+                     'tasks': tasks,
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
@@ -63,18 +64,20 @@ class DeleteUser(SuccessMessageMixin, UserPermissionsMixin,
     model = get_user_model()
     template_name = "users/delete.html"
     success_url = reverse_lazy('users')
+    success_message = _('User successfully deleted')
     context_object_name = "user"
     extra_context = {'title': _('Delete user'),
                      'btn_name': _('Yes, delete'),
                      }
 
     def post(self, request, *args, **kwargs):
-        try:
-            self.get_object().delete()
-            messages.info(self.request, _('User successfully deleted'))
-        except ProtectedError:
+        tasks = Task.objects
+        if tasks.filter(author_id__id=self.get_object().id).count() \
+                or tasks.filter(executor_id__id=self.get_object().id).count():
             messages.error(
                 self.request,
                 _('It`s not possible to delete a User that is being used')
             )
-        return redirect('users')
+            return redirect(self.success_url)
+
+        return super().post(request, *args, **kwargs)
