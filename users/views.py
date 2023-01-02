@@ -71,9 +71,9 @@ class DeleteUser(SuccessMessageMixin, UserPermissionsMixin,
                      }
 
     def post(self, request, *args, **kwargs):
-        tasks = Task.objects
-        if tasks.filter(author_id__id=self.get_object().id).count() \
-                or tasks.filter(executor_id__id=self.get_object().id).count():
+
+        if self.get_object().authors.count() \
+                or self.get_object().executors.count():
             messages.error(
                 self.request,
                 _('It`s not possible to delete a User that is being used')
