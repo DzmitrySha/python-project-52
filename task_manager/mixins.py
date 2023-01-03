@@ -9,9 +9,8 @@ class AppLoginRequiredMixin(LoginRequiredMixin):
     login_url = reverse_lazy('login')
 
     def handle_no_permission(self):
-        if not self.request.user.is_authenticated:
-            messages.error(
-                self.request,
-                _('You are not logged in. Please log in.')
-            )
+        messages.error(
+            self.request,
+            _('You are not logged in. Please log in.')
+        )
         return redirect(self.login_url)
