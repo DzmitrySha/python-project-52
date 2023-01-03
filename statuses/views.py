@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -41,22 +40,21 @@ class UpdateStatus(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
                      }
 
 
-class DeleteStatus(AppLoginRequiredMixin, DeleteView):
+class DeleteStatus(SuccessMessageMixin, AppLoginRequiredMixin, DeleteView):
     model = TaskStatus
     template_name = "statuses/delete.html"
     success_url = reverse_lazy('statuses')
+    success_message = _('Status successfully deleted')
     context_object_name = "status"
     extra_context = {'title': _('Delete status'),
                      'btn_name': _('Yes, delete'),
                      }
 
     def post(self, request, *args, **kwargs):
-        try:
-            self.get_object().delete()
-            messages.info(self.request, _('Status successfully deleted'))
-        except ProtectedError:
+        if self.get_object().statuses.count():
             messages.error(
                 self.request,
                 _('It`s not possible to delete the status that is being used')
             )
-        return redirect('statuses')
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)

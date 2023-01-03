@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.db.models import ProtectedError
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
@@ -46,18 +45,17 @@ class DeleteLabel(SuccessMessageMixin, AppLoginRequiredMixin, DeleteView):
     model = TaskLabels
     template_name = "labels/delete.html"
     success_url = reverse_lazy('labels')
+    success_message = _('Label successfully deleted')
     context_object_name = "label"
     extra_context = {'title': _('Delete label'),
                      'btn_name': _('Yes, delete'),
                      }
 
     def post(self, request, *args, **kwargs):
-        try:
-            self.get_object().delete()
-            messages.info(self.request, _('Label successfully deleted'))
-        except ProtectedError:
+        if self.get_object().labels.count():
             messages.error(
                 self.request,
                 _('It`s not possible to delete the label that is being used')
             )
-        return redirect('labels')
+            return redirect(self.success_url)
+        return super().post(request, *args, **kwargs)
