@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 from django.urls import reverse_lazy
 from statuses.models import TaskStatus
-from users.models import User
 from task_manager.settings import FIXTURE_DIRS
 
 
@@ -15,9 +14,14 @@ class SetupTestStatuses(TestCase):
     def setUp(self):
         self.statuses_url = reverse_lazy('statuses')
         self.create_status_url = reverse_lazy('status_create')
-        self.update_status_url = reverse_lazy("status_update", kwargs={"pk": 1})
-        self.delete_status_url = reverse_lazy("status_delete", kwargs={"pk": 1})
+        self.update_status_url = reverse_lazy("status_update",
+                                              kwargs={"pk": 1})
+        self.delete_status1_url = reverse_lazy("status_delete",
+                                               kwargs={"pk": 1})
+        self.delete_status3_url = reverse_lazy("status_delete",
+                                               kwargs={"pk": 3})
         self.user = get_user_model().objects.get(pk=1)
+        self.status1 = TaskStatus.objects.get(pk=1)
         with open(os.path.join(FIXTURE_DIRS[0], "one_status.json")) as file:
             self.test_status = json.load(file)
 
@@ -25,24 +29,27 @@ class SetupTestStatuses(TestCase):
 class TestStatusesList(SetupTestStatuses):
     fixtures = ["users.json", "statuses.json"]
 
-    def test_open_statuses_page(self):
-        user = User.objects.get(pk=1)
-        self.client.force_login(user=user)
+    def test_open_statuses_page_with_login(self):
+        self.client.force_login(user=self.user)
         response = self.client.get(self.statuses_url)
         self.assertEqual(response.status_code, 200)
 
+    def test_open_statuses_page_with_no_login(self):
+        response = self.client.get(self.statuses_url)
+        self.assertEqual(response.status_code, 302)
+
 
 class TestCreateStatus(SetupTestStatuses):
-    fixtures = ["users.json"]
-
-    def test_open_create_status_page_without_login(self):
-        response = self.client.get(self.create_status_url)
-        self.assertEqual(response.status_code, 302)
+    fixtures = ["users.json", "statuses.json"]
 
     def test_open_create_status_page_with_login(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.create_status_url)
         self.assertEqual(response.status_code, 200)
+
+    def test_open_create_status_page_with_no_login(self):
+        response = self.client.get(self.create_status_url)
+        self.assertEqual(response.status_code, 302)
 
     def test_create_status(self):
         self.client.force_login(user=self.user)
@@ -51,53 +58,59 @@ class TestCreateStatus(SetupTestStatuses):
         self.assertRedirects(response=response, expected_url=self.statuses_url)
         self.assertEqual(response.status_code, 302)
 
-        self.status = TaskStatus.objects.get(pk=1)
-        self.assertEqual(first=self.status.name,
+        self.status4 = TaskStatus.objects.get(pk=4)
+        self.assertEqual(first=self.status4.name,
                          second=self.test_status.get('name'))
 
 
 class TestUpdateStatus(SetupTestStatuses):
     fixtures = ['users.json', 'statuses.json']
 
-    def test_open_update_statuses_page_without_login(self):
-        response = self.client.get(self.update_status_url)
-        self.assertEqual(response.status_code, 302)
-
     def test_open_update_statuses_page_with_login(self):
         self.client.force_login(user=self.user)
         response = self.client.get(self.update_status_url)
         self.assertEqual(response.status_code, 200)
 
+    def test_open_update_statuses_page_without_login(self):
+        response = self.client.get(self.update_status_url)
+        self.assertEqual(response.status_code, 302)
+
     def test_update_status(self):
-        self.client.force_login(self.user)
-        self.status = TaskStatus.objects.get(pk=1)
-        self.assertNotEqual(self.status.name, self.test_status.get("name"))
+        self.client.force_login(user=self.user)
+        self.assertNotEqual(self.status1.name, self.test_status.get("name"))
 
         response = self.client.post(path=self.update_status_url,
                                     data=self.test_status)
         self.assertEqual(response.status_code, 302)
 
-        self.status = TaskStatus.objects.get(pk=1)
-        self.assertEqual(first=self.status.name,
+        self.status1 = TaskStatus.objects.get(pk=1)
+        self.assertEqual(first=self.status1.name,
                          second=self.test_status.get('name')
                          )
 
 
 class TestDeleteStatus(SetupTestStatuses):
-    fixtures = ['users.json', 'statuses.json']
+    fixtures = ['users.json', 'statuses.json', 'labels.json', 'tasks.json']
 
     def test_open_delete_page_without_login(self):
-        response = self.client.get(path=self.delete_status_url)
+        response = self.client.get(path=self.delete_status1_url)
         self.assertEqual(first=response.status_code, second=302)
 
     def test_open_delete_page_with_login(self):
         self.client.force_login(user=self.user)
-        response = self.client.get(path=self.delete_status_url)
+        response = self.client.get(path=self.delete_status1_url)
         self.assertEqual(first=response.status_code, second=200)
 
     def test_delete_status(self):
         self.client.force_login(user=self.user)
-        response = self.client.delete(path=self.delete_status_url)
+        response = self.client.delete(path=self.delete_status3_url)
         self.assertEqual(first=response.status_code, second=302)
         with self.assertRaises(TaskStatus.DoesNotExist):
-            TaskStatus.objects.get(pk=1)
+            TaskStatus.objects.get(pk=3)
+
+    def test_cant_delete_status_with_task(self):
+        self.client.force_login(user=self.user)
+        response_get = self.client.get(path=self.delete_status1_url)
+        response_post = self.client.post(path=self.delete_status1_url)
+        self.assertContains(response_get, self.status1.name, status_code=200)
+        self.assertEqual(response_post.status_code, 302)
