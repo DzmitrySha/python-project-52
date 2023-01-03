@@ -42,6 +42,8 @@ Write following constants to the .env file:
 
 `DATABASE_URL=your_database_url_path` (to use simple sqlite database use this path: `DATABASE_URL='sqlite:///db.sqlite3'`)
 
+(See ".env.example" file - in the root project directory)
+
 ## Database preparation
 
 `make migrations`
