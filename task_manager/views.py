@@ -29,7 +29,10 @@ class LoginUser(SuccessMessageMixin, LoginView):
 
 
 class LogoutUser(LogoutView):
+
+    def get_success_url(self):
+        return reverse_lazy('home')
+
     def get(self, request, *args, **kwargs):
-        logout(request)
         messages.info(request, _('You are logged out.'))
-        return redirect('home')
+        return super().get(request, *args, **kwargs)
