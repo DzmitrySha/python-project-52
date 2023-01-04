@@ -36,7 +36,6 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 INSTALLED_APPS = [
-    # 'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,4 +141,6 @@ FIXTURE_DIRS = ['fixtures']
 # LOGIN_REDIRECT_URL = "/"
 
 # print SQL queries in shell_plus
-# SHELL_PLUS_PRINT_SQL = True
+if DEBUG:
+    INSTALLED_APPS.insert(0, 'django_extensions')
+    SHELL_PLUS_PRINT_SQL = True

@@ -117,6 +117,17 @@ beautifulsoup4 = ">=4.8.0"
 Django = ">=3.2"
 
 [[package]]
+name = "django-extensions"
+version = "3.2.1"
+description = "Extensions for Django"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+Django = ">=3.2"
+
+[[package]]
 name = "django-filter"
 version = "22.1"
 description = "Django-filter is a reusable Django application for allowing users to filter querysets dynamically."
@@ -418,7 +429,7 @@ brotli = ["Brotli"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "386dad1111222cd87bdfc2eec43bf61d8057f234abde0764d1e2d6214988f29f"
+content-hash = "07d89686372f3f9dcf837758c35a1415a8e5c10b24abf215de8ae1ad78e5d9ca"
 
 [metadata.files]
 asgiref = [
@@ -508,6 +519,10 @@ Django = [
 django-bootstrap4 = [
     {file = "django-bootstrap4-22.2.tar.gz", hash = "sha256:57bcbce53530ffd57a1c8bda74c8f3b56c859e085fb1f52a0e3e3a4f982f0960"},
     {file = "django_bootstrap4-22.2-py3-none-any.whl", hash = "sha256:ad00ff90e6bd002155516b32047c40df15f533fac49da66d8882995adcb13552"},
+]
+django-extensions = [
+    {file = "django-extensions-3.2.1.tar.gz", hash = "sha256:2a4f4d757be2563cd1ff7cfdf2e57468f5f931cc88b23cf82ca75717aae504a4"},
+    {file = "django_extensions-3.2.1-py3-none-any.whl", hash = "sha256:421464be390289513f86cb5e18eb43e5dc1de8b4c27ba9faa3b91261b0d67e09"},
 ]
 django-filter = [
     {file = "django-filter-22.1.tar.gz", hash = "sha256:ed473b76e84f7e83b2511bb2050c3efb36d135207d0128dfe3ae4b36e3594ba5"},
