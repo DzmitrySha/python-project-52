@@ -60,8 +60,8 @@ class UpdateTask(SuccessMessageMixin, AppLoginRequiredMixin, UpdateView):
                      }
 
 
-class DeleteTask(AppLoginRequiredMixin,
-                 CanTaskDeletePermission,
+class DeleteTask(CanTaskDeletePermission,
+                 AppLoginRequiredMixin,
                  SuccessMessageMixin,
                  DeleteView):
     model = Task
