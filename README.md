@@ -32,17 +32,23 @@ Install dependencies with Poetry:
 
 ## Settings
 
-Create an .env file: 
+Create an ".env" file in the root project directory: 
 
 `touch .env`
 
+оr rename and edit existing ".env.example" file.
+
 Write following constants to the .env file:
 
-`SECRET_KEY=your_Django_secret_key` (generate one with `make secretkey` command)
+1. `SECRET_KEY='your_Django_secret_key'` 
 
-`DATABASE_URL=your_database_url_path` (to use simple sqlite database use this path: `DATABASE_URL='sqlite:///db.sqlite3'`)
+You can generate one with `make secretkey` command.
 
-(See ".env.example" file - in the root project directory)
+2. `DATABASE_URL='your_database_url_path'` 
+
+To use simple sqlite database use this record: 
+
+`DATABASE_URL='sqlite:///db.sqlite3'`
 
 ## Database preparation
 
