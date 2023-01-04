@@ -2,6 +2,7 @@ import os
 import json
 
 from django.contrib.auth import get_user_model
+from django.db.models import ProtectedError
 from django.test import TestCase
 from django.urls import reverse_lazy
 from statuses.models import TaskStatus
@@ -114,3 +115,5 @@ class TestDeleteStatus(SetupTestStatuses):
         response_post = self.client.post(path=self.delete_status1_url)
         self.assertContains(response_get, self.status1.name, status_code=200)
         self.assertEqual(response_post.status_code, 302)
+        with self.assertRaises(expected_exception=ProtectedError):
+            self.client.delete(path=self.delete_status1_url)
