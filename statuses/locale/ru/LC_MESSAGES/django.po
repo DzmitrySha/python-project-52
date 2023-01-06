@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-04 13:16+0300\n"
+"POT-Creation-Date: 2023-01-06 19:28+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,70 +16,70 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
-"%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: .\statuses\apps.py:8 .\statuses\models.py:16 .\statuses\views.py:15
+#: statuses/apps.py:8 statuses/models.py:16 statuses/views.py:15
 msgid "Statuses"
 msgstr "Статусы"
 
-#: .\statuses\models.py:7 .\statuses\templates\statuses\statuses.html:19
+#: statuses/models.py:7 statuses/templates/statuses/statuses.html:19
 msgid "Name"
 msgstr "Имя"
 
-#: .\statuses\models.py:8 .\statuses\templates\statuses\statuses.html:20
+#: statuses/models.py:8 statuses/templates/statuses/statuses.html:20
 msgid "Created date"
 msgstr "Дата создания"
 
-#: .\statuses\models.py:15
+#: statuses/models.py:15
 msgid "Status"
 msgstr "Статус"
 
-#: .\statuses\templates\statuses\delete.html:14
+#: statuses/templates/statuses/delete.html:14
 msgid "Are you sure want to delete"
 msgstr "Вы уверены, что хотите удалить"
 
-#: .\statuses\templates\statuses\statuses.html:13 .\statuses\views.py:27
+#: statuses/templates/statuses/statuses.html:13 statuses/views.py:27
 msgid "Create status"
 msgstr "Создать статус"
 
-#: .\statuses\views.py:16 .\statuses\views.py:39
+#: statuses/views.py:16 statuses/views.py:39
 msgid "Update"
 msgstr "Изменить"
 
-#: .\statuses\views.py:17
+#: statuses/views.py:17
 msgid "Delete"
 msgstr "Удалить"
 
-#: .\statuses\views.py:25
+#: statuses/views.py:25
 msgid "Status successfully created"
 msgstr "Статус успешно создан"
 
-#: .\statuses\views.py:28
+#: statuses/views.py:28
 msgid "Create"
 msgstr "Создать"
 
-#: .\statuses\views.py:36
+#: statuses/views.py:36
 msgid "Status successfully updated"
 msgstr "Статус успешно изменён"
 
-#: .\statuses\views.py:38
+#: statuses/views.py:38
 msgid "Update status"
 msgstr "Изменение статуса"
 
-#: .\statuses\views.py:47
+#: statuses/views.py:47
 msgid "Status successfully deleted"
 msgstr "Статус успешно удалён"
 
-#: .\statuses\views.py:49
+#: statuses/views.py:49
 msgid "Delete status"
 msgstr "Удаление статуса"
 
-#: .\statuses\views.py:50
+#: statuses/views.py:50
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
-#: .\statuses\views.py:57
+#: statuses/views.py:57
 msgid "It`s not possible to delete the status that is being used"
 msgstr "Невозможно удалить статус, потому что он используется"
