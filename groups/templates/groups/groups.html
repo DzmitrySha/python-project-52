@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container wrapper flex-grow-1">
+    <h1 class="my-4">{{ title }}</h1>
+</div>
+
+<a class="nav-link" href="{% url 'group_create' %}">{% trans 'Create group' %}</a>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">{% trans 'Group name' %}</th>
+        <th scope="col">{% trans 'Creator' %}</th>
+        <th scope="col">{% trans 'Participants' %}</th>
+        <th scope="col">{% trans 'Created date' %}</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for group in groups %}
+    <tr>
+        <th scope="row">{{ group.pk }}</th>
+        <td>{{ group.name }}</td>
+        <td>{{ group.creator }}</td>
+        <td>{{ group.participants }}</td>
+        <td>{{ group.created_date }}</td>
+        <td>
+            <a href="/groups/{{ group.pk }}/update/">{{ btn_update }}</a>
+            <br>
+            <a href="/groups/{{ group.pk }}/delete/">{{ btn_delete }}</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

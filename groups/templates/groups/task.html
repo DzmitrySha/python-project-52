@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<div class="container wrapper flex-grow-1">
+<h1 class="my-4">{% trans 'Group view' %}</h1>
+
+<div class="card">
+  <div class="card-header bg-info text-white">
+    <h2>{{ group.name }}</h2>
+  </div>
+  <div class="card-body bg-light">
+    <p>{{ group.pk }}</p>
+    <hr>
+    <div class="container">
+      <div class="row p-2">
+        <div class="col">{% trans 'Creator' %}</div>
+        <div class="col">{{ group.creator }}</div>
+      </div>
+      <div class="row p-2">
+        <div class="col">{% trans 'Executor' %}</div>
+        <div class="col">{{ task.executor }}</div>
+      </div>
+      <div class="row p-2">
+        <div class="col">{% trans 'Status' %}</div>
+        <div class="col">{{ task.status }}</div>
+      </div>
+      <div class="row p-2">
+        <div class="col">{% trans 'Created date' %}</div>
+        <div class="col">{{ task.created_date }}</div>
+      </div>
+      <div class="row p-2">
+        <div class="col">{% trans 'Description' %}</div>
+        <div class="col">{{ task.description }}</div>
+      </div>
+      <div class="row p-2">
+        <div class="col"><h6>{% trans 'Labels' %}:</h6>
+          <ul>
+              {% for label in task.labels.all %}
+              <li>{{ label.name }}</li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="row p-2">
+        <div class="col">
+          <a href="/tasks/{{ task.id }}/update/">{% trans 'Update' %}</a>
+          <br>
+          <a href="/tasks/{{ task.id }}/delete/">{% trans 'Delete' %}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
