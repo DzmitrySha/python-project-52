@@ -22,35 +22,27 @@
         <div class="col">{{ group.creator }}</div>
       </div>
       <div class="row p-2">
-        <div class="col">{% trans 'Executor' %}</div>
-        <div class="col">{{ task.executor }}</div>
-      </div>
-      <div class="row p-2">
-        <div class="col">{% trans 'Status' %}</div>
-        <div class="col">{{ task.status }}</div>
-      </div>
-      <div class="row p-2">
         <div class="col">{% trans 'Created date' %}</div>
-        <div class="col">{{ task.created_date }}</div>
+        <div class="col">{{ group.created_date }}</div>
       </div>
       <div class="row p-2">
         <div class="col">{% trans 'Description' %}</div>
-        <div class="col">{{ task.description }}</div>
+        <div class="col">{{ group.description }}</div>
       </div>
       <div class="row p-2">
-        <div class="col"><h6>{% trans 'Labels' %}:</h6>
-          <ul>
-              {% for label in task.labels.all %}
-              <li>{{ label.name }}</li>
-              {% endfor %}
-          </ul>
+        <div class="col"><h6>{% trans 'Participants' %}:</h6>
+            <ul>
+            {% for participant in group.participants.all%}
+                <li>{{ participant.username }}</li>
+            {% endfor %}
+            </ul>
         </div>
       </div>
       <div class="row p-2">
         <div class="col">
-          <a href="/tasks/{{ task.id }}/update/">{% trans 'Update' %}</a>
+          <a href="/groups/{{ group.id }}/update/">{% trans 'Update' %}</a>
           <br>
-          <a href="/tasks/{{ task.id }}/delete/">{% trans 'Delete' %}</a>
+          <a href="/groups/{{ group.id }}/delete/">{% trans 'Delete' %}</a>
         </div>
       </div>
     </div>

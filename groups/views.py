@@ -1,6 +1,8 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.views.generic import (ListView, UpdateView,
+                                  CreateView, DeleteView,
+                                  DetailView)
 from django.utils.translation import gettext_lazy as _
 
 from groups.mixins import CanGroupDeletePermission
@@ -13,6 +15,16 @@ class GroupsList(AppLoginRequiredMixin, ListView):
     template_name = "groups/groups.html"
     context_object_name = "groups"
     extra_context = {'title': _('Groups'),
+                     'btn_update': _('Update'),
+                     'btn_delete': _('Delete'),
+                     }
+
+
+class GroupDetailView(SuccessMessageMixin, AppLoginRequiredMixin, DetailView):
+    model = Group
+    template_name = "groups/group.html"
+    context_object_name = "group"
+    extra_context = {'title': _('Group view'),
                      'btn_update': _('Update'),
                      'btn_delete': _('Delete'),
                      }
