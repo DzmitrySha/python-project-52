@@ -29,7 +29,11 @@
         <th scope="row">{{ group.pk }}</th>
         <td>{{ group.name }}</td>
         <td>{{ group.creator }}</td>
-        <td>{{ group.participants }}</td>
+        <td>
+            {% for participant in group.participants.all%}
+                {{ participant.username }}</br>
+            {% endfor %}
+        </td>
         <td>{{ group.created_date }}</td>
         <td>
             <a href="/groups/{{ group.pk }}/update/">{{ btn_update }}</a>
