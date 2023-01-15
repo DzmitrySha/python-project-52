@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'statuses.apps.StatusesConfig',
     'labels.apps.LabelsConfig',
     'tasks.apps.TasksConfig',
+    'groups.apps.GroupsConfig',
     'django_filters',
 ]
 
