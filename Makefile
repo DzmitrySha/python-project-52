@@ -42,7 +42,7 @@ test-coverage:
 
 # linter & check commands
 lint:
-		poetry run flake8 task_manager users tasks labels statuses
+		poetry run flake8 task_manager users tasks labels statuses groups
 
 selfcheck:
 		poetry check
