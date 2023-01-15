@@ -14,6 +14,7 @@ urlpatterns = [
     path('statuses/', include('statuses.urls')),
     path('labels/', include('labels.urls')),
     path('tasks/', include('tasks.urls')),
+    path('groups/', include('groups.urls')),
 ]
 
 if settings.DEBUG:
