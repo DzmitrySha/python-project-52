@@ -52,6 +52,10 @@
             </li>
         {% if request.user.is_authenticated %}
             <li class="nav-item">
+                <a class="nav-link" href="{% url 'groups' %}">{% trans 'Groups' %}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'statuses' %}">{% trans 'Statuses' %}<span
                         class="sr-only">(current)</span></a>
             </li>
