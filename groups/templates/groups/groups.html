@@ -27,7 +27,7 @@
     {% for group in groups %}
     <tr>
         <th scope="row">{{ group.pk }}</th>
-        <td>{{ group.name }}</td>
+        <td><a href="/groups/{{ group.pk }}">{{ group.name }}</a></td>
         <td>{{ group.creator }}</td>
         <td>
             {% for participant in group.participants.all%}
