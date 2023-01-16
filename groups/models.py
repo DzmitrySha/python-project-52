@@ -13,7 +13,7 @@ class Group(models.Model):
         related_name='creator', verbose_name=_('Creator'),
     )
     participants = models.ManyToManyField(
-        to='users.User', through='Relations',
+        to='users.User', through='GroupRelations',
         through_fields=('group', 'participant'), blank=True,
         related_name='participants', verbose_name=_('Participants'),
     )
@@ -22,6 +22,6 @@ class Group(models.Model):
         return self.name
 
 
-class Relations(models.Model):
+class GroupRelations(models.Model):
     group = models.ForeignKey(to='groups.Group', on_delete=models.CASCADE)
     participant = models.ForeignKey(to='users.User', on_delete=models.PROTECT)
